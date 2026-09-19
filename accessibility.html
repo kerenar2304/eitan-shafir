@@ -466,6 +466,24 @@ html.intro-running .hero-fill { animation-play-state: paused; }
 /* footer address: choose a navigation app */
 .address-option { transition: background-color 0.25s ease, color 0.25s ease; }
 .address-option:hover, .address-option:focus-visible { background-color: rgba(185, 158, 100, 0.18); outline: none; }
+
+/* ---------- mobile & tablet: once the page scrolls, the header sits on frosted glass ---------- */
+/* the glass follows the page behind it (navy over dark sections, white over light ones), so the logo keeps its contrast */
+@media (max-width: 1023px) {
+  .site-header {
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+  }
+  .site-header.is-scrolled {
+    background-color: rgba(5, 14, 64, 0.62);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    backdrop-filter: blur(14px) saturate(1.3);
+    box-shadow: 0 1px 0 rgba(185, 158, 100, 0.28);
+  }
+  .site-header.is-scrolled.header-on-light {
+    background-color: rgba(255, 252, 252, 0.74);
+    box-shadow: 0 1px 0 rgba(185, 158, 100, 0.4);
+  }
+}
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
@@ -882,6 +900,7 @@ function Header() {
   useFluidScale();
   const [open, setOpen] = useState(false);
   const [onLight, setOnLight] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
   // logo + menu switch between light and navy ink depending on what is behind them
@@ -894,6 +913,7 @@ function Header() {
       if (!header || !mark) return;
       const r = mark.getBoundingClientRect();
       setOnLight(isLightBehind(r.right - Math.min(r.width, 40) / 2, r.top + r.height / 2, header));
+      setScrolled(window.scrollY > 8);
     };
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
@@ -916,10 +936,14 @@ function Header() {
     <CursorLight />
     <header
       ref={headerRef}
-      className={cn("site-header pointer-events-none fixed inset-x-0 top-0 z-40", onLight && "header-on-light")}
+      className={cn(
+        "site-header pointer-events-none fixed inset-x-0 top-0 z-40",
+        onLight && "header-on-light",
+        scrolled && "is-scrolled",
+      )}
     >
       {/* like the reference: the header sits in its own frame near the page edge (2.5% of the width), outside the content margins */}
-      <div className="relative flex items-center justify-between px-6 pt-[16px] md:px-8 lg:px-[calc(2.5vw/var(--z,1))] lg:pt-[calc(1.2vw/var(--z,1)+9px)]">
+      <div className="relative flex items-center justify-between px-6 pb-[12px] pt-[16px] md:px-8 lg:pb-0 lg:px-[calc(2.5vw/var(--z,1))] lg:pt-[calc(1.2vw/var(--z,1)+9px)]">
         {/* desktop: only the ES mark + a gold burger; hovering (or tabbing into) it opens the full logo and the menu */}
         <div className="brand-menu pointer-events-auto flex items-center">
           <a href={ROUTES.home} className="brand-logo relative block shrink-0" aria-label="איתן שפיר ושות׳ רואי חשבון">
@@ -1150,60 +1174,61 @@ function Footer() {
       </svg>
 
       <div className="bg-white text-navy">
-        <div className={cn(wrap, "pt-[89px] pb-[44px]")}>
-          <div className="flex flex-col gap-12 md:flex-row md:justify-between" data-reveal>
-            <div className="flex flex-col xl:-ms-[8px]">
-              <img src="public/assets/logo-dark.svg" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[clamp(200px,20.98vw,278px)]" />
-              <ul className="mt-[43px] space-y-[24px] text-[20px] leading-[28px]">
+        <div className={cn(wrap, "pb-[36px] pt-[64px] md:pb-[44px] md:pt-[89px]")}>
+          {/* mobile: one centred column with thin gold dividers; desktop: contact on one side, links on the other */}
+          <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-stretch md:justify-between md:gap-12 md:text-right" data-reveal>
+            <div className="flex flex-col items-center md:items-start xl:-ms-[8px]">
+              <img src="public/assets/logo-dark.svg" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
+              <ul className="mt-8 space-y-4 text-[18px] leading-[26px] md:mt-[43px] md:space-y-[24px] md:text-[20px] md:leading-[28px]">
                 <li>
-                  <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center gap-[18px]">
-                    <span className="flex w-[29px] justify-end"><PhoneIcon className="size-[26px]" /></span>
+                  <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
+                    <span className="flex md:w-[29px] md:justify-end"><PhoneIcon className="size-[22px] md:size-[26px]" /></span>
                     <span dir="ltr">{PHONE}</span>
                   </a>
                 </li>
-                <li className="flex items-center gap-[18px]">
-                  <span className="flex w-[29px] justify-end"><PinIcon className="size-[27px]" /></span>
+                <li className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
+                  <span className="flex md:w-[29px] md:justify-end"><PinIcon className="size-[23px] md:size-[27px]" /></span>
                   <AddressLink />
                 </li>
                 <li>
-                  <a href={`mailto:${EMAIL}`} className="flex items-center gap-[18px]">
-                    <span className="flex w-[29px] justify-end"><MailIcon className="size-[27px]" /></span>
+                  <a href={`mailto:${EMAIL}`} className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
+                    <span className="flex md:w-[29px] md:justify-end"><MailIcon className="size-[23px] md:size-[27px]" /></span>
                     <span dir="ltr">{EMAIL}</span>
                   </a>
                 </li>
               </ul>
-              {/* bottom line, aligned under the contact details */}
+              {/* desktop bottom line, aligned under the contact details */}
               <p className="mt-auto hidden pt-[73px] font-light text-[16px] leading-[28px] md:block">© כל הזכויות שמורות לחברת איתן שפיר ושות’</p>
             </div>
 
-            <div className="flex flex-col lg:-ml-[9px]">
-            <div className="flex gap-[46px]">
-              <nav aria-label="מפת האתר">
-                <h4 className="whitespace-nowrap font-semibold text-[24px] leading-[28px] md:text-[30px]">מפת האתר</h4>
-                <ul className="mt-[19px] space-y-[19px] text-[20px] leading-[28px]">
-                  {siteMap.map((l) => (
-                    <li key={l.label}><a href={l.href} className="link-sweep">{l.label}</a></li>
-                  ))}
-                </ul>
-              </nav>
-              <nav aria-label="מאמרים אחרונים">
-                <h4 className="whitespace-nowrap font-semibold text-[24px] leading-[28px] md:text-[30px]">מאמרים אחרונים</h4>
-                <ul className="mt-[19px] space-y-[19px] text-[20px] leading-[28px]">
-                  {latest.map((a) => (
-                    <li key={a.slug}><a href={articleHref(a.slug)} className="link-sweep">{a.title}</a></li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-            {/* bottom line, aligned under the site map column */}
-            <ul className="mt-auto flex flex-wrap gap-x-[32px] gap-y-1 pt-12 font-light text-[16px] leading-[28px] md:pt-[73px]">
-              {legal.map((l) => (
-                <li key={l.label}><a href={l.href} className="link-sweep">{l.label}</a></li>
-              ))}
-            </ul>
+            <div className="flex w-full flex-col border-t border-gold/40 pt-9 md:w-auto md:border-0 md:pt-0 lg:-ml-[9px]">
+              <div className="grid grid-cols-2 gap-6 md:flex md:gap-[46px]">
+                <nav aria-label="מפת האתר">
+                  <h4 className="whitespace-nowrap font-semibold text-[20px] leading-[26px] md:text-[30px] md:leading-[28px]">מפת האתר</h4>
+                  <ul className="mt-4 space-y-3 text-[17px] leading-[24px] md:mt-[19px] md:space-y-[19px] md:text-[20px] md:leading-[28px]">
+                    {siteMap.map((l) => (
+                      <li key={l.label}><a href={l.href} className="link-sweep">{l.label}</a></li>
+                    ))}
+                  </ul>
+                </nav>
+                <nav aria-label="מאמרים אחרונים">
+                  <h4 className="whitespace-nowrap font-semibold text-[20px] leading-[26px] md:text-[30px] md:leading-[28px]">מאמרים אחרונים</h4>
+                  <ul className="mt-4 space-y-3 text-[17px] leading-[24px] md:mt-[19px] md:space-y-[19px] md:text-[20px] md:leading-[28px]">
+                    {latest.map((a) => (
+                      <li key={a.slug}><a href={articleHref(a.slug)} className="link-sweep">{a.title}</a></li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+              {/* legal links: centred under a gold line on mobile, under the site map column on desktop */}
+              <ul className="mt-9 flex flex-wrap justify-center gap-x-5 gap-y-1 border-t border-gold/40 pt-6 font-light text-[15px] leading-[26px] md:mt-auto md:justify-start md:gap-x-[32px] md:border-0 md:pt-[73px] md:text-[16px] md:leading-[28px]">
+                {legal.map((l) => (
+                  <li key={l.label}><a href={l.href} className="link-sweep">{l.label}</a></li>
+                ))}
+              </ul>
             </div>
           </div>
-          <p className="mt-8 font-light text-[16px] leading-[28px] md:hidden">© כל הזכויות שמורות לחברת איתן שפיר ושות’</p>
+          <p className="mt-3 text-center font-light text-[14px] leading-[24px] text-navy/70 md:hidden">© כל הזכויות שמורות לחברת איתן שפיר ושות’</p>
         </div>
       </div>
 
