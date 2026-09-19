@@ -1,0 +1,3862 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>(function(){var w=innerWidth,z=w>=1024?Math.min(1.8,1+(w/1546-1)*0.6):1,r=document.documentElement;if(z!==1)r.style.zoom=z.toFixed(4);r.style.setProperty("--z",z.toFixed(4))})()</script>
+<title>איתן שפיר ושות׳ | תצוגה מקדימה</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { navy: "hsl(var(--navy) / <alpha-value>)", "navy-deep": "hsl(var(--navy-deep) / <alpha-value>)", gold: "hsl(var(--gold) / <alpha-value>)", ice: "hsl(var(--ice) / <alpha-value>)", cream: "hsl(var(--cream) / <alpha-value>)" },
+  fontFamily: { talent: ['"Talent FS"', "system-ui", "sans-serif"] }
+} } };
+</script>
+<style>
+@font-face{font-family:"Talent FS";src:url("public/fonts/Talent_FS-Light.woff2") format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"Talent FS";src:url("public/fonts/Talent_FS-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Talent FS";src:url("public/fonts/Talent_FS-Demibold.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Talent FS";src:url("public/fonts/Talent_FS-Black.woff2") format("woff2");font-weight:900;font-display:swap}
+:root{--navy:231 86% 14%;--navy-deep:230 85% 5%;--gold:41 38% 56%;--ice:189 100% 97%;--cream:0 100% 99%}
+html{scroll-behavior:smooth}
+body{margin:0;background:#050e40;font-family:"Talent FS",system-ui,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+.no-scrollbar{scrollbar-width:none}.no-scrollbar::-webkit-scrollbar{display:none}
+</style>
+<style>
+/* ------------------------------------------------------------------ */
+/*  Motion & interaction layer — plain CSS, shared by the app and the   */
+/*  local preview file. Keep it free of Tailwind directives.            */
+/* ------------------------------------------------------------------ */
+
+/* ---------- client logo marquee ---------- */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 90s linear infinite; /* each half holds the row twice */
+}
+.marquee-track-reverse {
+  animation-name: marquee-right;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.marquee-mask:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- scroll reveal ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="right"] { transform: translate3d(34px, 0, 0); }
+[data-reveal="left"] { transform: translate3d(-34px, 0, 0); }
+[data-reveal="zoom"] { transform: scale(0.94); }
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- hero entrance ---------- */
+@keyframes hero-in {
+  from { opacity: 0; transform: translate3d(0, 34px, 0); }
+  to { opacity: 1; transform: none; }
+}
+.hero-in {
+  opacity: 0;
+  animation: hero-in 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: var(--hero-delay, 0ms);
+}
+@keyframes scroll-cue {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(9px); opacity: 1; }
+}
+.scroll-cue { animation: scroll-cue 2.2s ease-in-out infinite; }
+
+/* ---------- buttons: rolling label (after blumental-chadad) ---------- */
+.roll { position: relative; display: block; overflow: hidden; }
+.roll-a, .roll-b { display: block; transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); }
+.roll-b { position: absolute; top: 100%; inset-inline: 0; }
+.btn-gold:hover .roll-a, .btn-gold:hover .roll-b,
+.btn-gold:focus-visible .roll-a, .btn-gold:focus-visible .roll-b,
+.roll-link:hover .roll-a, .roll-link:hover .roll-b,
+.roll-link:focus-visible .roll-a, .roll-link:focus-visible .roll-b { transform: translateY(-100%); }
+.btn-gold { position: relative; transition: box-shadow 0.5s ease, filter 0.5s ease; }
+.btn-gold:hover { filter: brightness(1.05); box-shadow: 0 10px 24px rgba(5, 14, 64, 0.35); }
+/* header links: the label rolls and an underline draws in */
+.roll-link { position: relative; display: inline-block; }
+.roll-link::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  inset-inline-start: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.roll-link:hover::after, .roll-link:focus-visible::after { width: 100%; }
+
+/* ---------- links: sweeping underline ---------- */
+.link-sweep {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.6s cubic-bezier(0.76, 0, 0.24, 1), color 0.3s ease;
+  padding-bottom: 2px;
+}
+.link-sweep:hover { background-size: 100% 1px; }
+
+/* ---------- header: no background, always in place; ink follows the page behind it ---------- */
+.logo-ink-light, .logo-ink-dark, .hdr-ink { transition: opacity 0.45s ease, color 0.45s ease; }
+.hdr-ink { color: hsl(var(--ice)); }
+.logo-ink-dark { opacity: 0; }
+.header-on-light .logo-ink-light { opacity: 0; }
+.header-on-light .logo-ink-dark { opacity: 1; }
+.header-on-light .hdr-ink { color: hsl(var(--navy)); }
+
+/* ---------- folder cards ---------- */
+.folder-card {
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.folder-card svg { transition: filter 0.35s ease; }
+.folder-card .folder-paper { transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), border-color 0.35s ease; }
+.folder-card:hover { transform: translateY(-8px); }
+.folder-card:hover svg { filter: drop-shadow(0 18px 20px rgba(5, 14, 64, 0.45)); }
+.folder-card:hover .folder-paper { transform: translateY(-7px); border-color: rgba(230, 208, 156, 1); }
+
+/* ---------- tab panel swap ---------- */
+@keyframes panel-in {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: none; }
+}
+.panel-in { animation: panel-in 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.tab-btn { transition: background-color 0.35s ease, color 0.35s ease, transform 0.25s ease, box-shadow 0.35s ease; }
+.tab-btn:hover { transform: translateY(-2px); }
+.tab-btn[aria-selected="true"] { box-shadow: 0 10px 26px rgba(5, 14, 64, 0.4); }
+
+/* ---------- article cards ---------- */
+.article-card {
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), background-color 0.4s ease, box-shadow 0.4s ease;
+}
+.article-card img { transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.article-card:hover { transform: translateY(-8px); background-color: rgba(255, 255, 255, 0.16); box-shadow: 0 22px 34px rgba(0, 0, 0, 0.3); }
+.article-card:hover img { transform: scale(1.07); }
+
+/* ---------- form fields ---------- */
+.field-anim {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.field-anim:focus {
+  background-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 2px rgba(185, 158, 100, 0.8);
+}
+
+/* ---------- photos / images ---------- */
+.zoom-soft { transform-origin: bottom center; transition: transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.zoom-soft:hover { transform: scale(1.02); }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .scroll-cue,
+  .hero-in { animation: none; }
+  .hero-in { opacity: 1; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .folder-card, .article-card, .zoom-soft, .logo-ink-light, .logo-ink-dark, .hdr-ink { transition: none; }
+}
+
+/* ---------- staggered group (children reveal with the parent) ---------- */
+[data-reveal-group] > * {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal-group].is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal-group] > * { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- ES divider: lines draw inwards, mark fades in on arrival ---------- */
+.es-divider .es-line,
+.lines-draw .es-line {
+  transform: scaleX(0);
+  transition: transform 1.1s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.es-divider .es-line--from-left,
+.lines-draw .es-line--from-left { transform-origin: left center; }
+.es-divider .es-line--from-right,
+.lines-draw .es-line--from-right { transform-origin: right center; }
+.es-divider .es-mark {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.6s ease 0.95s, transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) 0.95s;
+}
+.es-divider.is-visible .es-line,
+.lines-draw.is-visible .es-line { transform: scaleX(1); }
+.es-divider.is-visible .es-mark { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .es-divider .es-line,
+  .lines-draw .es-line { transform: none; transition: none; }
+  .es-divider .es-mark { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- carousel arrows ---------- */
+.carousel-arrow {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.3s ease;
+}
+.carousel-arrow:not(:disabled):hover {
+  background-color: #b99e64;
+  color: #050e40;
+  transform: translateY(-2px);
+}
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* ---------- folder pop-up ---------- */
+@keyframes modal-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-backdrop-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes modal-panel-in {
+  from { opacity: 0; transform: translate3d(0, 40px, 0) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes modal-panel-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translate3d(0, 24px, 0) scale(0.97); }
+}
+.modal-backdrop { animation: modal-backdrop-in 0.35s ease both; }
+.modal-panel { animation: modal-panel-in 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.is-closing .modal-backdrop { animation: modal-backdrop-out 0.26s ease both; }
+.is-closing .modal-panel { animation: modal-panel-out 0.26s ease both; }
+.modal-close { transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease; }
+.modal-close:hover { background-color: #b99e64; color: #fffbfb; transform: rotate(90deg); }
+
+.folder-card--open:focus-visible { outline: 2px solid #b99e64; outline-offset: 6px; border-radius: 7px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-backdrop, .modal-panel, .is-closing .modal-backdrop, .is-closing .modal-panel { animation: none; }
+}
+.modal-scroll { scrollbar-width: thin; scrollbar-color: rgba(185, 158, 100, 0.7) transparent; }
+.modal-scroll::-webkit-scrollbar { width: 6px; }
+.modal-scroll::-webkit-scrollbar-thumb { background: rgba(185, 158, 100, 0.7); border-radius: 3px; }
+
+/* ---------- typography: no single-word last lines ---------- */
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li, blockquote { text-wrap: pretty; }
+
+/* ---------- justified body text ---------- */
+/* CSS has no "maximum word spacing", so justification only kicks in where lines are
+   long enough (~50+ characters) for the gaps to stay small and even. On narrow
+   columns (phones, pop-ups on phones) text stays right-aligned with a balanced rag. */
+@media (min-width: 768px) {
+  main p { text-align: justify; text-justify: inter-word; word-spacing: -0.02em; }
+  main p.text-center { text-align: center; }
+}
+
+/* ---------- About page: misc ---------- */
+.sector-pill { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+.sector-pill:hover { background-color: #b99e64; border-color: #b99e64; color: #fff; }
+.portrait-frame { transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.credential { transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.credential:hover { background-color: rgba(185, 158, 100, 0.1); border-color: #b99e64; transform: translateY(-4px); }
+
+/* ---------- About page: client sectors drop in on scroll ---------- */
+@keyframes pill-drop {
+  0% { opacity: 0; transform: translate3d(0, -160px, 0) rotate(var(--r, 6deg)); }
+  55% { opacity: 1; transform: translate3d(0, 14px, 0) rotate(calc(var(--r, 6deg) * -0.35)); }
+  75% { transform: translate3d(0, -6px, 0) rotate(calc(var(--r, 6deg) * 0.15)); }
+  100% { opacity: 1; transform: none; }
+}
+.sector-list .sector-pill { opacity: 0; }
+.sector-list.is-visible .sector-pill {
+  animation: pill-drop 0.95s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+  animation-delay: calc(var(--i, 0) * 75ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sector-list .sector-pill, .sector-list.is-visible .sector-pill { opacity: 1; animation: none; }
+}
+
+/* ---------- About page: team cards ---------- */
+.team-card-img { transform-origin: 50% 86%; transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.team-card:hover .team-card-img { transform: scale(1.04); }
+
+/* ---------- Services page: two department folders, gently tilted; a service opens as a cream page ---------- */
+.dept-folder { transform-origin: 50% 100%; transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); }
+.folder-tilt-right { transform: rotate(1.6deg); }
+.folder-tilt-left { transform: rotate(-1.6deg); }
+.dept-folder:hover, .dept-folder:focus-within { transform: rotate(0deg) translateY(-6px); }
+@media (max-width: 1023px) {
+  .folder-tilt-right { transform: rotate(0.8deg); }
+  .folder-tilt-left { transform: rotate(-0.8deg); }
+}
+.folder-row > span:nth-child(2) { transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+.folder-row-arrow { transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.3s ease; opacity: 0.55; }
+.folder-row:hover > span:nth-child(2) { transform: translateX(-6px); }
+.folder-row:hover .folder-row-arrow { transform: translateX(-6px); opacity: 1; }
+.folder-row:focus-visible, .service-nav:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.service-nav { transition: background-color 0.3s ease, color 0.3s ease; }
+.service-nav:not(:disabled):hover { background-color: hsl(var(--gold)); color: hsl(var(--cream)); }
+@media (prefers-reduced-motion: reduce) {
+  .dept-folder, .folder-row > span, .folder-row-arrow, .service-nav { transition: none; }
+}
+
+/* ---------- Articles page ---------- */
+.article-img img { transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.article-tile { transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.45s ease; }
+.article-tile:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -26px rgba(5, 14, 64, 0.5); }
+.article-tile:hover .article-img img, .article-img:hover img { transform: scale(1.05); }
+.article-tile:focus-visible { outline: 2px solid hsl(var(--gold)); outline-offset: 3px; }
+.article-tile-more { transition: letter-spacing 0.3s ease; }
+.article-tile:hover .article-tile-more { letter-spacing: 0.02em; }
+@media (prefers-reduced-motion: reduce) {
+  .article-img img, .article-tile, .article-tile-more { transition: none; }
+}
+
+/* ---------- Home hero on wide screens ---------- */
+/* the sky continues the video's own right edge, so the frame can end without a seam */
+@media (min-width: 1024px) {
+  .hero-sky {
+    background: linear-gradient(to bottom, #000012 0%, #00031a 10%, #00041a 20%, #00051d 30%, #000a24 40%, #01112d 50%, #101d34 60%, #1f2639 70%, #142037 80%, #091327 100%);
+  }
+}
+/* only when the screen is wider than the 16:9 footage: fade its far edge into that sky */
+@media (min-width: 1024px) and (min-aspect-ratio: 17/9) {
+  .hero-media {
+    -webkit-mask-image: linear-gradient(to right, #000 70%, transparent);
+    mask-image: linear-gradient(to right, #000 70%, transparent);
+  }
+}
+
+/* ---------- Header: compact brand that opens into logo + menu ---------- */
+@media (min-width: 1024px) {
+  /* closed: only the ES mark (the right 76px of the logo) and a burger */
+  .brand-logo {
+    width: 58px; /* the ES mark: the right 76/278 of the 212px logo */
+    height: 41px;
+    overflow: hidden;
+    transition: width 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s;
+  }
+  .brand-burger {
+    width: 32px;
+    margin-inline-start: 16px;
+    overflow: hidden;
+    transition: opacity 0.3s ease 0.3s, width 0.5s ease 0.3s, margin 0.5s ease 0.3s, transform 0.4s ease 0.3s;
+  }
+  .brand-nav {
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s, margin 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s;
+  }
+  .brand-nav li {
+    opacity: 0;
+    transform: translateX(14px);
+    transition: opacity 0.25s ease, transform 0.35s ease;
+  }
+
+  /* open: on hover, or when a keyboard user tabs into it */
+  .brand-menu:hover .brand-logo,
+  .brand-menu:focus-within .brand-logo {
+    width: 212px;
+    transition-delay: 0s;
+  }
+  .brand-menu:hover .brand-burger,
+  .brand-menu:focus-within .brand-burger {
+    opacity: 0;
+    width: 0;
+    margin-inline-start: 0;
+    transform: scale(0.6);
+    transition-delay: 0s;
+  }
+  .brand-menu:hover .brand-nav,
+  .brand-menu:focus-within .brand-nav {
+    max-width: 900px;
+    margin-inline-start: 44px;
+    transition-delay: 0s;
+  }
+  .brand-menu:hover .brand-nav li,
+  .brand-menu:focus-within .brand-nav li {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: calc(0.15s + var(--i, 0) * 70ms);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo, .brand-burger, .brand-nav, .brand-nav li { transition: none !important; }
+}
+
+
+/* ---------- cursor light: a small soft gold glow trailing the mouse ---------- */
+.cursor-light {
+  z-index: 35;
+  width: 240px;
+  height: 240px;
+  margin: -120px 0 0 -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(236, 214, 160, 0.3) 0%, rgba(185, 158, 100, 0.13) 30%, rgba(185, 158, 100, 0) 66%);
+  mix-blend-mode: screen; /* glows on dark sections, disappears on white */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: transform;
+}
+.cursor-light.is-on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .cursor-light { display: none; }
+  .roll-a, .roll-b, .roll-link::after { transition: none; }
+}
+
+/* narrow copy (folder rows, cards): right aligned reads cleaner than justified (no stretched gaps) */
+.service-copy p, .article-copy p { text-align: right; word-spacing: normal; text-wrap: pretty; }
+
+/* ---------- opening screen: the ES mark rises, a gold line draws, then the screen lifts ---------- */
+.intro { transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1); }
+.intro.is-out { transform: translateY(-100%); }
+.intro-mark { clip-path: inset(100% 0 0 0); animation: intro-mark 1s cubic-bezier(0.76, 0, 0.24, 1) 0.15s forwards; }
+@keyframes intro-mark { to { clip-path: inset(0 0 0 0); } }
+.intro-line { transform: scaleX(0); transform-origin: right center; animation: intro-line 1.25s cubic-bezier(0.76, 0, 0.24, 1) 0.45s forwards; }
+@keyframes intro-line { to { transform: scaleX(1); } }
+/* the hero waits for the opening screen */
+html.intro-running .hero-in,
+html.intro-running .hero-fill { animation-play-state: paused; }
+
+/* ---------- hero title: shows faint, then fills with gold from right to left, like the lighthouse beam ---------- */
+.hero-fill {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(to right, rgba(240, 253, 255, 0.16) 0 44%, hsl(var(--gold)) 56% 100%);
+  background-size: 230% 100%;
+  background-position: 0% 0;
+  animation: hero-fill 1.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: var(--fill-delay, 0ms);
+}
+@keyframes hero-fill { to { background-position: 100% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none; }
+  .hero-fill { color: hsl(var(--gold)); background: none; animation: none; }
+}
+
+/* legal pages: details the firm still has to supply, clearly visible until replaced */
+.legal-fill {
+  background-color: rgba(185, 158, 100, 0.16);
+  border-bottom: 1px dashed hsl(var(--gold));
+  padding: 0 0.25em;
+  font-weight: 400;
+}
+
+/* footer address: choose a navigation app */
+.address-option { transition: background-color 0.25s ease, color 0.25s ease; }
+.address-option:hover, .address-option:focus-visible { background-color: rgba(185, 158, 100, 0.18); outline: none; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script id="src" type="text/plain">
+const { useState, useRef, useEffect, useCallback, useLayoutEffect } = React;
+const cn = (...a) => a.filter(Boolean).join(" ");
+const Menu = (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" {...p}><path d="M4 6h16M4 12h16M4 18h16"/></svg>;
+const X = (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" {...p}><path d="M18 6 6 18M6 6l12 12"/></svg>;
+
+/* ------------------------------------------------------------------ */
+/*  Shared site pieces: data, layout helpers, header, contact, footer  */
+/* ------------------------------------------------------------------ */
+
+/** site routes (plain anchors so they work in any router setup) */
+const ROUTES = { home: "index.html", about: "about.html", services: "services.html", articles: "articles.html", accessibility: "accessibility.html", privacy: "privacy.html", terms: "terms.html" };
+
+const NAV = [
+  { label: "ראשי", href: ROUTES.home },
+  { label: "אודות", href: ROUTES.about },
+  { label: "התמחות", href: ROUTES.services },
+  { label: "מאמרים", href: ROUTES.articles },
+  { label: "צור קשר", href: "#contact" },
+];
+
+const PHONE = "03-5614085";
+const EMAIL = "????@shafircpa.com";
+const ADDRESS = "רח’ נתן ילין מור 24, תל אביב";
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("נתן ילין מור 24, תל אביב")}`;
+const WAZE_URL = `https://waze.com/ul?q=${encodeURIComponent("נתן ילין מור 24, תל אביב")}&navigate=yes`;
+
+
+/** glue the last two words so a line never ends with a single orphan word (older browsers) */
+const noOrphan = (text: string) => text.replace(/\s+(\S+)\s*$/, " $1");
+
+
+/* ------------------------------------------------------------------ */
+/*  Book-style justified paragraph                                     */
+/* ------------------------------------------------------------------ */
+
+type BookLine = { from: number; to: number; ws: number; ls: number; last: boolean };
+
+/** book-like limits, as a fraction of the font size (word shrink is a fraction of a space) */
+const BOOK = { maxWordStretch: 0.25, maxLetterStretch: 0.03, maxLetterShrink: 0.015, wordShrink: 0.2 };
+
+function setBookLines(el: HTMLElement, words: string[]): BookLine[] {
+  const spans = Array.from(el.querySelectorAll<HTMLElement>("[data-w]"));
+  const space = el.querySelector<HTMLElement>("[data-space]")?.offsetWidth ?? 0;
+  const fs = parseFloat(getComputedStyle(el).fontSize);
+  const W = el.clientWidth;
+  const n = words.length;
+  if (!W || !spans.length || !space) return [];
+
+  const wd = spans.map((s) => s.offsetWidth);
+  const chars = (i: number, j: number) => words.slice(i, j + 1).join(" ").length;
+  const maxWs = BOOK.maxWordStretch * fs;
+  const maxLs = BOOK.maxLetterStretch * fs;
+  const minWs = -BOOK.wordShrink * space;
+  const minLs = -BOOK.maxLetterShrink * fs;
+
+  // greedy breaking that may squeeze one more word in when that reads better than stretching
+  const lines: { i: number; j: number; natural: number }[] = [];
+  let i = 0;
+  while (i < n) {
+    let j = i;
+    let natural = wd[i];
+    while (j + 1 < n) {
+      const next = natural + space + wd[j + 1];
+      if (next <= W) {
+        natural = next;
+        j++;
+        continue;
+      }
+      const shrinkCap = -((j + 1 - i) * minWs + chars(i, j + 1) * minLs);
+      const gapsA = j - i;
+      const stretchCap = gapsA * maxWs + chars(i, j) * maxLs;
+      const badShrink = (next - W) / shrinkCap;
+      const badStretch = gapsA ? (W - natural) / stretchCap : Infinity;
+      if (next - W <= shrinkCap && badShrink < badStretch) {
+        natural = next;
+        j++;
+      }
+      break;
+    }
+    lines.push({ i, j, natural });
+    i = j + 1;
+  }
+
+  return lines.map(({ i, j, natural }, k) => {
+    const last = k === lines.length - 1;
+    const gaps = j - i;
+    const cs = chars(i, j);
+    let ws = 0;
+    let ls = 0;
+    if (!last && gaps > 0) {
+      const delta = W - natural;
+      if (delta >= 0) {
+        ws = Math.min(maxWs, delta / gaps);
+        ls = Math.min(maxLs, (delta - ws * gaps) / cs);
+        ws += (delta - ws * gaps - ls * cs) / gaps; // anything left goes back to the word gaps
+      } else {
+        ws = Math.max(minWs, delta / gaps);
+        ls = (delta - ws * gaps) / cs;
+      }
+    }
+    return { from: i, to: j, ws, ls, last };
+  });
+}
+
+/**
+ * Justified paragraph set like a book page: each line gets its own word and letter spacing
+ * within tight limits, instead of the browser stretching only the word gaps.
+ * Below 768px it stays right aligned.
+ */
+function BookText({ text, className }: { text: string; className?: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const words = text.trim().split(/\s+/);
+  const [lines, setLines] = useState<BookLine[] | null>(null);
+  const widthRef = useRef(0);
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el || lines !== null) return;
+    if (!window.matchMedia("(min-width: 768px)").matches) return;
+    widthRef.current = el.clientWidth;
+    setLines(setBookLines(el, words));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lines, text]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const redo = () => setLines(null);
+    const ro = new ResizeObserver(() => {
+      if (Math.abs(el.clientWidth - widthRef.current) > 0.5) redo();
+    });
+    ro.observe(el);
+    document.fonts?.ready.then(redo);
+    return () => ro.disconnect();
+  }, [text]);
+
+  if (!lines || !lines.length) {
+    // measuring pass: natural spacing, one span per word
+    return (
+      <p ref={ref} className={cn("book-text", className)} style={{ textAlign: "right", wordSpacing: "normal" }}>
+        {words.map((w, k) => (
+          <span key={k}>
+            <span data-w>{w}</span>
+            {k < words.length - 1 ? " " : ""}
+          </span>
+        ))}
+        <span data-space aria-hidden style={{ position: "absolute", visibility: "hidden", whiteSpace: "pre" }}>
+          {" "}
+        </span>
+      </p>
+    );
+  }
+
+  return (
+    <p ref={ref} className={cn("book-text", className)} style={{ textAlign: "right" }}>
+      {lines.map((l, k) => (
+        <span
+          key={k}
+          className="block"
+          style={
+            l.last
+              ? { wordSpacing: "normal" }
+              : {
+                  whiteSpace: "nowrap",
+                  wordSpacing: `${l.ws.toFixed(2)}px`,
+                  letterSpacing: `${l.ls.toFixed(3)}px`,
+                  textAlign: "justify",
+                  textAlignLast: "justify",
+                }
+          }
+        >
+          {words.slice(l.from, l.to + 1).join(" ")}
+        </span>
+      ))}
+    </p>
+  );
+}
+
+
+/** content column: 77% of the screen on desktop (11.5% margins, clear of the header frame); full width minus gutters below */
+const wrap = "mx-auto w-[min(1221px,calc(100%-3rem))] md:w-[min(1221px,calc(100%-4rem))] lg:w-[77%]";
+
+/** kept for the header and hero; same column as the rest of the page */
+const wrapWide = wrap;
+
+const sectionTitle =
+  "font-semibold text-gold text-[clamp(40px,6vw,64px)] leading-[0.95]";
+
+/** rolling label (after blumental-chadad): on hover the text slides up and an identical copy rolls in from below */
+function RollText({ children }: { children: ReactNode }) {
+  return (
+    <span className="roll">
+      <span className="roll-a">{children}</span>
+      <span className="roll-b" aria-hidden>
+        {children}
+      </span>
+    </span>
+  );
+}
+
+/**
+ * Opening screen (after blumental-chadad, in Eitan's language): the gold ES mark rises into view on deep navy
+ * with a thin gold line drawing under it, then the screen lifts away. Plays when someone enters the site (from outside,
+ * a typed address or a bookmark) and on a browser refresh; never when moving between the site's own pages.
+ * Skipped for reduced motion.
+ * While it runs, <html> carries .intro-running so the hero's own entrance waits for it.
+ */
+/** module state: resets on every full load, survives in-app (router) navigation */
+let introPlayed = false;
+
+/** a refresh, or arriving from outside the site (not a click from one of its own pages, not back / forward) */
+function isSiteEntry() {
+  const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+  if (nav?.type === "reload") return true;
+  if (nav?.type === "back_forward") return false;
+  try {
+    return !document.referrer || new URL(document.referrer).origin !== window.location.origin;
+  } catch {
+    return true;
+  }
+}
+
+function IntroLoader() {
+  const [phase, setPhase] = useState<"on" | "out" | "off">(() => {
+    if (typeof window === "undefined" || introPlayed || !isSiteEntry()) return "off";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return "off";
+    return "on";
+  });
+
+  useLayoutEffect(() => {
+    if (phase !== "on") return;
+    const root = document.documentElement;
+    root.classList.add("intro-running");
+    introPlayed = true;
+    const lift = window.setTimeout(() => {
+      setPhase("out");
+      root.classList.remove("intro-running");
+    }, 1900);
+    const done = window.setTimeout(() => setPhase("off"), 2800);
+    return () => {
+      window.clearTimeout(lift);
+      window.clearTimeout(done);
+      root.classList.remove("intro-running");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (phase === "off") return null;
+  return (
+    <div className={cn("intro fixed inset-0 z-[100] grid place-items-center bg-navy-deep", phase === "out" && "is-out")} aria-hidden>
+      <div className="flex flex-col items-center">
+        <img src="public/assets/es-mark.svg" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
+        <span className="intro-line mt-8 block h-px w-[150px] bg-gold md:w-[180px]" />
+      </div>
+    </div>
+  );
+}
+
+/** a small soft gold light that trails the mouse (desktop mouse only, off for reduced motion) */
+function CursorLight() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let x = -500;
+    let y = -500;
+    let cx = x;
+    let cy = y;
+    let frame = 0;
+    const tick = () => {
+      cx += (x - cx) * 0.14;
+      cy += (y - cy) * 0.14;
+      // the page may be zoomed on desktop; the light lives inside it, so convert screen px to page px
+      const z = parseFloat(document.documentElement.style.zoom || "1") || 1;
+      el.style.transform = `translate3d(${cx / z}px, ${cy / z}px, 0)`;
+      frame = Math.abs(x - cx) + Math.abs(y - cy) > 0.3 ? requestAnimationFrame(tick) : 0;
+    };
+    const onMove = (e: PointerEvent) => {
+      x = e.clientX;
+      y = e.clientY;
+      el.classList.add("is-on");
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+    const onLeave = () => el.classList.remove("is-on");
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onLeave);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", onMove);
+      document.documentElement.removeEventListener("pointerleave", onLeave);
+    };
+  }, []);
+
+  return <div ref={ref} className="cursor-light pointer-events-none fixed left-0 top-0" aria-hidden />;
+}
+
+function GoldButton({
+  children,
+  href = "#",
+  icon,
+  className,
+  onClick,
+}: {
+  children: ReactNode;
+  href?: string;
+  icon?: ReactNode;
+  className?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}) {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className={cn(
+        "btn-gold inline-flex shrink-0 items-center justify-center gap-4 whitespace-nowrap rounded-[5px] bg-gold px-[10px] py-[9px] text-[20px] font-normal leading-[23px] text-navy drop-shadow-[0_4px_4px_rgba(5,14,64,0.24)]",
+        className,
+      )}
+    >
+      {icon}
+      <RollText>{children}</RollText>
+    </a>
+  );
+}
+
+/* Contact icons, drawn like the line illustrations on the "למה לבחור בנו" cards:
+   one even gold outline, round caps, circles and short strokes, no fill */
+const lineIcon = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" } as const;
+
+function PhoneIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={cn("text-gold", className)} {...lineIcon} aria-hidden>
+      <path d="M5.2 3.5h3.1l1.6 4.1-2.1 1.3a11.2 11.2 0 0 0 5.3 5.3l1.3-2.1 4.1 1.6v3.1a2 2 0 0 1-2.1 2A15.5 15.5 0 0 1 3.2 5.6a2 2 0 0 1 2-2.1Z" />
+      <path d="M14.6 3.6a6.4 6.4 0 0 1 5.8 5.8" />
+      <path d="M14.3 6.7a3.3 3.3 0 0 1 3 3" />
+    </svg>
+  );
+}
+
+function MailIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={cn("text-gold", className)} {...lineIcon} aria-hidden>
+      <rect x="2.75" y="5.25" width="18.5" height="13.5" rx="1.6" />
+      <path d="m3.4 6.2 8.6 6.6 8.6-6.6" />
+    </svg>
+  );
+}
+
+function PinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={cn("text-gold", className)} {...lineIcon} aria-hidden>
+      <path d="M12 21.25s-6.75-6.1-6.75-11.4a6.75 6.75 0 0 1 13.5 0c0 5.3-6.75 11.4-6.75 11.4Z" />
+      <circle cx="12" cy="9.85" r="2.6" />
+    </svg>
+  );
+}
+
+
+/* Desktop (1024px and up): the whole site scales linearly with the width, so the composition, type,
+   spacing and margins look the same on every screen, only larger or smaller.
+   The content column is 77% of the screen (11.5% margins); the header sits outside it at 2.5%.
+   Sections that must fit the screen height use --z to size themselves against the real screen. */
+const DESIGN_WIDTH = 1546;
+const MIN_DESKTOP = 1024;
+const MAX_SCALE = 1.8;
+/** type and elements follow only part of the width change, so wide screens do not blow headings up;
+    the content column is a percentage, so the margins stay proportional anyway */
+const SCALE_RATE = 0.6;
+
+function applyFluidScale() {
+  const w = window.innerWidth;
+  const z = w >= MIN_DESKTOP ? Math.min(MAX_SCALE, 1 + (w / DESIGN_WIDTH - 1) * SCALE_RATE) : 1;
+  const root = document.documentElement;
+  root.style.zoom = z === 1 ? "" : z.toFixed(4);
+  root.style.setProperty("--z", z.toFixed(4));
+}
+
+function useFluidScale() {
+  useEffect(() => {
+    applyFluidScale();
+    window.addEventListener("resize", applyFluidScale);
+    return () => window.removeEventListener("resize", applyFluidScale);
+  }, []);
+}
+
+/** is the page behind this point light? Checks SVG fills and backgrounds; photos and video count as dark */
+function isLightBehind(x: number, y: number, header: HTMLElement) {
+  const hit = document.elementsFromPoint(x, y).find((e) => !header.contains(e));
+  for (let e: Element | null = hit ?? null; e; e = e.parentElement) {
+    if (e instanceof HTMLImageElement || e instanceof HTMLVideoElement) return false;
+    const cs = getComputedStyle(e);
+    const color = e instanceof SVGElement && cs.fill && cs.fill !== "none" ? cs.fill : cs.backgroundColor;
+    const m = color.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/);
+    if (m && (m[4] === undefined || parseFloat(m[4]) > 0.5)) {
+      const [r, g, b] = [m[1], m[2], m[3]].map((v) => parseFloat(v) / 255);
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.55;
+    }
+  }
+  return false;
+}
+
+function Header() {
+  useFluidScale();
+  const [open, setOpen] = useState(false);
+  const [onLight, setOnLight] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // logo + menu switch between light and navy ink depending on what is behind them
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const header = headerRef.current;
+      const mark = header?.querySelector(".brand-logo");
+      if (!header || !mark) return;
+      const r = mark.getBoundingClientRect();
+      setOnLight(isLightBehind(r.right - Math.min(r.width, 40) / 2, r.top + r.height / 2, header));
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    const t = window.setTimeout(update, 600); // after the page has painted
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.clearTimeout(t);
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <>
+    <IntroLoader />
+    <CursorLight />
+    <header
+      ref={headerRef}
+      className={cn("site-header pointer-events-none fixed inset-x-0 top-0 z-40", onLight && "header-on-light")}
+    >
+      {/* like the reference: the header sits in its own frame near the page edge (2.5% of the width), outside the content margins */}
+      <div className="relative flex items-center justify-between px-6 pt-[16px] md:px-8 lg:px-[calc(2.5vw/var(--z,1))] lg:pt-[calc(1.2vw/var(--z,1)+9px)]">
+        {/* desktop: only the ES mark + a gold burger; hovering (or tabbing into) it opens the full logo and the menu */}
+        <div className="brand-menu pointer-events-auto flex items-center">
+          <a href={ROUTES.home} className="brand-logo relative block shrink-0" aria-label="איתן שפיר ושות׳ רואי חשבון">
+            {/* two inks, cross-faded: white text on dark backgrounds, navy text on light ones (the mark stays gold) */}
+            <img
+              src="public/assets/logo-light.svg"
+              alt="איתן שפיר ושות׳ רואי חשבון"
+              className="logo-ink-light block h-auto w-[clamp(140px,38vw,200px)] lg:absolute lg:right-0 lg:top-0 lg:w-[212px] lg:max-w-none"
+            />
+            <img
+              src="public/assets/logo-dark.svg"
+              alt=""
+              aria-hidden
+              className="logo-ink-dark absolute right-0 top-0 block h-auto w-[clamp(140px,38vw,200px)] lg:w-[212px] lg:max-w-none"
+            />
+          </a>
+          <span className="brand-burger hidden text-gold lg:block" aria-hidden>
+            <Menu className="size-[32px]" strokeWidth={1.7} />
+          </span>
+          <nav className="brand-nav hidden lg:block" aria-label="ניווט ראשי">
+            <ul className="hdr-ink flex items-center gap-[40px] px-[6px] py-[8px] text-[20px] font-normal leading-[1.1]">
+              {NAV.map((item, i) => (
+                <li key={item.label} style={{ "--i": i } as React.CSSProperties}>
+                  <a href={item.href} className="roll-link whitespace-nowrap">
+                    <RollText>{item.label}</RollText>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        {/* mobile & tablet menu button */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="pointer-events-auto grid size-[44px] place-items-center rounded-[5px] text-gold lg:hidden"
+          aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
+          aria-expanded={open}
+        >
+          {open ? <X className="size-8" /> : <Menu className="size-8" />}
+        </button>
+      </div>
+
+      {open && (
+        <nav className={cn(wrap, "pointer-events-auto mt-3 rounded-[5px] bg-navy/95 p-4 lg:hidden")} aria-label="ניווט נייד">
+          <ul className="flex flex-col gap-3 text-[20px] leading-[28px] text-ice">
+            {NAV.map((item) => (
+              <li key={item.label}>
+                <a href={item.href} onClick={() => setOpen(false)}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </header>
+    </>
+  );
+}
+
+
+const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
+
+const field =
+  "field-anim w-full rounded-[5px] bg-white/10 pr-[14px] pl-3 text-right font-normal text-white text-[20px] leading-[22px] placeholder:text-white outline-none";
+
+function Contact() {
+  return (
+    <section id="contact" className="mt-[110px] md:mt-[200px]">
+
+      <div className="lines-draw flex items-start" data-anim>
+        <span className="es-line es-line--from-right mt-[50px] h-[2px] flex-1 bg-gold" aria-hidden />
+        <h2 className="mx-[clamp(16px,2.566vw,34px)] whitespace-nowrap font-semibold text-gold text-[clamp(44px,6.038vw,80px)] leading-[85px]">
+          יצירת קשר
+        </h2>
+        <span className="es-line es-line--from-left mt-[50px] h-[2px] flex-1 bg-gold" aria-hidden />
+      </div>
+
+      <div className={wrap}>
+        <p
+          className="mx-auto mt-[24px] max-w-[987px] text-center font-normal text-white text-[18px] leading-[26px] md:text-[20px] md:leading-[28px]"
+          data-reveal
+        >
+          נשמח להעניק לכם ליווי מקצועי, אישי ואיכותי בתחומי ראיית החשבון, המיסוי ובקרות השכר.
+        </p>
+
+        <form className="mx-auto mt-[56px] w-full max-w-[711px] md:mt-[76px]" data-reveal style={{ "--reveal-delay": "120ms" } as React.CSSProperties} onSubmit={(e) => e.preventDefault()}>
+          <div className="grid gap-[13px] md:grid-cols-3 md:gap-[31.5px]">
+            <input type="text" name="name" placeholder="שם מלא" aria-label="שם מלא" className={cn(field, "h-[41px]")} />
+            <input type="email" name="email" placeholder="אימייל" aria-label="אימייל" className={cn(field, "h-[41px]")} />
+            <input type="tel" name="phone" placeholder="טלפון" aria-label="טלפון" className={cn(field, "h-[41px]")} />
+          </div>
+          <textarea
+            name="message"
+            placeholder="תוכן הפניה"
+            aria-label="תוכן הפניה"
+            className={cn(field, "mt-[13px] block h-[108px] resize-none pt-[7px]")}
+          />
+
+          <div className="mt-[15px] flex flex-col-reverse items-start gap-6 md:flex-row md:justify-between">
+            <div className="flex flex-col gap-4 pt-[13px] sm:flex-row sm:gap-[56px] md:-me-[2px]">
+              <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center gap-[18px] text-white">
+                <PhoneIcon className="size-[26px]" />
+                <span dir="ltr" className="text-[20px] leading-[28px]">{PHONE}</span>
+              </a>
+              <a href={`mailto:${EMAIL}`} className="flex items-center gap-[18px] text-white">
+                <MailIcon className="size-[27px]" />
+                <span dir="ltr" className="text-[20px] leading-[28px]">{EMAIL}</span>
+              </a>
+            </div>
+            <button
+              type="submit"
+              className="btn-gold inline-flex items-center rounded-[5px] bg-gold px-[10px] py-[9px] text-[20px] leading-[23px] text-navy drop-shadow-[0_4px_4px_rgba(5,14,64,0.24)] md:self-start"
+            >
+              <RollText>שלח ←</RollText>
+            </button>
+          </div>
+          {/* privacy notice where the details are given, on its own line under the form */}
+          <p className="mt-5 text-[14px] leading-[1.6] text-ice/80 md:text-[15px]">
+            הפרטים שתמסרו ישמשו לחזרה אליכם בלבד.{" "}
+            <a href={ROUTES.privacy} className="link-sweep text-gold">
+              למדיניות הפרטיות
+            </a>
+          </p>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Footer                                                             */
+/* ------------------------------------------------------------------ */
+
+/** the office address; clicking it asks which navigation app to open */
+function AddressLink() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const option = "address-option block rounded-[6px] px-3 py-2 text-navy";
+  return (
+    <span ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls="address-nav"
+        className="link-sweep text-right"
+      >
+        {ADDRESS}
+      </button>
+      {open && (
+        <span
+          id="address-nav"
+          className="panel-in absolute start-0 top-full z-20 mt-3 flex min-w-[200px] flex-col rounded-[10px] border border-gold/50 bg-cream p-2 text-[16px] leading-[1.3] shadow-[0_18px_40px_-18px_rgba(5,14,64,0.45)]"
+        >
+          <span className="px-3 pb-1 pt-1 text-[13px] text-navy/60">ניווט אל המשרד</span>
+          <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className={option}>
+            Google Maps <span className="sr-only">(נפתח בחלון חדש)</span>
+          </a>
+          <a href={WAZE_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className={option}>
+            Waze <span className="sr-only">(נפתח בחלון חדש)</span>
+          </a>
+        </span>
+      )}
+    </span>
+  );
+}
+
+function Footer() {
+  const siteMap = [
+    { label: "דף הבית", href: ROUTES.home },
+    { label: "אודות", href: ROUTES.about },
+    { label: "תחומי התמחות", href: ROUTES.services },
+    { label: "מאמרים", href: ROUTES.articles },
+    { label: "צור קשר", href: "#contact" },
+  ];
+  // the three most recent articles, straight from the articles list
+  const latest = ARTICLES.slice(0, 3);
+  const legal = [
+    { label: "הצהרת נגישות", href: ROUTES.accessibility },
+    { label: "מדיניות פרטיות", href: ROUTES.privacy },
+    { label: "תקנון האתר", href: ROUTES.terms },
+  ];
+
+  return (
+    <footer className="mt-[70px] md:mt-[120px]">
+      {/* navy → white: dome + two gold rings (Figma: Group 6) */}
+      <svg viewBox="0 6098 1325 172" className="-mb-px block h-auto w-full" aria-hidden>
+        <rect x="0" y="6140" width="1325" height="130" className="fill-white" />
+        <g transform="translate(-292 5709)">
+          <path
+            className="fill-navy"
+            d="M954.5 527.598C427.344 527.598 0 424.514 0 297.354C0 297.01 0.0045 296.666 0.0108 296.322L1908.99 296.322C1909 296.666 1909 297.01 1909 297.355C1909 424.514 1481.66 527.598 954.5 527.598Z"
+          />
+          <path
+            className="stroke-gold"
+            fill="none"
+            strokeWidth="2"
+            d="M954.5 499.753C690.982 499.753 452.446 471.734 279.82 426.452C193.5 403.809 123.716 376.864 75.536 346.984C27.3025 317.071 1 284.397 1 250.376C1 216.355 27.3027 183.682 75.536 153.769C123.716 123.889 193.5 96.9437 279.82 74.3008C452.447 29.0189 690.982 1 954.5 1C1218.02 1 1456.55 29.019 1629.18 74.3009C1715.5 96.9438 1785.28 123.889 1833.46 153.769C1881.7 183.682 1908 216.355 1908 250.376C1908 284.398 1881.7 317.071 1833.46 346.985C1785.28 376.864 1715.5 403.809 1629.18 426.452C1456.55 471.734 1218.02 499.753 954.5 499.753Z"
+          />
+          <path
+            className="stroke-gold"
+            fill="none"
+            strokeWidth="2"
+            d="M954.5 553.753C690.982 553.753 452.446 525.734 279.82 480.452C193.5 457.81 123.716 430.865 75.536 400.985C27.3025 371.071 1 338.398 1 304.376C1 270.355 27.3027 237.682 75.536 207.769C123.716 177.889 193.5 150.944 279.82 128.301C452.447 83.0193 690.982 55 954.5 55C1218.02 55 1456.55 83.0194 1629.18 128.301C1715.5 150.944 1785.28 177.889 1833.46 207.769C1881.7 237.682 1908 270.355 1908 304.376C1908 338.398 1881.7 371.072 1833.46 400.985C1785.28 430.865 1715.5 457.81 1629.18 480.453C1456.55 525.734 1218.02 553.753 954.5 553.753Z"
+          />
+        </g>
+      </svg>
+
+      <div className="bg-white text-navy">
+        <div className={cn(wrap, "pt-[89px] pb-[44px]")}>
+          <div className="flex flex-col gap-12 md:flex-row md:justify-between" data-reveal>
+            <div className="flex flex-col xl:-ms-[8px]">
+              <img src="public/assets/logo-dark.svg" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[clamp(200px,20.98vw,278px)]" />
+              <ul className="mt-[43px] space-y-[24px] text-[20px] leading-[28px]">
+                <li>
+                  <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center gap-[18px]">
+                    <span className="flex w-[29px] justify-end"><PhoneIcon className="size-[26px]" /></span>
+                    <span dir="ltr">{PHONE}</span>
+                  </a>
+                </li>
+                <li className="flex items-center gap-[18px]">
+                  <span className="flex w-[29px] justify-end"><PinIcon className="size-[27px]" /></span>
+                  <AddressLink />
+                </li>
+                <li>
+                  <a href={`mailto:${EMAIL}`} className="flex items-center gap-[18px]">
+                    <span className="flex w-[29px] justify-end"><MailIcon className="size-[27px]" /></span>
+                    <span dir="ltr">{EMAIL}</span>
+                  </a>
+                </li>
+              </ul>
+              {/* bottom line, aligned under the contact details */}
+              <p className="mt-auto hidden pt-[73px] font-light text-[16px] leading-[28px] md:block">© כל הזכויות שמורות לחברת איתן שפיר ושות’</p>
+            </div>
+
+            <div className="flex flex-col lg:-ml-[9px]">
+            <div className="flex gap-[46px]">
+              <nav aria-label="מפת האתר">
+                <h4 className="whitespace-nowrap font-semibold text-[24px] leading-[28px] md:text-[30px]">מפת האתר</h4>
+                <ul className="mt-[19px] space-y-[19px] text-[20px] leading-[28px]">
+                  {siteMap.map((l) => (
+                    <li key={l.label}><a href={l.href} className="link-sweep">{l.label}</a></li>
+                  ))}
+                </ul>
+              </nav>
+              <nav aria-label="מאמרים אחרונים">
+                <h4 className="whitespace-nowrap font-semibold text-[24px] leading-[28px] md:text-[30px]">מאמרים אחרונים</h4>
+                <ul className="mt-[19px] space-y-[19px] text-[20px] leading-[28px]">
+                  {latest.map((a) => (
+                    <li key={a.slug}><a href={articleHref(a.slug)} className="link-sweep">{a.title}</a></li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+            {/* bottom line, aligned under the site map column */}
+            <ul className="mt-auto flex flex-wrap gap-x-[32px] gap-y-1 pt-12 font-light text-[16px] leading-[28px] md:pt-[73px]">
+              {legal.map((l) => (
+                <li key={l.label}><a href={l.href} className="link-sweep">{l.label}</a></li>
+              ))}
+            </ul>
+            </div>
+          </div>
+          <p className="mt-8 font-light text-[16px] leading-[28px] md:hidden">© כל הזכויות שמורות לחברת איתן שפיר ושות’</p>
+        </div>
+      </div>
+
+      <div className="border-y-2 border-gold bg-navy">
+        <div className="flex h-[103px] items-center justify-center gap-4 px-4 pt-[9px] md:gap-[44px]">
+          <span className="whitespace-nowrap text-[16px] leading-[28px] text-white md:text-[20px]">עיצוב ופיתוח האתר:</span>
+          <img src="public/assets/keren-logo.png" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+/** Scroll-reveal: adds `is-visible` to [data-reveal], [data-reveal-group] and [data-anim] as they enter view */
+function useRevealObserver() {
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+    document.querySelectorAll("[data-reveal], [data-reveal-group], [data-anim]").forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+/* Service areas: shared by the home page folders and the /services page */
+
+const SERVICE_BLOCKS: { tab: string; intro: [string, string]; folders: string[] }[] = [
+  {
+    tab: "ראיית חשבון, מיסוי וליווי עסקי",
+    intro: [
+      "מעטפת מקצועית לעסקים, חברות ועמותות בתחומי ראיית החשבון, המיסוי והליווי העסקי, בהתאמה לצורכי הלקוח.",
+      " צוות מנוסה בראשות איתן שפיר מעניק ליווי אישי, מקצועי ויסודי.",
+    ],
+    folders: [
+      "ביקורת דוחות כספיים",
+      "הנהלת חשבונות וחשבות",
+      "הכנת דוחות כספיים ואישיים",
+      "ייעוץ ותכנון מס",
+      "ייצוג מול רשויות וביטוח לאומי",
+      "החזרי מס ומס שבח",
+      "ליווי עסקי ופיננסי שוטף",
+      "ליווי ורגולציה לחברות ועמותות",
+    ],
+  },
+  {
+    tab: "ביקורות שכר, דיני עבודה ובקרות",
+    intro: [
+      "מעטפת מקצועית לארגונים וגופים עתירי כוח אדם בתחומי ביקורות השכר, דיני העבודה והבקרה.",
+      " צוות רב תחומי בראשות אבידן טרבלסי מעניק ליווי מקצועי, בדגש על רגולציה, ניהול סיכונים וצמצום חשיפות.",
+    ],
+    folders: [
+      "שירותי בודק שכר מוסמך",
+      "בקרות שכר תקופתיות",
+      "ייעוץ וליווי\nבדיני עבודה",
+      "סקרי סיכונים בשכר ובהעסקה",
+      "ליווי מכרזים עתירי כוח אדם",
+      "תמחור עלויות שכר",
+      "ליווי קבלני שירותים",
+      "ליווי הנהלות וגורמי ביקורת",
+    ],
+  },
+];
+
+/* Expanded content for the service folders — shown in a pop-up "paper" */
+type FolderDetail = {
+  /** full heading for the pop-up, when it differs from the short folder label */
+  title?: string;
+  subtitle: string;
+  paragraphs: string[];
+  listTitle?: string;
+  list?: string[];
+  note?: string;
+};
+
+const FOLDER_DETAILS: Record<string, FolderDetail> = {
+  /* ---- ראיית חשבון, מיסוי וליווי עסקי ---- */
+  "ביקורת דוחות כספיים": {
+    subtitle: "ביקורת מקצועית ובלתי תלויה, שמעניקה ביטחון לכל בעלי העניין",
+    paragraphs: [
+      "אנו מבקרים דוחות כספיים של חברות, שותפויות, עמותות וחברות לתועלת הציבור, בהתאם לתקני הביקורת המקובלים ולדרישות הרגולציה.",
+      "הביקורת נעשית בגישה יסודית ומעמיקה, ומלווה בהערות להנהלה הכוללות המלצות מעשיות לשיפור הבקרה הפנימית.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["ביקורת דוחות כספיים שנתיים", "סקירת דוחות ביניים", "דוחות מיוחדים לבנקים ולגופים ממשלתיים", "מכתב הערות להנהלה"],
+  },
+  "הנהלת חשבונות וחשבות": {
+    subtitle: "תמונה פיננסית מדויקת ועדכנית בכל רגע נתון",
+    paragraphs: [
+      "מחלקת הנהלת החשבונות של המשרד מנהלת את ספרי הלקוח באופן שוטף ומסודר, ומאפשרת לבעלי העסק להתמקד בניהולו.",
+      "לארגונים שזקוקים לכך אנו מעניקים שירותי חשבות מלאים, הכוללים בקרת תקציב, בקרה על תשלומים ודיווח שוטף להנהלה.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["הנהלת חשבונות כפולה", "התאמות בנקים וכרטיסי ספקים", "דיווחים שוטפים למע״מ ולמס הכנסה", "שירותי חשבות ובקרת תקציב"],
+  },
+  "הכנת דוחות כספיים ואישיים": {
+    subtitle: "דיווח מלא, מדויק ובמועד",
+    paragraphs: [
+      "אנו עורכים דוחות כספיים לחברות ולעמותות, ודוחות שנתיים לעצמאים ולבעלי שליטה, תוך הקפדה על כל דרישות הדין.",
+      "בכל דוח אנו בוחנים גם את התמונה הרחבה, כדי לאתר הזדמנויות לחיסכון במס ולמנוע חשיפות מיותרות.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["דוחות כספיים לחברות ולעמותות", "דוחות שנתיים לעצמאים ולבעלי שליטה", "הצהרות הון", "דיווחים לרשם החברות ולרשם העמותות"],
+  },
+  "ייעוץ ותכנון מס": {
+    subtitle: "תכנון נכון היום חוסך תשלום מיותר מחר",
+    paragraphs: [
+      "אנו בונים לכל לקוח תכנון מס מותאם, על בסיס היכרות מעמיקה עם העסק, עם מבנה הבעלות ועם התוכניות לעתיד.",
+      "התכנון נעשה במסגרת החוק ובזהירות מקצועית, כדי להשיג את התוצאה המיטבית בלי לקחת סיכונים מיותרים.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["בחירת מבנה התאגדות מתאים", "תכנון משיכת כספים ודיבידנדים", "מיסוי עסקאות ושינויי מבנה", "ליווי במכירת עסק או נכס"],
+  },
+  "ייצוג מול רשויות וביטוח לאומי": {
+    subtitle: "לצידכם בכל פנייה, דיון ושומה",
+    paragraphs: [
+      "המשרד מייצג לקוחות מול רשות המסים, מע״מ והמוסד לביטוח לאומי בכל שלבי הטיפול, מבירור שוטף ועד דיונים בהשגות ובערעורים.",
+      "הניסיון הרב שצברנו מול הרשויות מאפשר לנו להציג את עמדת הלקוח בבהירות ולהגיע להסכמות הוגנות.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["ייצוג בדיוני שומה", "הגשת השגות וערעורים", "טיפול בדרישות מול ביטוח לאומי", "הסדרי חובות ופריסת תשלומים"],
+  },
+  "החזרי מס ומס שבח": {
+    subtitle: "בודקים כל זכאות עד השקל האחרון",
+    paragraphs: [
+      "אנו בודקים את הזכאות להחזרי מס לשכירים ולעצמאים, ומטפלים בבקשה מול רשות המסים עד לקבלת הכסף.",
+      "בעסקאות מקרקעין אנו מלווים מוכרים וקונים בחישוב מס השבח ומס הרכישה, ובאיתור הפטורים וההקלות הרלוונטיים.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["בדיקת זכאות להחזרי מס", "הגשת דוחות לשנים קודמות", "חישוב מס שבח ומס רכישה", "איתור פטורים והקלות בעסקאות נדל״ן"],
+  },
+  "ליווי עסקי ופיננסי שוטף": {
+    subtitle: "שותף מקצועי לקבלת החלטות",
+    paragraphs: [
+      "מעבר למספרים, אנו מלווים את בעלי העסק בהחלטות החשובות, מהקמת העסק, דרך צמיחה והתרחבות, ועד שינויים מהותיים במבנה שלו.",
+      "הליווי כולל ניתוח נתונים, בניית תחזיות ופגישות עבודה קבועות, כך שכל החלטה מתקבלת על בסיס תמונה פיננסית ברורה.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["ליווי בהקמת עסק", "תוכניות עסקיות ותחזיות תזרים", "ליווי מול בנקים ובגיוס אשראי", "ניתוח רווחיות ובקרת עלויות"],
+  },
+  "ליווי ורגולציה לחברות ועמותות": {
+    subtitle: "עמידה מלאה בדרישות הרגולציה, בראש שקט",
+    paragraphs: [
+      "אנו מלווים חברות, עמותות וחברות לתועלת הציבור בכל הנוגע לדרישות הרגולציה, ומוודאים שהארגון עומד בכל חובות הדיווח והניהול התקין.",
+      "לעמותות אנו מסייעים בקבלת אישור ניהול תקין, בהכרה לפי סעיף 46 ובעמידה בדרישות של גופים מממנים.",
+    ],
+    listTitle: "השירות כולל:",
+    list: ["אישור ניהול תקין לעמותות", "הכרה לפי סעיף 46 לפקודת מס הכנסה", "דיווחים לרשם החברות ולרשם העמותות", "ליווי ועדות ביקורת ודירקטוריונים"],
+  },
+  /* ---- ביקורות שכר, דיני עבודה ובקרות ---- */
+  "שירותי בודק שכר מוסמך": {
+    subtitle: "בדיקות עמידה בחוק להגברת האכיפה של דיני העבודה",
+    paragraphs: [
+      "מאז 2012 אנו מבצעים בדיקות שכר לעובדי קבלן. עם כניסת החוק להגברת האכיפה של דיני העבודה לתוקף (יוני 2012), הפעילות התרחבה משמעותית.",
+      "את המחלקה מוביל צוות של חמישה אנשי מקצוע: רואי חשבון, עורכי דין וחשבי שכר. אנו מלווים במתן אישורים, ובהגשת בקשות לביטול או להפחתה של עיצומים כספיים והתראות מנהליות ממשרד העבודה.",
+    ],
+    listTitle: "ניסיון מוכח בבדיקות שכר של עובדי קבלן בענפים:",
+    list: ["שמירה ואבטחה", "ניקיון ואחזקה", "הסעדה", "כוח אדם", "מיקור חוץ"],
+    note: "בין לקוחותינו: בנקים גדולים, אוניברסיטאות, חברות מהגדולות במשק וגופים ציבוריים, המעסיקים מאות עובדי קבלן.",
+  },
+  "בקרות שכר תקופתיות": {
+    subtitle: "בקרה שוטפת ומדויקת על מערך השכר בארגון",
+    paragraphs: [
+      "אנו מבצעים בקרות שכר ובדיקות תלושים, ועובדים עם מערכות ובסיסי נתונים מורכבים הכוללים אלפי רשומות.",
+      "המומחיות שלנו בתחום השכר הוכרה פעמים רבות על ידי משרדי ממשלה, ואף שימשה נימוק למתן פטור ממכרז בעבודות בקרה שונות.",
+    ],
+    listTitle: "מה אנחנו מעניקים:",
+    list: [
+      "בקרות שכר תקופתיות ושוטפות",
+      "בדיקת תלושי שכר",
+      "ניתוח בסיסי נתונים במערכות מורכבות",
+      "ייעוץ בנושאי שכר וכוח אדם לגופים גדולים",
+    ],
+  },
+  "ייעוץ וליווי בדיני עבודה": {
+    title: "ליווי וייעוץ בתחום דיני העבודה",
+    subtitle: "יישום נכון של צווי הרחבה, הסכמים קיבוציים וחוקי המגן",
+    paragraphs: [
+      "המחלקה מעניקה ליווי מקצועי שוטף בתחום דיני העבודה, ומסייעת לארגונים ליישם נכון את צווי ההרחבה, ההסכמים הקיבוציים והוראות חוקי המגן.",
+    ],
+    listTitle: "השירות כולל:",
+    list: [
+      "חוות דעת מקצועיות",
+      "טיפול בסוגיות מורכבות ביחסי עבודה",
+      "ליווי בהליכי אכיפה ובדיקות משרד העבודה",
+      "ייעוץ שוטף להנהלות, חשבים ומנהלי משאבי אנוש",
+    ],
+    note: "אנשי המשרד משמשים, בין היתר, מומחים בתחום השכר מטעם בתי משפט, ומלווים גופים גדולים במשק.",
+  },
+  "סקרי סיכונים בשכר ובהעסקה": {
+    title: "סקרי סיכונים בתחום השכר וההעסקה",
+    subtitle: "איתור חשיפות, כשלים ופערים ביישום הוראות הדין",
+    paragraphs: [
+      "המחלקה מבצעת סקרי סיכונים מקיפים בתחום השכר וההעסקה, ומספקת תמונה ברורה של החשיפות בארגון, לצד המלצות מעשיות לצמצומן.",
+    ],
+    listTitle: "הסקר כולל:",
+    list: [
+      "מיפוי תהליכי עבודה",
+      "בחינת מנגנוני בקרה",
+      "בדיקת ממשקי עבודה מול קבלנים וספקים",
+      "המלצות לצמצום חשיפות משפטיות וכספיות",
+    ],
+    note: "בין לקוחותינו: מוסדות להשכלה גבוהה, גופים ממשלתיים מורכבים ועוד.",
+  },
+  "ליווי מכרזים עתירי כוח אדם": {
+    subtitle: "ניסיון רב במכרזי שמירה, ניקיון, הסעדה וכוח אדם",
+    paragraphs: [
+      "הידע המשפטי והכלכלי שצברנו בליווי עשרות מכרזים מורכבים אפשר לגופים רבים לחסוך בעלויות, לשפר את מנגנוני הבקרה ולצמצם חשיפות בדיני העבודה ובהתקשרויות עם קבלנים.",
+    ],
+    listTitle: "השירות כולל:",
+    list: [
+      "בדיקת מסמכי מכרז",
+      "בניית מודלים לתמחור שכר",
+      "בחינת עמידה בדרישות דיני העבודה",
+      "ליווי ועדות מכרזים והתקשרויות מול ספקים וקבלנים",
+    ],
+  },
+  "תמחור עלויות שכר": {
+    title: "בדיקות כדאיות ותמחור עלויות שכר",
+    subtitle: "תמחור מדויק במכרזים ובהתקשרויות",
+    paragraphs: [
+      "המחלקה מתמחה בבדיקות כדאיות כלכלית ובתמחור עלויות שכר, בהתאמה מלאה להוראות הדין, לצווי ההרחבה ולהנחיות החשב הכללי.",
+    ],
+    listTitle: "הבדיקות כוללות ניתוח של:",
+    list: ["רכיבי שכר", "עלויות סוציאליות", "תקורות", "רווח קבלני"],
+  },
+  "ליווי קבלני שירותים": {
+    title: "ליווי התקשרויות עם קבלני שירותים",
+    subtitle: "משלב ההתקשרות ועד הבקרה השוטפת על ביצוע ההסכם",
+    paragraphs: [
+      "אנו מלווים ארגונים לאורך כל חיי ההתקשרות עם קבלני שירותים, כדי להבטיח עמידה בדין ובתנאי ההסכם.",
+    ],
+    listTitle: "השירות כולל:",
+    list: [
+      "בחינת עמידת הקבלנים בדיני העבודה",
+      "בדיקת מסמכים וחשבונות",
+      "בקרה על תשלומים",
+      "ליווי מול גורמי הפיקוח והביקורת",
+    ],
+  },
+  "ליווי הנהלות וגורמי ביקורת": {
+    title: "ליווי הנהלות, חשבים וגורמי ביקורת",
+    subtitle: "ליווי מקצועי בנושאי שכר, העסקה ודיני עבודה",
+    paragraphs: [
+      "המשרד מעניק ליווי מקצועי להנהלות, חשבים, מבקרים פנימיים וגורמי פיקוח, ומסייע להם לקבל החלטות מבוססות בתחומי השכר וההעסקה.",
+    ],
+    listTitle: "הליווי כולל:",
+    list: [
+      "סיוע בקבלת החלטות",
+      "גיבוש נהלים ותהליכי בקרה",
+      "מתן חוות דעת מקצועיות",
+      "ליווי בביקורות רוחב ובבדיקות רגולטוריות",
+    ],
+  },
+};
+
+const detailFor = (label: string) => FOLDER_DETAILS[label.replace("\n", " ")];
+/* Articles: shared by the home page carousel, the /articles list and the single article page.
+   Demo content until real posts arrive. */
+
+/** one piece of an article body */
+type ArticleBlock =
+  | { t: "lead" | "p" | "h2" | "quote" | "note"; text: string }
+  | { t: "list"; items: string[] }
+  | { t: "callout"; title: string; text: string };
+
+type Article = {
+  slug: string;
+  img: string;
+  title: string;
+  tag: string;
+  date: string;
+  excerpt: string;
+  minutes: number;
+  body?: ArticleBlock[];
+};
+
+/** link to a single article (the preview build rewrites this line) */
+const articleHref = (slug) => "article.html?slug=" + slug;
+
+const DISCLAIMER = "המידע במאמר הוא כללי ואינו מהווה ייעוץ מקצועי. לפני כל החלטה מומלץ להתייעץ עם איש מקצוע.";
+
+const TAX_PLANNING_BODY: ArticleBlock[] = [
+  {
+    t: "lead",
+    text: "כל שנה מביאה איתה עדכונים בחקיקת המס, בתקרות ובנקודות הזיכוי. מי שמתכנן מראש יכול לחסוך סכומים משמעותיים, ומי שמחכה לסוף השנה מגלה לא פעם שכבר מאוחר מדי.",
+  },
+  { t: "h2", text: "למה לתכנן עכשיו ולא בסוף השנה" },
+  {
+    t: "p",
+    text: "רוב ההטבות במס תלויות בפעולות שמתבצעות במהלך השנה עצמה: הפקדות לחיסכון פנסיוני, מועד משיכת דיבידנד, רכישת ציוד לעסק או שינוי במבנה ההעסקה. בדצמבר כבר קשה לשנות את התמונה, ולכן התכנון הנכון מתחיל ברבעון הראשון.",
+  },
+  { t: "p", text: "תכנון מוקדם גם מאפשר לפזר את תזרים המזומנים בצורה נוחה יותר, ולהימנע מהפתעות בדוח השנתי." },
+  { t: "h2", text: "חמש נקודות שכדאי לבדוק כבר השנה" },
+  {
+    t: "list",
+    items: [
+      "ניצול מלא של ההפקדות המוטבות לפנסיה ולקרן השתלמות",
+      "בחינת מבנה ההתאגדות: עוסק מורשה או חברה",
+      "תזמון נכון של משיכת דיבידנדים ומשכורת לבעלי שליטה",
+      "בדיקת זכאות לנקודות זיכוי ולהטבות אזוריות",
+      "ריכוז הוצאות מוכרות ותיעוד מסודר שלהן",
+    ],
+  },
+  {
+    t: "callout",
+    title: "בשורה התחתונה",
+    text: "תכנון מס טוב אינו תרגיל חד פעמי. הוא נבנה מתוך היכרות עם העסק, עם בעלי המניות ועם התוכניות לשנים הקרובות, ומתעדכן בכל פעם שמשהו משתנה.",
+  },
+  { t: "h2", text: "בעלי שליטה בחברות: תשומת לב מיוחדת" },
+  {
+    t: "p",
+    text: "בעלי שליטה נדרשים לאזן בין משכורת, דיבידנד והלוואות בעלים. כל אחת מהאפשרויות ממוסה אחרת, ולשילוב ביניהן יש השפעה ישירה על סך המס, על ביטוח לאומי ועל הזכויות הפנסיוניות.",
+  },
+  { t: "p", text: "הבחירה הנכונה משתנה מלקוח ללקוח, ולכן אנו בונים לכל בעל שליטה מודל אישי ובוחנים אותו מחדש מדי שנה." },
+  { t: "quote", text: "המטרה אינה לשלם כמה שפחות מס בשנה אחת, אלא לבנות מסלול נכון לאורך שנים." },
+  { t: "h2", text: "איך אנחנו מלווים את התהליך" },
+  {
+    t: "p",
+    text: "בפגישת תכנון אנו ממפים את מקורות ההכנסה, את ההוצאות ואת היעדים, ומציגים המלצות מעשיות עם לוח זמנים ברור. במהלך השנה אנו עוקבים אחר הביצוע ומעדכנים את התכנון לפי השינויים בחקיקה ובעסק.",
+  },
+  { t: "note", text: DISCLAIMER },
+];
+
+/** placeholder body for the other demo articles, opened by the article's own summary */
+const genericBody = (excerpt: string): ArticleBlock[] => [
+  { t: "lead", text: excerpt },
+  { t: "h2", text: "מה חשוב לדעת" },
+  {
+    t: "p",
+    text: "הנושא משפיע ישירות על ההתנהלות הכספית של העסק או הארגון, ולכן כדאי להכיר את הכללים המרכזיים ואת נקודות התורפה הנפוצות לפני שמגיעים לרגע ההחלטה.",
+  },
+  { t: "p", text: "הניסיון שלנו מלמד שרוב הטעויות אינן נובעות מחוסר ידיעה, אלא מבדיקה שנעשתה מאוחר מדי או בלי התמונה המלאה." },
+  { t: "h2", text: "הצעדים המומלצים" },
+  {
+    t: "list",
+    items: [
+      "איסוף מסודר של כל הנתונים והמסמכים הרלוונטיים",
+      "בדיקה מקצועית של החשיפות וההזדמנויות",
+      "קביעת לוח זמנים ברור לביצוע",
+      "מעקב שוטף ועדכון לפי שינויים בחקיקה",
+    ],
+  },
+  {
+    t: "callout",
+    title: "בשורה התחתונה",
+    text: "בדיקה מוקדמת ומסודרת חוסכת כסף, זמן ואי נעימויות, ומאפשרת לקבל החלטות מתוך ביטחון.",
+  },
+  { t: "note", text: DISCLAIMER },
+];
+
+const ARTICLES: Article[] = [
+  {
+    slug: "tax-planning-2026",
+    img: "public/assets/article-1.jpg",
+    title: "תכנון מס 2026",
+    tag: "מיסוי",
+    date: "21/03/2026",
+    excerpt: "השינויים העיקריים בחקיקת המס לשנה הקרובה, ומה כדאי לבדוק כבר עכשיו כדי לא להפסיד הטבות.",
+    minutes: 6,
+    body: TAX_PLANNING_BODY,
+  },
+  {
+    slug: "payroll-controls",
+    img: "public/assets/article-2.jpg",
+    title: "בקרות שכר",
+    tag: "שכר",
+    date: "14/03/2026",
+    excerpt: "איך בקרה תקופתית על מערך השכר חושפת טעויות בזמן, וחוסכת לארגון חשיפות משפטיות וכספיות.",
+    minutes: 5,
+  },
+  {
+    slug: "financial-statements",
+    img: "public/assets/article-3.jpg",
+    title: "דוחות כספיים",
+    tag: "ראיית חשבון",
+    date: "02/03/2026",
+    excerpt: "מה באמת מספרים הדוחות הכספיים של העסק שלכם, ואילו נתונים כדאי לבחון לפני כל החלטה.",
+    minutes: 7,
+  },
+  {
+    slug: "tax-refunds",
+    img: "public/assets/article-1.jpg",
+    title: "החזרי מס",
+    tag: "מיסוי",
+    date: "23/02/2026",
+    excerpt: "רבים זכאים להחזר מס ואינם יודעים זאת. כך תבדקו אם גם אתם ביניהם, ומה צריך להגיש.",
+    minutes: 4,
+  },
+  {
+    slug: "labor-law",
+    img: "public/assets/article-2.jpg",
+    title: "דיני עבודה",
+    tag: "שכר והעסקה",
+    date: "11/02/2026",
+    excerpt: "עדכונים בצווי ההרחבה ובפסיקה האחרונה, ומה המשמעות שלהם עבור מעסיקים גדולים וקטנים.",
+    minutes: 6,
+  },
+  {
+    slug: "betterment-tax",
+    img: "public/assets/article-3.jpg",
+    title: "מס שבח",
+    tag: "נדל״ן",
+    date: "29/01/2026",
+    excerpt: "מוכרים דירה? כך מחשבים את מס השבח, ואילו פטורים והקלות עשויים לחול גם עליכם.",
+    minutes: 5,
+  },
+  {
+    slug: "nonprofits",
+    img: "public/assets/article-1.jpg",
+    title: "ליווי עמותות",
+    tag: "רגולציה",
+    date: "15/01/2026",
+    excerpt: "הדיווחים, האישורים והמועדים שכל עמותה חייבת להכיר כדי לשמור על ניהול תקין.",
+    minutes: 5,
+  },
+  {
+    slug: "risk-survey",
+    img: "public/assets/article-2.jpg",
+    title: "סקר סיכונים",
+    tag: "בקרות",
+    date: "04/01/2026",
+    excerpt: "למה סקר סיכונים בתחום השכר וההעסקה הוא הכלי המדויק ביותר לצמצום חשיפות בארגון.",
+    minutes: 6,
+  },
+];
+
+/** the article to show: /articles/:slug in the app, ?slug= in the local preview; falls back to the latest */
+function currentArticle(): Article {
+  const slug =
+    new URLSearchParams(window.location.search).get("slug") ?? window.location.pathname.split("/").filter(Boolean).pop();
+  return ARTICLES.find((a) => a.slug === slug) ?? ARTICLES[0];
+}
+
+/* Pieces shared by the /articles list and the single article page */
+
+/** same folder tab silhouette as the Services page */
+function ArticleFolderTab() {
+  return (
+    <svg viewBox="0 0 250 46" preserveAspectRatio="none" className="absolute inset-0 size-full" aria-hidden>
+      <path className="fill-navy" d="M250 47V12C250 5 245 0 238 0H52C44 0 39 4 36 11L25 36C22 43 16 46 8 46H0V47Z" />
+    </svg>
+  );
+}
+
+function ArticleMeta({ a, light }: { a: Article; light?: boolean }) {
+  return (
+    <p className={cn("flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px]", light ? "text-ice/80" : "text-navy/60")}>
+      <span className="font-semibold text-gold">{a.tag}</span>
+      <span aria-hidden>·</span>
+      <span>{a.date}</span>
+      <span aria-hidden>·</span>
+      <span>{a.minutes} דקות קריאה</span>
+    </p>
+  );
+}
+
+function ArticleTile({ a }: { a: Article }) {
+  return (
+    <li className="h-full">
+      <a
+        href={articleHref(a.slug)}
+        className="article-tile article-copy group flex h-full flex-col overflow-hidden rounded-[10px] border border-[#E6DCC6] bg-white text-navy shadow-[0_14px_34px_-22px_rgba(5,14,64,0.45)]"
+      >
+        <div className="article-img relative aspect-[16/10] overflow-hidden">
+          <img src={a.img} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+        </div>
+        <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
+          <ArticleMeta a={a} />
+          <h3 className="mt-3 font-semibold text-[26px] leading-[1.15]">{a.title}</h3>
+          <p className="mt-3 flex-1 font-light text-[17px] leading-[1.65]">{noOrphan(a.excerpt)}</p>
+          <span className="mt-6 block h-[2px] w-full bg-gold/70" aria-hidden />
+          <span className="article-tile-more mt-4 font-semibold text-gold text-[17px]">לקריאה ←</span>
+        </div>
+      </a>
+    </li>
+  );
+}
+
+
+/* "Difference" cards — a wide, gentle arc (box 1175×480, card image 293px wide) */
+const DIFF_BOX = { w: 1175, h: 480, card: 293 };
+const DIFF_CARDS = [
+  { src: "public/assets/diff-1.png", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
+  { src: "public/assets/diff-2.png", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
+  { src: "public/assets/diff-3.png", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
+  { src: "public/assets/diff-4.png", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
+  { src: "public/assets/diff-5.png", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
+];
+
+type LogoItem = { src: string; alt: string; w: number; h: number; crop?: { h: number; top: number } };
+
+const LOGOS_ROW_1: LogoItem[] = [
+  { src: "public/assets/logo-bituach-leumi-white.png", alt: "ביטוח לאומי", w: 132, h: 61 },
+  { src: "public/assets/logo-netivei-white.png", alt: "נתיבי ישראל", w: 190, h: 57 },
+  { src: "public/assets/logo-kakal-white.png", alt: "קק״ל", w: 74, h: 49 },
+  { src: "public/assets/logo-mekorot-white.png", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
+  { src: "public/assets/logo-finance-white.png", alt: "משרד האוצר", w: 70, h: 75 },
+  { src: "public/assets/logo-mavaker-white.png", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
+  { src: "public/assets/logo-bitahon-white.png", alt: "משרד הביטחון", w: 63, h: 75, crop: { h: 100.46, top: -0.23 } },
+];
+
+const LOGOS_ROW_2: LogoItem[] = [
+  { src: "public/assets/logo-vingate-white.png", alt: "מכון וינגייט", w: 85, h: 72 },
+  { src: "public/assets/logo-cal-white.png", alt: "Cal", w: 82, h: 41 },
+  { src: "public/assets/logo-markantil-white.png", alt: "מרכנתיל", w: 114, h: 48 },
+  { src: "public/assets/logo-minrav-white.png", alt: "מנרב", w: 108, h: 45 },
+  { src: "public/assets/logo-yohananof-white.png", alt: "יוחננוף", w: 102, h: 51 },
+  { src: "public/assets/logo-carmel-white.png", alt: "כרמל", w: 107, h: 43.878, crop: { h: 243.86, top: -71.93 } },
+  { src: "public/assets/logo-astrazeneca-white.png", alt: "AstraZeneca", w: 132, h: 33.702 },
+];
+
+/* demo articles — replace with real content */
+
+/* ------------------------------------------------------------------ */
+/*  Header + Hero                                                      */
+/* ------------------------------------------------------------------ */
+
+function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true; // set on the element itself so autoplay is allowed
+    v.playbackRate = 1.4; // encode is 2.6× slowed; this lands at ~1.9× slower than the original
+
+    const start = () => v.play().catch(() => {});
+    start();
+
+    // some browsers block autoplay until the first interaction
+    const retry = () => {
+      start();
+      window.removeEventListener("pointerdown", retry);
+      window.removeEventListener("scroll", retry);
+    };
+    window.addEventListener("pointerdown", retry, { once: true });
+    window.addEventListener("scroll", retry, { once: true });
+    return () => {
+      window.removeEventListener("pointerdown", retry);
+      window.removeEventListener("scroll", retry);
+    };
+  }, []);
+
+  // gentle parallax on the hero footage
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const el = mediaRef.current;
+      if (!el) return;
+      const y = Math.min(window.scrollY, window.innerHeight);
+      el.style.transform = "translate3d(0, " + y * 0.18 + "px, 0) scale(1.06)";
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+
+  return (
+    <section id="top" className="relative isolate bg-navy-deep lg:bg-transparent">
+      <div className="hero-sky absolute inset-x-0 top-0 -z-10 h-[52svh] overflow-hidden lg:inset-0 lg:h-auto">
+        {/* desktop: the whole 16:9 frame at full height, anchored to the lighthouse side; on screens wider than 16:9 it fades into the sky */}
+        <div ref={mediaRef} className="hero-media absolute inset-0 will-change-transform lg:inset-y-0 lg:left-0 lg:right-auto lg:aspect-video lg:h-full lg:w-auto lg:min-w-full">
+        <video
+          ref={videoRef}
+          className="size-full object-cover object-[7%_35%] lg:object-center motion-reduce:hidden"
+          src="public/assets/hero-lighthouse.mp4"
+          poster="public/assets/hero.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden
+        />
+        <img
+          src="public/assets/hero.jpg"
+          alt=""
+          className="hidden size-full object-cover object-[7%_35%] motion-reduce:block lg:object-center"
+        />
+        </div>
+        {/* mobile & tablet: image sits on top and fades into navy under the text */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy-deep/80 to-transparent lg:hidden" />
+        <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-b from-transparent via-navy-deep/75 to-navy-deep lg:hidden" />
+      </div>
+
+
+      <div className={cn(wrapWide, "flex flex-col items-start pb-[clamp(78px,12vw,120px)] pt-[43svh] lg:min-h-[max(600px,calc((100dvh+4.83vw)/var(--z,1)-64px))] lg:justify-center lg:pb-[calc(4.83vw/var(--z,1)+40px)] lg:pt-[120px]")}>
+        <h1 className="font-black text-gold text-[clamp(32px,5.283vw,70px)] leading-[1.0714] lg:text-[60px]">
+          <span className="hero-fill block w-fit md:whitespace-nowrap" style={{ "--fill-delay": "150ms" } as React.CSSProperties}>
+            מעטפת מקצועית אחת
+          </span>
+          <span className="hero-fill block w-fit md:whitespace-nowrap" style={{ "--fill-delay": "750ms" } as React.CSSProperties}>
+            לעסקים וארגונים
+          </span>
+        </h1>
+        <p
+          className="hero-in mt-4 max-w-[703px] font-light text-ice text-[clamp(19px,2.264vw,30px)] leading-[1.5] lg:mt-[31px] lg:max-w-none lg:text-[26px]"
+          style={{ "--hero-delay": "1500ms" } as React.CSSProperties}
+        >
+          ראיית חשבון, מיסוי, ליווי עסקי ובקרות שכר
+          <br className="hidden md:block" /> תחת קורת גג אחת.
+        </p>
+        <div className="hero-in mt-6 lg:mt-[30px]" style={{ "--hero-delay": "1700ms" } as React.CSSProperties}>
+          <GoldButton href={ROUTES.services}>לתחומי התמחות ←</GoldButton>
+        </div>
+      </div>
+
+      <a
+        href="#services"
+        aria-label="גלילה לתחומי התמחות"
+        className="hero-in absolute bottom-[clamp(70px,7vw,96px)] left-1/2 hidden -translate-x-1/2 text-ice/80 md:block"
+        style={{ "--hero-delay": "2100ms" } as React.CSSProperties}
+      >
+        <svg viewBox="0 0 24 24" className="scroll-cue size-8" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </a>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Services                                                           */
+/* ------------------------------------------------------------------ */
+
+function Folder({ label, onOpen }: { label: string; onOpen?: () => void }) {
+  const Tag = onOpen ? "button" : "div";
+  return (
+    <Tag
+      {...(onOpen ? { type: "button" as const, onClick: onOpen, "aria-haspopup": "dialog" as const } : {})}
+      className={cn(
+        "folder-card relative block aspect-[258.723/188] w-full text-right [container-type:inline-size]",
+        onOpen && "folder-card--open cursor-pointer",
+      )}
+    >
+      {/* gold "paper" peeking out of the folder */}
+      <div className="folder-paper absolute left-[4.58%] top-0 h-[64.36%] w-[90.84%] rounded-[7px] border-2 border-gold" />
+      <svg
+        viewBox="0 0 258.723 166"
+        preserveAspectRatio="none"
+        className="absolute bottom-0 left-0 h-[88.3%] w-full drop-shadow-[0_8px_10px_rgba(5,14,64,0.28)]"
+        aria-hidden
+      >
+        <path
+          className="fill-navy"
+          d="M253.723 0C256.484 0 258.723 2.239 258.723 5V161C258.723 163.761 256.484 166 253.723 166H5C2.239 166 0 163.761 0 161V20C0 17.239 2.239 15 5 15H136.526L148.293 5.124C151.429 1.861 155.872 0 160.533 0H253.723Z"
+        />
+      </svg>
+      <h3 className="absolute inset-x-0 top-[26.67cqw] mx-auto w-[83.59%] whitespace-pre-line text-center font-semibold text-white text-[11.596cqw] leading-[1.4]">
+        {label}
+      </h3>
+    </Tag>
+  );
+}
+
+function FolderModal({ title, detail, onClose }: { title: string; detail: FolderDetail; onClose: () => void }) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const [closing, setClosing] = useState(false);
+
+  const close = () => {
+    setClosing(true);
+    window.setTimeout(onClose, 260);
+  };
+
+  useEffect(() => {
+    closeRef.current?.focus();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="folder-modal-title"
+      dir="rtl"
+      className={cn("fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8", closing && "is-closing")}
+    >
+      <div className="modal-backdrop absolute inset-0 bg-navy/75 backdrop-blur-[6px]" onClick={close} />
+
+      {/* the "paper" from inside the folder: white sheet, gold frame, same rounded corners */}
+      <div className="modal-panel relative w-full max-w-[780px] rounded-[7px] bg-cream shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+        <div className="service-copy modal-scroll m-[12px] max-h-[calc(88dvh/var(--z,1)-24px)] overflow-y-auto rounded-[7px] border-2 border-gold px-7 pb-10 pt-11 text-navy md:m-[16px] md:px-16 md:pb-14 md:pt-14">
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={close}
+            aria-label="סגירה"
+            className="modal-close absolute left-6 top-6 grid size-10 place-items-center rounded-full border-2 border-gold text-gold md:left-9 md:top-9"
+          >
+            <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden>
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          <h3 id="folder-modal-title" className="pl-12 font-semibold text-gold text-[clamp(28px,3.4vw,40px)] leading-[1.15]">
+            {noOrphan(detail.title ?? title.replace("\n", " "))}
+          </h3>
+          <p className="mt-3 font-semibold text-[18px] leading-[1.5] md:text-[21px]">{noOrphan(detail.subtitle)}</p>
+          <span className="mt-6 block h-[2px] w-full bg-gold" aria-hidden />
+
+          <div className="mt-8 space-y-5 font-light text-[17px] leading-[1.75] md:text-[18px]">
+            {detail.paragraphs.map((p) => (
+              <p key={p}>{noOrphan(p)}</p>
+            ))}
+          </div>
+
+          {detail.list && (
+            <>
+              {detail.listTitle && <p className="mt-10 font-semibold text-[17px] md:text-[18px]">{detail.listTitle}</p>}
+              <ul className="mt-4 grid w-fit gap-x-14 gap-y-3 font-normal text-[17px] leading-[1.5] sm:grid-cols-[auto_auto] md:text-[18px]">
+                {detail.list.map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="size-[7px] shrink-0 rotate-45 bg-gold" aria-hidden />
+                    <span>{noOrphan(item)}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {detail.note && (
+            <p className="mt-10 font-normal text-gold text-[17px] leading-[1.65] md:text-[19px]">
+              {noOrphan(detail.note)}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ServiceBlock({
+  intro,
+  folders,
+  className,
+  id,
+  labelledBy,
+  onOpen,
+}: {
+  intro: [string, string];
+  folders: string[];
+  className?: string;
+  id?: string;
+  labelledBy?: string;
+  onOpen: (label: string) => void;
+}) {
+  return (
+    <div className={className} id={id} role="tabpanel" aria-labelledby={labelledBy}>
+      <p className="mx-auto max-w-[1069px] text-center font-light text-navy text-[18px] leading-[26px] md:text-[20px] md:leading-[28px]">
+        {intro[0]}
+        <br className="hidden md:block" />
+        {intro[1]}
+      </p>
+      {/* desktop: never wider than the screen height allows, so the tabs and both rows of folders fit in one view */}
+      <div className="mt-[42px] grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8 lg:mx-auto lg:w-[min(100%,calc((100dvh/var(--z,1)-270px)*2.75))] lg:grid-cols-4 lg:gap-x-[46.3px] lg:gap-y-[42px]">
+        {folders.map((f) => (
+          <Folder key={f} label={f} onOpen={detailFor(f) ? () => onOpen(f) : undefined} />
+        ))}
+      </div>
+      <div className="mt-[55px] flex justify-center">
+        <GoldButton href={ROUTES.services}>לקרוא עוד ←</GoldButton>
+      </div>
+    </div>
+  );
+}
+
+function Services() {
+  const [active, setActive] = useState(0);
+  const [openFolder, setOpenFolder] = useState<string | null>(null);
+  const openDetail = openFolder ? detailFor(openFolder) : undefined;
+
+  return (
+    <section id="services" className="relative flow-root bg-white">
+      {/* hero → white dome with gold arc (Figma: Union + Subtract) */}
+      <svg viewBox="0 725 1325 102" className="relative z-10 -mt-[4.8302%] block h-auto w-full" aria-hidden>
+        <path
+          transform="translate(-292 727)"
+          className="fill-white"
+          d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H1617V1867H292V224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+        />
+        <path
+          transform="translate(-292 753)"
+          className="fill-gold"
+          d="M954.5 0C1370.58 0 1724.49 67.6399 1855.15 162H1851.71C1845.89 157.897 1839.64 153.836 1832.96 149.822C1784.9 120.953 1715.22 94.8848 1628.94 72.9648C1456.41 29.1326 1217.96 2 954.5 2C691.038 2 452.586 29.1326 280.059 72.9648C193.78 94.8848 124.101 120.953 76.0391 149.822C27.8526 178.766 2 210.146 2 242.5C2 274.854 27.8526 306.234 76.0391 335.178C79.2622 337.114 82.5839 339.035 86 340.945V343.235C30.7774 312.555 0 278.441 0 242.5C0 108.571 427.344 0 954.5 0Z"
+        />
+      </svg>
+
+      <div className={cn(wrap, "pb-[60px] md:pb-[90px]")}>
+        <h2 className={cn(sectionTitle, "mt-[64px] text-center md:mt-[90px]")} data-reveal>תחומי התמחות</h2>
+        <p
+          className="mx-auto mt-[28px] max-w-[987px] text-center font-light text-navy text-[18px] leading-[26px] md:text-[20px] md:leading-[28px]"
+          data-reveal
+          style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
+        >
+          המשרד פועל בשני תחומי ליבה מרכזיים, המשלימים זה את זה
+          <br className="hidden md:block" /> ומאפשרים ללקוחותינו לקבל מענה מקצועי, יסודי ואיכותי תחת קורת גג אחת.
+        </p>
+
+        <div className="mt-[52px] grid gap-4 md:grid-cols-2 md:gap-[26px]" data-reveal style={{ "--reveal-delay": "200ms" } as React.CSSProperties} role="tablist" aria-label="תחומי התמחות">
+          {SERVICE_BLOCKS.map((block, i) => (
+            <button
+              key={block.tab}
+              type="button"
+              role="tab"
+              id={`service-tab-${i}`}
+              aria-selected={active === i}
+              aria-controls={`service-panel-${i}`}
+              onClick={() => setActive(i)}
+              className={cn(
+                "tab-btn min-h-[64px] rounded-[5px] px-4 font-semibold text-[clamp(20px,2.2vw,28px)] leading-[1.4] md:h-[80px]",
+                active === i ? "bg-gold text-white" : "border-2 border-gold text-gold",
+              )}
+            >
+              {block.tab}
+            </button>
+          ))}
+        </div>
+
+        <ServiceBlock
+          key={active}
+          {...SERVICE_BLOCKS[active]}
+          id={`service-panel-${active}`}
+          labelledBy={`service-tab-${active}`}
+          onOpen={setOpenFolder}
+          className="panel-in mt-[36px] md:mt-[44px]"
+        />
+      </div>
+
+      {/* white → navy: lower dome + gold ring (Figma: Group 53, rotated 180°) */}
+      <svg viewBox="0 2594 1325 120" className="-mb-px block h-auto w-full" aria-hidden>
+        <rect x="0" y="2594" width="1325" height="120" className="fill-navy" />
+        <g transform="translate(1617 2709) rotate(180)">
+          <path
+            className="fill-white"
+            d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+          />
+          <path
+            className="fill-gold"
+            d="M954.5 26C1481.66 26 1909 134.571 1909 268.5C1909 402.429 1481.66 511 954.5 511C427.344 511 0 402.429 0 268.5C0 134.571 427.344 26 954.5 26ZM954.5 28C691.038 28 452.586 55.1326 280.059 98.9648C193.78 120.885 124.101 146.953 76.0391 175.822C27.8526 204.766 2 236.146 2 268.5C2 300.854 27.8526 332.234 76.0391 361.178C124.101 390.047 193.78 416.115 280.059 438.035C452.586 481.867 691.038 509 954.5 509C1217.96 509 1456.41 481.867 1628.94 438.035C1715.22 416.115 1784.9 390.047 1832.96 361.178C1881.15 332.234 1907 300.854 1907 268.5C1907 236.146 1881.15 204.766 1832.96 175.822C1784.9 146.953 1715.22 120.885 1628.94 98.9648C1456.41 55.1326 1217.96 28 954.5 28Z"
+          />
+        </g>
+      </svg>
+
+      {openFolder && openDetail && (
+        <FolderModal title={openFolder} detail={openDetail} onClose={() => setOpenFolder(null)} />
+      )}
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Difference (fanned cards) + Clients                               */
+/* ------------------------------------------------------------------ */
+
+
+/** one card is dealt per ~45vh of scrolling */
+const DEAL_SCROLL_VH = 45;
+
+function Difference() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setProgress(1);
+      return;
+    }
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const el = trackRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const distance = rect.height - window.innerHeight;
+      setProgress(distance > 0 ? clamp01(-rect.top / distance) : 1);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      {/* desktop / tablet: the deck is dealt card by card while scrolling */}
+      <section
+        ref={trackRef}
+        className="relative hidden md:block"
+        style={{ height: `calc((100dvh + ${DIFF_CARDS.length * DEAL_SCROLL_VH}vh) / var(--z, 1))` }}
+        aria-label="מה באמת עושה את ההבדל?"
+      >
+        <div className="sticky top-0 flex h-[calc(100dvh/var(--z,1))] flex-col items-center justify-center overflow-hidden">
+          <h2 className={cn(sectionTitle, "px-4 text-center")}>מה באמת עושה את ההבדל?</h2>
+
+          <div className="relative mt-[clamp(28px,calc(6vh/var(--z,1)),100px)] aspect-[1175/480] w-[min(1175px,100%_-_4rem,calc((100dvh/var(--z,1)_-_200px)*2.45))]">
+            {DIFF_CARDS.map((c, i) => {
+              const dealt = easeOut(clamp01(progress * (DIFF_CARDS.length / 0.75) - i));
+              return (
+                <img
+                  key={c.src}
+                  src={c.src}
+                  alt={c.alt}
+                  className="absolute h-auto origin-[50%_46.907%] will-change-transform"
+                  style={{
+                    width: `${(DIFF_BOX.card / DIFF_BOX.w) * 100}%`,
+                    left: `${(c.left / DIFF_BOX.w) * 100}%`,
+                    top: `${(c.top / DIFF_BOX.h) * 100}%`,
+                    opacity: dealt,
+                    transform: `translate3d(0, ${(1 - dealt) * 16}%, 0) rotate(${c.rotate * (0.2 + 0.8 * dealt)}deg) scale(${0.92 + 0.08 * dealt})`,
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* mobile: vertical scroll drives the row of cards sideways */}
+      <DifferenceMobile />
+    </>
+  );
+}
+
+function DifferenceMobile() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [travel, setTravel] = useState(0);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const measure = () => {
+      // how far the row has to slide so the last card ends at the screen edge
+      const viewport = track.parentElement?.clientWidth ?? window.innerWidth;
+      setTravel(Math.max(0, track.scrollWidth - viewport));
+    };
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (reduced) return;
+      const rect = section.getBoundingClientRect();
+      const distance = section.offsetHeight - window.innerHeight;
+      const p = distance > 0 ? clamp01(-rect.top / distance) : 0;
+      const viewport = track.parentElement?.clientWidth ?? window.innerWidth;
+      const max = Math.max(0, track.scrollWidth - viewport);
+      // RTL: the row starts on the right, so it slides to the right to reveal the rest
+      track.style.transform = `translate3d(${p * max}px, 0, 0)`;
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    measure();
+    update();
+    const ro = new ResizeObserver(() => {
+      measure();
+      update();
+    });
+    ro.observe(track);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      ro.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative md:hidden"
+      style={{ height: `calc(100svh + ${travel}px)` }}
+      aria-label="מה באמת עושה את ההבדל?"
+    >
+      <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden">
+        <h2 className={cn(sectionTitle, wrap, "text-center")}>מה באמת עושה את ההבדל?</h2>
+        <div className="mt-10 overflow-visible">
+          <div ref={trackRef} className="flex w-max gap-3 px-6 will-change-transform">
+            {DIFF_CARDS.map((c) => (
+              <img
+                key={c.src}
+                src={c.src}
+                alt={c.alt}
+                className="h-auto w-[min(76vw,320px)] max-w-none shrink-0"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Logo({ item }: { item: LogoItem }) {
+  return (
+    <div
+      className="relative shrink-0 overflow-hidden"
+      style={{
+        // design size up to ~1600px, then grows with the screen (up to 1.45×)
+        width: `max(clamp(${item.w * 0.6}px, ${(item.w / 1325) * 100}vw, ${item.w}px), min(${item.w * 1.45}px, calc(${(item.w / 1600) * 100}vw / var(--z, 1))))`,
+        aspectRatio: `${item.w} / ${item.h}`,
+      }}
+    >
+      {item.crop ? (
+        <img
+          src={item.src}
+          alt={item.alt}
+          className="absolute left-0 w-full max-w-none"
+          style={{ height: `${item.crop.h}%`, top: `${item.crop.top}%` }}
+        />
+      ) : (
+        <img src={item.src} alt={item.alt} className="absolute inset-0 size-full object-cover" />
+      )}
+    </div>
+  );
+}
+
+function LogoMarquee({
+  items,
+  reverse,
+  gap,
+  minHeight,
+}: {
+  items: LogoItem[];
+  reverse?: boolean;
+  gap: string;
+  minHeight: number;
+}) {
+  return (
+    <div className="marquee-mask overflow-hidden" dir="ltr" aria-hidden={reverse}>
+      <div className={cn("marquee-track items-center", reverse && "marquee-track-reverse")}>
+        {[0, 1].map((copy) => (
+          // each half holds the row twice, so it is always wider than the screen and the loop never shows a gap
+          <div key={copy} className="flex shrink-0 items-center" style={{ gap, paddingInlineEnd: gap, minHeight }}>
+            {[...items, ...items].reverse().map((l, i) => (
+              <Logo key={`${copy}-${i}`} item={l} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Clients() {
+  return (
+    <section className="pt-[140px]">
+      <div className={wrap}>
+        <h2 className={cn(sectionTitle, "text-center")} data-reveal>לקוחות ושותפים לדרך</h2>
+        <p className="mx-auto mt-[49px] max-w-[987px] text-center font-normal text-white text-[18px] leading-[26px] md:text-[20px] md:leading-[28px]">
+          לקוחותינו מגיעים ממגוון רחב של תחומים מחברות תעשייה, הייטק ונדל"ן ועד מוסדות ציבוריים ויזמים פרטיים,
+          <br className="hidden md:block" /> ונהנים ממעטפת פיננסית מלאה תחת קורת גג אחת.
+        </p>
+      </div>
+
+      <div className="mt-[89px] space-y-[38px]" data-reveal style={{ "--reveal-delay": "120ms" } as React.CSSProperties}>
+        <LogoMarquee items={LOGOS_ROW_1} gap="max(clamp(48px,8.377vw,111px),min(160px,calc(6.94vw/var(--z,1))))" minHeight={75} />
+        <LogoMarquee items={LOGOS_ROW_2} gap="max(clamp(48px,8.151vw,108px),min(156px,calc(6.75vw/var(--z,1))))" minHeight={72} reverse />
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  About                                                              */
+/* ------------------------------------------------------------------ */
+
+function About() {
+  return (
+    <section id="about" className="mt-[110px] md:mt-[210px]">
+      <div className={cn(wrap, "flex flex-col-reverse gap-12 lg:grid lg:grid-cols-[minmax(0,42fr)_minmax(0,58fr)] lg:items-center lg:gap-[80px]")}>
+        {/* text column (right) */}
+        <div className="flex flex-col lg:order-1" data-reveal="right">
+          <h2 className={sectionTitle}>על המשרד</h2>
+          <div className="mt-[30px] space-y-[14px] font-light text-white text-[18px] leading-[26px] md:text-[20px] md:leading-[28px] lg:text-[19px] lg:leading-[1.6]">
+            <BookText text="משרד איתן שפיר ושות’ מעניק ליווי פיננסי כולל לחברות, ארגונים ויחידים משירותי ראיית חשבון, בקרות שכר ועד תכנון מס וניהול עושר." />
+            <BookText text='המשרד מנוהל על ידי רו"ח איתן שפיר, בעל ניסיון של למעלה מארבעים שנה, אשר כיהן כסגן מנהל רשות החברות הממשלתיות, ומביא עמו ראייה רחבה של המערכת הכלכלית והרגולטורית.' />
+            <BookText text='לצידו פועל רו"ח אבידן טרבלסי, בודק שכר מוסמך, יחד עם צוות מקצועי ומנוסה, הפועל בגישה אישית, מדויקת ודיסקרטית, תוך ליווי ארוך טווח לכל לקוח.' />
+          </div>
+          <GoldButton href={ROUTES.about} className="mt-9 self-start">
+            קרא עוד ←
+          </GoldButton>
+        </div>
+
+        <div className="relative aspect-[660/523] w-full lg:order-2" data-reveal="left">
+          {/* soft gold halo behind the portraits */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -top-[8%] left-[4%] right-[2%] h-[72%] bg-[radial-gradient(ellipse_at_50%_58%,rgba(185,158,100,0.26),rgba(185,158,100,0.08)_45%,transparent_70%)] blur-[6px]"
+          />
+          <span className="absolute inset-x-0 top-[38.8%] h-[2px] bg-gold" aria-hidden />
+          <span
+            className="absolute bottom-0 left-0 right-0 top-[52%] rounded-[5px] bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+            aria-hidden
+          />
+          {/* 660×522 photo composite (Figma: EITAN-2 1 / EITAN-2 2) */}
+          <div className="zoom-soft absolute bottom-0 right-0 aspect-[660/522] w-full overflow-hidden rounded-b-[5px]">
+            <div className="absolute -bottom-[3px] left-[46.21%] top-[12.835%] w-[53.79%] -scale-x-100 overflow-hidden">
+              <img
+                src="public/assets/avidan.png"
+                alt='רו"ח אבידן טרבלסי'
+                className="absolute left-[-14.52%] top-[-0.06%] h-[100.12%] w-[131.68%] max-w-none"
+              />
+            </div>
+            <div className="absolute -bottom-[3px] left-0 top-0 w-[66.515%] overflow-hidden">
+              <img
+                src="public/assets/eitan.png"
+                alt='רו"ח איתן שפיר'
+                className="absolute left-[-15.08%] top-0 h-full w-[121.89%] max-w-none"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ES divider */}
+      <div className="es-divider mt-[162px] flex items-center" data-anim aria-hidden>
+        <span className="es-line es-line--from-right h-[2px] flex-1 bg-gold" />
+        <img
+          src="public/assets/es-mark.svg"
+          alt=""
+          className="es-mark mx-[clamp(24px,6.7vw,89px)] h-auto w-[clamp(64px,7.54vw,100px)] xl:ml-[78px] xl:mr-[89px]"
+        />
+        <span className="es-line es-line--from-left h-[2px] flex-1 bg-gold" />
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Articles                                                           */
+/* ------------------------------------------------------------------ */
+
+function ArticleCard({ slug, img, title, tag, date }: (typeof ARTICLES)[number]) {
+  return (
+    <article className="article-card flex h-[265px] w-[313px] shrink-0 snap-start flex-col items-center justify-center rounded-[5px] bg-white/10 px-[15px] py-[20px] shadow-[0_10px_20px_rgba(0,0,0,0.2)]">
+      <div className="flex w-[274px] flex-col items-start gap-[15px]">
+        <div className="relative aspect-[350/137] w-full overflow-hidden">
+          <img src={img} alt="" className="absolute inset-0 size-full object-cover object-[50%_58%]" />
+        </div>
+        <h3 className="font-semibold text-white text-[30px] leading-[28px]">{title}</h3>
+        <span className="h-[2px] w-full bg-gold" aria-hidden />
+        <div className="flex w-full items-end justify-between">
+          <div className="font-normal text-white text-[16px] leading-[13px]">
+            <p className="mb-[12px]">{tag}</p>
+            <p>{date}</p>
+          </div>
+          <GoldButton href={articleHref(slug)}>לקריאה</GoldButton>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function CarouselArrow({
+  direction,
+  disabled,
+  onClick,
+}: {
+  direction: "prev" | "next";
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={direction === "prev" ? "המאמרים הקודמים" : "המאמרים הבאים"}
+      className="carousel-arrow grid size-[46px] place-items-center rounded-full border-2 border-gold text-gold"
+    >
+      <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        {/* RTL: "prev" points right, "next" points left */}
+        {direction === "prev" ? <path d="M5 12h14m-6-6 6 6-6 6" /> : <path d="M19 12H5m6-6-6 6 6 6" />}
+      </svg>
+    </button>
+  );
+}
+
+function Articles() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ atStart: true, atEnd: false });
+
+  const updateEdges = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    // RTL: scrollLeft is 0 at the start and grows negative towards the end
+    const offset = Math.abs(el.scrollLeft);
+    setEdges({ atStart: offset < 4, atEnd: offset + el.clientWidth >= el.scrollWidth - 4 });
+  };
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    updateEdges();
+    // re-measure once cards, images and fonts have laid out
+    const ro = new ResizeObserver(updateEdges);
+    ro.observe(el);
+    Array.from(el.children).forEach((child) => ro.observe(child));
+    window.addEventListener("load", updateEdges);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("load", updateEdges);
+    };
+  }, []);
+
+  const page = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const cards = Array.from(el.children) as HTMLElement[];
+    if (!cards.length) return;
+    const step = cards[0].offsetWidth + 57;
+    const current = Math.round(Math.abs(el.scrollLeft) / step);
+    const target = Math.max(0, Math.min(cards.length - 1, current + dir));
+    // RTL: scrolling towards the end means negative scrollLeft
+    el.scrollTo({ left: -target * step, behavior: "smooth" });
+  };
+
+  return (
+    <section id="articles" className="mt-[110px] md:mt-[170px]">
+      <div className={cn(wrap, "flex flex-col gap-10 lg:flex-row lg:gap-[189px]")}>
+        <div
+          className="flex shrink-0 flex-row items-end justify-between gap-6 lg:h-[275px] lg:w-[204px] lg:flex-col lg:items-start"
+          data-reveal="left"
+        >
+          <h2 className="font-semibold text-white text-[clamp(52px,6.038vw,80px)] leading-[1.0625]">
+            טוב
+            <br />
+            לדעת
+          </h2>
+          <GoldButton href="#articles">למאמרים נוספים ←</GoldButton>
+        </div>
+
+        <div className="-mx-6 min-w-0 flex-1 md:-mx-8 lg:mx-0 lg:ml-[calc(-1*max(2rem,(100vw-1175px)/2))] lg:mt-[10px]">
+          <div
+            ref={trackRef}
+            onScroll={updateEdges}
+            className="no-scrollbar flex snap-x gap-[57px] overflow-x-auto px-6 pb-6 md:px-8 lg:px-0"
+            data-reveal-group
+          >
+            {ARTICLES.map((a, i) => (
+              <div key={i} style={{ "--reveal-delay": `${i * 110}ms` } as React.CSSProperties}>
+                <ArticleCard {...a} />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-2 flex gap-3 px-6 md:px-8 lg:px-0">
+            <CarouselArrow direction="prev" disabled={edges.atStart} onClick={() => page(-1)} />
+            <CarouselArrow direction="next" disabled={edges.atEnd} onClick={() => page(1)} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+function Index() {
+  useRevealObserver();
+
+  return (
+    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+      {/* fixed header lives at the page root so no section can paint over it */}
+      <Header />
+      <Hero />
+      <Services />
+      <Difference />
+      <Clients />
+      <About />
+      <Articles />
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Content                                                            */
+/* ------------------------------------------------------------------ */
+
+const OFFICE_PARAGRAPHS = [
+  "משרד איתן שפיר ושות׳ מעניק מעטפת מקצועית אחת בתחומי ראיית החשבון, המיסוי, הליווי העסקי ובקרות השכר. צוות רב תחומי של רואי חשבון, משפטנים, חשבי שכר, כלכלנים ויועצי מס מלווה משרדי ממשלה, מוסדות להשכלה גבוהה, בנקים, רשויות מקומיות וחברות מהגדולות במשק.",
+  "לצד הניסיון המקצועי, אנו מאמינים בליווי אישי, זמין ויסודי לאורך זמן. המשרד אף תכנן ופיתח מערכת ייעודית לתיעוד הסכמי שכר, המותקנת כיום אצל כמה מהמעסיקים הגדולים בישראל.",
+];
+
+const OFFICE_STATS = [
+  { to: 40, from: 0, suffix: "+", label: "שנות ניסיון מקצועי" },
+  { to: 2, from: 0, suffix: "", label: "תחומי ליבה תחת קורת גג אחת" },
+  { to: 1000, from: 0, suffix: "+", label: "עובדי קבלן שזכויותיהם נבדקו" },
+];
+
+const CLIENT_SECTORS = [
+  "משרדי ממשלה",
+  "המועצה להשכלה גבוהה",
+  "אוניברסיטאות ומכללות",
+  "בנקים",
+  "עיריות ומועצות",
+  "חברות ממשלתיות",
+  "חברות ציבוריות ופרטיות",
+  "בתי חולים",
+  "גופים ביטחוניים",
+  "ארגוני עובדים",
+];
+
+type Partner = {
+  name: string;
+  role: string;
+  img: string;
+  paragraphs: string[];
+  highlights: { value: string; label: string }[];
+  /** photo on the left (text on the right) */
+  flip?: boolean;
+};
+
+const PARTNERS: Partner[] = [
+  {
+    name: "רו\"ח איתן שפיר",
+    role: "מייסד המשרד ומנהלו",
+    img: "public/assets/eitan.png",
+    paragraphs: [
+      "רו\"ח איתן שפיר הקים את המשרד ומנהל אותו, ומביא עמו ניסיון מקצועי של למעלה מארבעים שנה.",
+      "בעבר כיהן כסגן מנהל רשות החברות הממשלתיות וכמנהל יחידת ההפרטה. בהובלתו מתמחה המשרד בביקורת דוחות כספיים, ביקורת פנים וביקורות מיוחדות, ובפרט במוסדות להשכלה גבוהה.",
+    ],
+    highlights: [
+      { value: "40+", label: "שנות ניסיון" },
+      { value: "רשות החברות", label: "סגן מנהל לשעבר" },
+      { value: "השכלה גבוהה", label: "התמחות מובילה" },
+    ],
+  },
+  {
+    name: "רו\"ח אבידן טרבלסי",
+    role: "מנהל תחום ביקורות השכר והבקרות",
+    img: "public/assets/avidan.png",
+    flip: true,
+    paragraphs: [
+      "רו\"ח אבידן טרבלסי, בודק שכר מוסמך ובעל תואר MBA, מוביל במשרד את תחום ביקורות השכר, דיני העבודה והבקרות.",
+      "בהובלתו מלווה המחלקה גופים עתירי כוח אדם, בהם בנק ישראל, בנק דיסקונט ומכון ויצמן, בדגש על ניהול סיכונים וצמצום חשיפות.",
+    ],
+    highlights: [
+      { value: "ניסיון", label: "של עשרות שנים בגופים הגדולים במשק" },
+      { value: "בודק שכר", label: "מוסמך לפי חוק האכיפה" },
+      { value: "MBA", label: "רואה חשבון בעל תואר שני" },
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Pieces                                                             */
+/* ------------------------------------------------------------------ */
+
+function CountUp({ to, from = 0, suffix = "", duration = 1600 }: { to: number; from?: number; suffix?: string; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [value, setValue] = useState(from);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setValue(to);
+      return;
+    }
+    let raf = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          setValue(Math.round(from + (to - from) * eased));
+          if (t < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [to, from, duration]);
+
+  return (
+    <span ref={ref} dir="ltr" className="tabular-nums">
+      {value.toLocaleString("en-US")}
+      {suffix}
+    </span>
+  );
+}
+
+function AboutHero() {
+  return (
+    <section className="relative isolate overflow-hidden bg-navy-deep">
+      <h1 className="sr-only">אודות איתן שפיר ושות׳ רואי חשבון</h1>
+      <img
+        src="public/assets/about-hero.jpg"
+        alt="קבלת הפנים במשרד איתן שפיר ושות׳"
+        className="absolute inset-0 -z-10 size-full object-cover object-[62%_42%]"
+      />
+      {/* keeps the white header readable over the light wall */}
+      <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" aria-hidden />
+
+      <div className="h-[clamp(300px,34vw,440px)]" aria-hidden />
+    </section>
+  );
+}
+
+function OfficeSection() {
+  return (
+    <section className="relative flow-root bg-white text-navy">
+      {/* navy → white dome with gold arc (same shape as the home page) */}
+      <svg viewBox="0 725 1325 102" className="relative z-10 -mt-[4.8302%] block h-auto w-full" aria-hidden>
+        <path
+          transform="translate(-292 727)"
+          className="fill-white"
+          d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H1617V1867H292V224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+        />
+        <path
+          transform="translate(-292 753)"
+          className="fill-gold"
+          d="M954.5 0C1370.58 0 1724.49 67.6399 1855.15 162H1851.71C1845.89 157.897 1839.64 153.836 1832.96 149.822C1784.9 120.953 1715.22 94.8848 1628.94 72.9648C1456.41 29.1326 1217.96 2 954.5 2C691.038 2 452.586 29.1326 280.059 72.9648C193.78 94.8848 124.101 120.953 76.0391 149.822C27.8526 178.766 2 210.146 2 242.5C2 274.854 27.8526 306.234 76.0391 335.178C79.2622 337.114 82.5839 339.035 86 340.945V343.235C30.7774 312.555 0 278.441 0 242.5C0 108.571 427.344 0 954.5 0Z"
+        />
+      </svg>
+
+      <div className={cn(wrap, "pb-[clamp(70px,8vw,110px)] pt-[clamp(40px,6vw,80px)]")}>
+        <div className="mx-auto max-w-[980px]" data-reveal>
+          <h2 className={cn(sectionTitle, "text-center")}>אודות המשרד</h2>
+          <div className="mt-8 space-y-5 font-light text-[18px] leading-[1.75] md:text-[21px]">
+            {OFFICE_PARAGRAPHS.map((p) => (
+              <p key={p} className="text-center">{noOrphan(p)}</p>
+            ))}
+          </div>
+        </div>
+
+        {/* the figures, in one row under the text */}
+        <dl className="mt-14 grid gap-8 sm:grid-cols-3 sm:gap-0" data-reveal-group>
+          {OFFICE_STATS.map((s, i) => (
+            <div
+              key={s.label}
+              className="text-center sm:border-s sm:border-gold/40 sm:px-6 sm:first:border-s-0"
+              style={{ "--reveal-delay": `${i * 120}ms` } as React.CSSProperties}
+            >
+              <dt className="sr-only">{s.label}</dt>
+              <dd className="font-black text-gold text-[clamp(56px,6vw,84px)] leading-none">
+                <CountUp to={s.to} from={s.from} suffix={s.suffix} />
+              </dd>
+              <dd className="mt-3 font-normal text-[18px] md:text-[20px]">{s.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div className={cn(wrap, "pb-[clamp(80px,9vw,130px)]")}>
+        <p className="text-center font-semibold text-[22px] md:text-[28px]" data-reveal>
+          בין לקוחותינו לאורך השנים
+        </p>
+        {/* the pills drop in one after another as the list scrolls into view */}
+        <ul className="sector-list mx-auto mt-9 flex max-w-[1100px] flex-wrap justify-center gap-3 md:gap-4" data-anim>
+          {CLIENT_SECTORS.map((s, i) => (
+            <li
+              key={s}
+              className="sector-pill rounded-[5px] border-2 border-gold/70 px-6 py-2.5 font-normal text-[18px] text-navy md:px-8 md:py-3.5 md:text-[22px]"
+              style={{ "--i": i, "--r": `${[-7, 5, -4, 8, -6, 4, -8, 6, -5, 7][i % 10]}deg` } as React.CSSProperties}
+            >
+              {s}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* white → navy: lower dome + gold ring */}
+      <svg viewBox="0 2594 1325 120" className="-mb-px block h-auto w-full" aria-hidden>
+        <rect x="0" y="2594" width="1325" height="120" className="fill-navy" />
+        <g transform="translate(1617 2709) rotate(180)">
+          <path
+            className="fill-white"
+            d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+          />
+          <path
+            className="fill-gold"
+            d="M954.5 26C1481.66 26 1909 134.571 1909 268.5C1909 402.429 1481.66 511 954.5 511C427.344 511 0 402.429 0 268.5C0 134.571 427.344 26 954.5 26ZM954.5 28C691.038 28 452.586 55.1326 280.059 98.9648C193.78 120.885 124.101 146.953 76.0391 175.822C27.8526 204.766 2 236.146 2 268.5C2 300.854 27.8526 332.234 76.0391 361.178C124.101 390.047 193.78 416.115 280.059 438.035C452.586 481.867 691.038 509 954.5 509C1217.96 509 1456.41 481.867 1628.94 438.035C1715.22 416.115 1784.9 390.047 1832.96 361.178C1881.15 332.234 1907 300.854 1907 268.5C1907 236.146 1881.15 204.766 1832.96 175.822C1784.9 146.953 1715.22 120.885 1628.94 98.9648C1456.41 55.1326 1217.96 28 954.5 28Z"
+          />
+        </g>
+      </svg>
+    </section>
+  );
+}
+
+function PortraitFrame({ img, alt }: { img: string; alt: string }) {
+  return (
+    <div className="relative mx-auto aspect-[520/600] w-full max-w-[520px]">
+      {/* a single gold frame; the cut-out sits on its bottom line and rises above its top */}
+      <div className="absolute inset-x-[8%] bottom-0 top-[24%]">
+        <span aria-hidden className="portrait-frame absolute inset-0 rounded-[7px] border-2 border-gold" />
+        {/* clip the sides to the inside of the frame, but let the head rise above it */}
+        <div className="absolute inset-0" style={{ clipPath: "inset(-45% 2px 2px 2px round 0 0 5px 5px)" }}>
+          <img
+            src={img}
+            alt={alt}
+            className="portrait-photo absolute bottom-0 left-1/2 h-[121%] w-auto max-w-none -translate-x-1/2"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PartnerSection({ partner, index }: { partner: Partner; index: number }) {
+  const { flip } = partner;
+  return (
+    <section className={cn("relative", index === 0 ? "pt-[clamp(80px,9vw,130px)]" : "pt-[clamp(110px,12vw,170px)]")}>
+      <div className={cn(wrap, "grid items-center gap-16 lg:grid-cols-2 lg:items-end lg:gap-[90px]")}>
+        <div className={cn("w-full", flip && "lg:order-2")} data-reveal={flip ? "left" : "right"}>
+          <PortraitFrame img={partner.img} alt={partner.name.replace('רו"ח ', "")} />
+        </div>
+
+        <div className={cn(flip && "lg:order-1")} data-reveal={flip ? "right" : "left"}>
+          <h2 className="font-semibold text-white text-[clamp(38px,4.4vw,60px)] leading-[1.05]">{partner.name}</h2>
+          <p className="mt-3 font-normal text-gold text-[19px] md:text-[22px]">{partner.role}</p>
+          <span className="mt-7 block h-[2px] w-full bg-gold/60" aria-hidden />
+          <div className="mt-7 space-y-4 font-light text-ice text-[17px] leading-[1.75] md:text-[19px]">
+            {partner.paragraphs.map((p) => (
+              <p key={p}>{noOrphan(p)}</p>
+            ))}
+          </div>
+          {/* credentials: three gold-framed tiles */}
+          <ul className="mt-10 grid grid-cols-3 gap-3 md:gap-4">
+            {partner.highlights.map((h) => (
+              <li
+                key={h.value}
+                className="credential flex flex-col items-center justify-center rounded-[7px] border-2 border-gold/70 px-2 py-5 text-center md:px-4 md:py-6"
+              >
+                <span dir={/^[0-9]/.test(h.value) ? "ltr" : undefined} className="font-semibold text-gold text-[clamp(18px,2vw,26px)] leading-[1.15]">
+                  {h.value}
+                </span>
+                <span className="mt-2 font-normal text-ice/85 text-[13px] leading-[1.35] md:text-[15px]">{h.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+type TeamMember = { name: string; role: string; img?: string };
+
+/* the office team (the partners have their own sections above) */
+const TEAM: TeamMember[] = [
+  { name: "אורה יורצ'נקו", role: "מנהלת מחלקת הנהלת חשבונות", img: "public/assets/team/ora-yurchenko.webp" },
+  { name: "אירנה פיטקובסקי", role: "מנהלת חשבונות" },
+  { name: "אלוני שניידר", role: "מנהלת חשבונות", img: "public/assets/team/aloni-schneider.webp" },
+  { name: "אירנה ספיבק לברוב", role: "מנהלת אדמיניסטרטיבית", img: "public/assets/team/irena-spivak-lavrov.webp" },
+  { name: "ולריה ליטבק", role: "רואת חשבון" },
+  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp" },
+  { name: "מיכאל זלוטסקי", role: "עוזר מנכ\"ל" },
+  { name: "אבי קדוש", role: "רואה חשבון" },
+  { name: "שלמה שם טוב", role: "עוזר רואה חשבון" },
+];
+
+/** neutral head-and-shoulders placeholder, resting on the same navy desk as the photos */
+function Silhouette() {
+  return (
+    <>
+      <svg viewBox="0 0 300 400" className="absolute bottom-[14%] left-1/2 h-auto w-[72%] -translate-x-1/2" aria-hidden>
+        <defs>
+          <linearGradient id="team-sil" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#c9cdd6" />
+            <stop offset="1" stopColor="#a4aab6" />
+          </linearGradient>
+        </defs>
+        <circle cx="150" cy="130" r="62" fill="url(#team-sil)" />
+        <path d="M30 400c0-110 54-176 120-176s120 66 120 176z" fill="url(#team-sil)" />
+      </svg>
+      <div className="absolute inset-x-0 bottom-0 h-[14.4%] bg-navy" aria-hidden />
+    </>
+  );
+}
+
+function TeamSection() {
+  return (
+    <section className="mt-[clamp(110px,12vw,170px)] bg-white pb-[clamp(90px,10vw,140px)] pt-[clamp(80px,9vw,120px)] text-navy">
+      <div className={cn(wrap, "text-center")} data-reveal>
+        <h2 className={sectionTitle}>האנשים שלנו</h2>
+        <p className="mx-auto mt-6 max-w-[640px] text-center font-light text-[18px] leading-[1.7] md:text-[20px]">
+          {noOrphan("צוות מסור של אנשי מקצוע, שכל אחד מהם מביא ניסיון, דיוק ואכפתיות אמיתית לכל לקוח ולכל תיק.")}
+        </p>
+      </div>
+
+      <ul className={cn(wrap, "mt-14 flex max-w-[1000px] flex-wrap justify-center gap-3 md:gap-4")} data-reveal-group>
+        {TEAM.map((m, i) => (
+          <li
+            key={m.name}
+            className="team-card flex w-[calc(50%-6px)] flex-col overflow-hidden rounded-[5px] bg-navy sm:w-[calc(33.333%-8px)] md:w-[calc(33.333%-11px)]"
+            style={{ "--reveal-delay": `${(i % 3) * 90}ms` } as React.CSSProperties}
+          >
+            {/* photo: the person leans on the navy desk, which flows into the name plate */}
+            <div className="relative aspect-[600/768] overflow-hidden bg-[#e3e4e7]">
+              {m.img ? (
+                <img
+                  src={m.img}
+                  alt={m.name}
+                  loading="lazy"
+                  className="team-card-img absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <Silhouette />
+              )}
+              <div className="absolute inset-x-0 bottom-0 h-[7%] bg-gradient-to-b from-transparent to-navy" aria-hidden />
+            </div>
+            <div className="flex flex-1 flex-col justify-start px-3 pb-4 pt-1 text-right sm:px-4 md:px-5 md:pb-5">
+              <p className="font-semibold text-white text-[17px] leading-[1.2] md:text-[22px]">{m.name}</p>
+              <p className="mt-1 font-normal text-gold text-[14px] leading-[1.3] md:text-[17px]">{m.role}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+function AboutPage() {
+  useRevealObserver();
+
+  return (
+    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+      {/* fixed header lives at the page root so no section can paint over it */}
+      <Header />
+      <AboutHero />
+      <OfficeSection />
+      {PARTNERS.map((p, i) => (
+        <PartnerSection key={p.name} partner={p} index={i} />
+      ))}
+      <TeamSection />
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Content                                                            */
+/* ------------------------------------------------------------------ */
+
+const PAGE_INTRO = [
+  "משרדנו מעניק מעטפת מקצועית רחבה בתחומי ראיית החשבון, המיסוי, הליווי העסקי ובקרות השכר, ומשלב ניסיון רב שנים עם ראייה מערכתית והיכרות מעמיקה עם המגזר העסקי והציבורי.",
+  "שני תחומי הליבה שלנו משלימים זה את זה, ובכל אחד מהם פועל צוות ייעודי. כך אנו מלווים עסקים, עמותות ויחידים, לצד משרדי ממשלה, מוסדות להשכלה גבוהה וחברות מהגדולות במשק.",
+];
+
+const DEPARTMENTS = [
+  {
+    id: "accounting",
+    lead: "בראשות רואה החשבון איתן שפיר",
+    mobileTab: "ראיית חשבון ומיסוי",
+    ...SERVICE_BLOCKS[0],
+  },
+  {
+    id: "payroll",
+    lead: "בראשות רואה החשבון אבידן טרבלסי",
+    mobileTab: "שכר ודיני עבודה",
+    ...SERVICE_BLOCKS[1],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Hero: image only, same height as the About page                    */
+/* ------------------------------------------------------------------ */
+
+function ServicesHero() {
+  return (
+    <section className="relative isolate overflow-hidden bg-navy-deep">
+      <h1 className="sr-only">תחומי התמחות</h1>
+      <img
+        src="public/assets/services-hero.jpg"
+        alt="שולחן עבודה במגדלור, מול הים בשקיעה"
+        className="absolute inset-0 -z-10 size-full object-cover object-[50%_62%]"
+      />
+      <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" aria-hidden />
+      <div className="h-[clamp(300px,34vw,440px)]" aria-hidden />
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Two folders side by side, one per department, gently tilted like    */
+/*  the cards on the home page. A service opens as a cream page.         */
+/* ------------------------------------------------------------------ */
+
+const num = (i: number) => String(i + 1).padStart(2, "0");
+
+/** each department folder has its own colour: navy with gold, and gold with navy */
+const FOLDER_THEMES = [
+  { body: "bg-navy", tab: "text-navy", title: "text-gold", text: "text-ice", sub: "text-gold", line: "border-white/20", num: "text-gold", tilt: "folder-tilt-right" },
+  { body: "bg-gold", tab: "text-gold", title: "text-navy", text: "text-navy", sub: "text-navy", line: "border-navy/25", num: "text-navy/70", tilt: "folder-tilt-left" },
+];
+
+function FolderTabShape() {
+  return (
+    <svg viewBox="0 0 250 46" preserveAspectRatio="none" className="absolute inset-0 size-full" aria-hidden>
+      <path fill="currentColor" d="M250 47V12C250 5 245 0 238 0H52C44 0 39 4 36 11L25 36C22 43 16 46 8 46H0V47Z" />
+    </svg>
+  );
+}
+
+function DepartmentFolder({
+  dept,
+  index,
+  onOpen,
+}: {
+  dept: (typeof DEPARTMENTS)[number];
+  index: number;
+  onOpen: (i: number) => void;
+}) {
+  const t = FOLDER_THEMES[index];
+  return (
+    <section id={dept.id} className={cn("dept-folder scroll-mt-28", t.tilt)} aria-labelledby={`${dept.id}-title`}>
+      {/* the folder's tab */}
+      <div className={cn("relative -mb-px h-[46px] w-[190px] md:h-[54px] md:w-[230px]", t.tab)}>
+        <FolderTabShape />
+      </div>
+
+      <div className={cn("rounded-[14px] rounded-ss-none px-6 pb-7 pt-7 shadow-[0_28px_60px_-30px_rgba(5,14,64,0.6)] md:px-9 md:pb-9 md:pt-9", t.body)}>
+        <div className="service-copy">
+          <p className={cn("font-semibold text-[14px] md:text-[15px]", t.sub)}>{dept.lead}</p>
+          <h2 id={`${dept.id}-title`} className={cn("mt-2 font-semibold text-[26px] leading-[1.15] md:text-[30px]", t.title)}>
+            {dept.tab}
+          </h2>
+          <p className={cn("mt-3 font-light text-[16px] leading-[1.65] md:text-[17px]", t.text)}>
+            {noOrphan(dept.intro.join(" ").replace(/\s+/g, " ").trim())}
+          </p>
+        </div>
+
+        <ol className={cn("mt-7 border-t", t.line)}>
+          {dept.folders.map((label, i) => {
+            const title = detailFor(label)?.title ?? label.replace("\n", " ");
+            return (
+              <li key={label} className={cn("border-b", t.line)}>
+                <button
+                  type="button"
+                  onClick={() => onOpen(i)}
+                  aria-haspopup="dialog"
+                  className="folder-row flex w-full items-center gap-4 py-3.5 text-right md:py-4"
+                >
+                  <span className={cn("w-7 shrink-0 font-semibold text-[13px] tracking-[0.1em]", t.num)} dir="ltr">
+                    {num(i)}
+                  </span>
+                  <span className={cn("flex-1 font-normal text-[17px] leading-[1.35] md:text-[18px]", t.title === "text-gold" ? "text-white" : "text-navy")}>
+                    {title}
+                  </span>
+                  <span className={cn("folder-row-arrow shrink-0 text-[18px]", t.num)} aria-hidden>
+                    ←
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+/** the chosen service, pulled out of its folder as a cream page with a gold frame */
+function ServiceModal({
+  dept,
+  index,
+  onNav,
+  onClose,
+}: {
+  dept: (typeof DEPARTMENTS)[number];
+  index: number;
+  onNav: (i: number) => void;
+  onClose: () => void;
+}) {
+  const label = dept.folders[index];
+  const total = dept.folders.length;
+  const detail = detailFor(label);
+  const title = detail?.title ?? label.replace("\n", " ");
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const navBtn = "service-nav grid size-10 place-items-center rounded-full border border-gold/60 text-gold disabled:opacity-30";
+
+  useEffect(() => {
+    closeRef.current?.focus();
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div role="dialog" aria-modal="true" aria-labelledby="service-modal-title" className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8" dir="rtl">
+      <div className="modal-backdrop absolute inset-0 bg-navy/75 backdrop-blur-[6px]" onClick={onClose} />
+      <article className="modal-panel relative w-full max-w-[860px] rounded-[10px] bg-cream p-2 text-navy shadow-[0_30px_80px_rgba(0,0,0,0.45)] md:p-2.5">
+        <div className="modal-scroll max-h-[calc(88dvh/var(--z,1)-20px)] overflow-y-auto rounded-[8px] border-2 border-gold px-6 pb-9 pt-5 md:px-12 md:pb-11 md:pt-6">
+          {/* top bar */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <button type="button" className={navBtn} onClick={() => onNav(index - 1)} disabled={index === 0} aria-label="השירות הקודם">
+                <span aria-hidden>→</span>
+              </button>
+              <span className="font-semibold text-gold text-[14px] tracking-[0.12em]" dir="ltr">
+                {num(index)} / {String(total).padStart(2, "0")}
+              </span>
+              <button type="button" className={navBtn} onClick={() => onNav(index + 1)} disabled={index === total - 1} aria-label="השירות הבא">
+                <span aria-hidden>←</span>
+              </button>
+            </div>
+            <button ref={closeRef} type="button" onClick={onClose} aria-label="סגירה" className="modal-close grid size-10 place-items-center rounded-full border-2 border-gold text-gold">
+              <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden>
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <div key={index} className="panel-in">
+            <p className="mt-6 font-semibold text-[#8C7443] text-[14px] md:text-[15px]">{dept.tab}</p>
+            <h3 id="service-modal-title" className="mt-1 font-semibold text-gold text-[clamp(26px,2.6vw,36px)] leading-[1.15]">
+              {noOrphan(title)}
+            </h3>
+            {detail && (
+              <>
+                <p className="mt-2 font-semibold text-[17px] leading-[1.5] md:text-[19px]">{noOrphan(detail.subtitle)}</p>
+                <span className="mt-5 block h-px w-full bg-gold/70" aria-hidden />
+                <div className="service-copy mt-6 grid gap-8 md:grid-cols-[1.25fr_1fr] md:gap-12">
+                  <div className="space-y-4 font-light text-[17px] leading-[1.75]">
+                    {detail.paragraphs.map((p) => (
+                      <p key={p}>{noOrphan(p)}</p>
+                    ))}
+                  </div>
+                  <div>
+                    {detail.list && (
+                      <>
+                        {detail.listTitle && <p className="font-semibold text-[16px] md:text-[17px]">{detail.listTitle}</p>}
+                        <ul className="mt-3 space-y-2.5 font-normal text-[16px] leading-[1.5] md:text-[17px]">
+                          {detail.list.map((item) => (
+                            <li key={item} className="flex items-center gap-3">
+                              <span className="size-[6px] shrink-0 rotate-45 bg-gold" aria-hidden />
+                              <span>{noOrphan(item)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                    {detail.note && (
+                      <p className="mt-6 font-normal text-[16px] leading-[1.65] text-[#8C7443] md:text-[17px]">{noOrphan(detail.note)}</p>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </article>
+    </div>
+  );
+}
+
+function ServicesFolder() {
+  const [open, setOpen] = useState<{ dept: number; index: number } | null>(null);
+
+  // links like /services#payroll scroll to that folder
+  useEffect(() => {
+    const el = window.location.hash ? document.querySelector(window.location.hash) : null;
+    if (el) window.setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 300);
+  }, []);
+
+  return (
+    <div className="mx-auto mt-[clamp(64px,7vw,96px)] grid items-start gap-14 lg:grid-cols-2 lg:gap-12" data-reveal>
+      {DEPARTMENTS.map((d, i) => (
+        <DepartmentFolder key={d.id} dept={d} index={i} onOpen={(s) => setOpen({ dept: i, index: s })} />
+      ))}
+      {open && (
+        <ServiceModal
+          dept={DEPARTMENTS[open.dept]}
+          index={open.index}
+          onNav={(s) => setOpen({ dept: open.dept, index: Math.max(0, Math.min(DEPARTMENTS[open.dept].folders.length - 1, s)) })}
+          onClose={() => setOpen(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+function ServicesBody() {
+  return (
+    <section className="relative flow-root bg-white text-navy">
+      {/* navy → white dome with gold arc (same shape as the home page) */}
+      <svg viewBox="0 725 1325 102" className="relative z-10 -mt-[4.8302%] block h-auto w-full" aria-hidden>
+        <path
+          transform="translate(-292 727)"
+          className="fill-white"
+          d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H1617V1867H292V224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+        />
+        <path
+          transform="translate(-292 753)"
+          className="fill-gold"
+          d="M954.5 0C1370.58 0 1724.49 67.6399 1855.15 162H1851.71C1845.89 157.897 1839.64 153.836 1832.96 149.822C1784.9 120.953 1715.22 94.8848 1628.94 72.9648C1456.41 29.1326 1217.96 2 954.5 2C691.038 2 452.586 29.1326 280.059 72.9648C193.78 94.8848 124.101 120.953 76.0391 149.822C27.8526 178.766 2 210.146 2 242.5C2 274.854 27.8526 306.234 76.0391 335.178C79.2622 337.114 82.5839 339.035 86 340.945V343.235C30.7774 312.555 0 278.441 0 242.5C0 108.571 427.344 0 954.5 0Z"
+        />
+      </svg>
+
+      <div className={cn(wrap, "pb-[clamp(100px,11vw,160px)] pt-[clamp(40px,6vw,80px)]")}>
+        <div className="text-center" data-reveal>
+          <h2 className={sectionTitle}>תחומי התמחות</h2>
+          <div className="mx-auto mt-7 max-w-[860px] space-y-4 font-light text-[18px] leading-[1.7] md:text-[20px]">
+            {PAGE_INTRO.map((p) => (
+              <p key={p} className="text-center [text-wrap:balance]">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+        <ServicesFolder />
+      </div>
+    </section>
+  );
+}
+
+function ServicesPage() {
+  useRevealObserver();
+
+  return (
+    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+      <Header />
+      <ServicesHero />
+      <ServicesBody />
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Content                                                            */
+/* ------------------------------------------------------------------ */
+
+const ARTICLES_INTRO =
+  "תובנות, עדכונים וניתוחים מקצועיים מעולמות המיסוי, השכר וראיית החשבון, כדי שתוכלו לקבל כל החלטה עם תמונה ברורה.";
+
+const ALL = "הכול";
+const ARTICLE_FILTERS = [ALL, ...Array.from(new Set(ARTICLES.map((a) => a.tag)))];
+
+/* ------------------------------------------------------------------ */
+/*  Hero: image only, same height as About and Services               */
+/* ------------------------------------------------------------------ */
+
+function ArticlesHero() {
+  return (
+    <section className="relative isolate overflow-hidden bg-navy-deep">
+      <h1 className="sr-only">מאמרים</h1>
+      <img
+        src="public/assets/articles-hero.jpg"
+        alt="ספרייה במגדלור, מול הים בשקיעה"
+        className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]"
+      />
+      <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" aria-hidden />
+      <div className="h-[clamp(300px,34vw,440px)]" aria-hidden />
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Pieces                                                             */
+/* ------------------------------------------------------------------ */
+
+/** the latest article, filed in a navy folder like the rest of the site */
+function FeaturedArticle({ a }: { a: Article }) {
+  return (
+    <article className="mx-auto max-w-[1400px]">
+      <div className="relative h-[46px] w-[220px] md:h-[54px] md:w-[280px]">
+        <ArticleFolderTab />
+        <span className="relative flex h-full items-center ps-6 font-semibold text-gold text-[18px] md:text-[21px]">המאמר האחרון</span>
+      </div>
+      <div className="article-copy grid gap-6 rounded-[14px] rounded-ss-none bg-navy p-3 shadow-[0_24px_60px_-28px_rgba(5,14,64,0.55)] md:p-5 lg:grid-cols-[1.1fr_1fr] lg:gap-10">
+        <div className="article-img relative aspect-[16/10] overflow-hidden rounded-[10px] lg:aspect-auto lg:min-h-[360px]">
+          <img src={a.img} alt="" className="absolute inset-0 size-full object-cover" />
+        </div>
+        <div className="flex flex-col px-3 pb-5 md:px-4 lg:pb-0 lg:pe-0 lg:pt-8">
+          <ArticleMeta a={a} light />
+          <h2 className="mt-4 font-semibold text-white text-[clamp(32px,3.6vw,48px)] leading-[1.1]">{a.title}</h2>
+          <p className="mt-5 font-light text-ice text-[18px] leading-[1.7] md:text-[20px]">{noOrphan(a.excerpt)}</p>
+          <GoldButton href={articleHref(a.slug)} className="mt-8 self-start lg:mt-auto">
+            לקריאת המאמר ←
+          </GoldButton>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Body                                                               */
+/* ------------------------------------------------------------------ */
+
+function ArticlesBody() {
+  const [filter, setFilter] = useState(ALL);
+  const list = filter === ALL ? ARTICLES : ARTICLES.filter((a) => a.tag === filter);
+  const [featured, ...rest] = list;
+
+  return (
+    <section className="relative flow-root bg-white text-navy">
+      {/* navy → white dome with gold arc (same shape as the other pages) */}
+      <svg viewBox="0 725 1325 102" className="relative z-10 -mt-[4.8302%] block h-auto w-full" aria-hidden>
+        <path
+          transform="translate(-292 727)"
+          className="fill-white"
+          d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H1617V1867H292V224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+        />
+        <path
+          transform="translate(-292 753)"
+          className="fill-gold"
+          d="M954.5 0C1370.58 0 1724.49 67.6399 1855.15 162H1851.71C1845.89 157.897 1839.64 153.836 1832.96 149.822C1784.9 120.953 1715.22 94.8848 1628.94 72.9648C1456.41 29.1326 1217.96 2 954.5 2C691.038 2 452.586 29.1326 280.059 72.9648C193.78 94.8848 124.101 120.953 76.0391 149.822C27.8526 178.766 2 210.146 2 242.5C2 274.854 27.8526 306.234 76.0391 335.178C79.2622 337.114 82.5839 339.035 86 340.945V343.235C30.7774 312.555 0 278.441 0 242.5C0 108.571 427.344 0 954.5 0Z"
+        />
+      </svg>
+
+      <div className={cn(wrap, "pb-[clamp(100px,11vw,160px)] pt-[clamp(40px,6vw,80px)]")}>
+        <div className="text-center" data-reveal>
+          <h2 className={sectionTitle}>מאמרים</h2>
+          <p className="mx-auto mt-7 max-w-[760px] text-center font-light text-[18px] leading-[1.7] [text-wrap:balance] md:text-[20px]">
+            {ARTICLES_INTRO}
+          </p>
+        </div>
+
+        {/* topic filters, in the same gold tab style as the home page */}
+        <div className="mt-12 flex flex-wrap justify-center gap-2.5 md:gap-3" role="group" aria-label="סינון לפי נושא" data-reveal>
+          {ARTICLE_FILTERS.map((t) => (
+            <button
+              key={t}
+              type="button"
+              aria-pressed={filter === t}
+              onClick={() => setFilter(t)}
+              className={cn(
+                "tab-btn h-11 rounded-[5px] px-5 font-semibold text-[16px] md:text-[17px]",
+                filter === t ? "bg-gold text-white" : "border-2 border-gold text-gold",
+              )}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+
+        <div key={filter} className="panel-in mt-[clamp(48px,5vw,72px)]">
+          {featured && <FeaturedArticle a={featured} />}
+          {rest.length > 0 && (
+            <ul className="mx-auto mt-[clamp(48px,5vw,72px)] grid max-w-[1400px] gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {rest.map((a, i) => (
+                <ArticleTile key={`${a.title}-${i}`} a={a} />
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ArticlesPage() {
+  useRevealObserver();
+
+  return (
+    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+      <Header />
+      <ArticlesHero />
+      <ArticlesBody />
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Top: thin gold reading progress + the library image               */
+/* ------------------------------------------------------------------ */
+
+function ReadingProgress() {
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    const body = document.getElementById("article-body");
+    const onScroll = () => {
+      if (!body) return;
+      const r = body.getBoundingClientRect();
+      const total = r.height - window.innerHeight * 0.6;
+      setP(Math.min(1, Math.max(0, (window.innerHeight * 0.4 - r.top) / Math.max(1, total))));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div className="fixed inset-x-0 top-0 z-[60] h-[3px]" aria-hidden>
+      <div className="h-full origin-right bg-gold" style={{ transform: `scaleX(${p})` }} />
+    </div>
+  );
+}
+
+function ArticleHero() {
+  return (
+    <section className="relative isolate overflow-hidden bg-navy-deep" aria-hidden>
+      <img src="public/assets/articles-hero.jpg" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" />
+      <div className="h-[clamp(300px,34vw,440px)]" />
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Body blocks                                                        */
+/* ------------------------------------------------------------------ */
+
+function Block({ b }: { b: ArticleBlock }) {
+  switch (b.t) {
+    case "lead":
+      return <p className="font-normal text-[21px] leading-[1.7] md:text-[24px]">{noOrphan(b.text)}</p>;
+    case "p":
+      return <p className="mt-6 font-light text-[18px] leading-[1.9] md:text-[20px]">{noOrphan(b.text)}</p>;
+    case "h2":
+      return (
+        <h2 className="mt-14 font-semibold text-gold text-[clamp(26px,2.6vw,34px)] leading-[1.2] md:mt-16">{noOrphan(b.text)}</h2>
+      );
+    case "list":
+      return (
+        <ul className="mt-7 space-y-4 font-normal text-[18px] leading-[1.6] md:text-[20px]">
+          {b.items.map((item) => (
+            <li key={item} className="flex items-start gap-4">
+              <span className="mt-[0.62em] size-[8px] shrink-0 rotate-45 bg-gold" aria-hidden />
+              <span>{noOrphan(item)}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    case "quote":
+      return (
+        <blockquote className="my-14 border-s-4 border-gold ps-6 font-semibold text-[22px] leading-[1.55] md:ps-8 md:text-[27px]">
+          {noOrphan(b.text)}
+        </blockquote>
+      );
+    case "callout":
+      // the summary is filed in a navy folder, like the rest of the site
+      return (
+        <aside className="my-14">
+          <div className="relative h-[44px] w-[200px] md:h-[50px] md:w-[240px]">
+            <ArticleFolderTab />
+            <span className="relative flex h-full items-center ps-6 font-semibold text-gold text-[17px] md:text-[19px]">{b.title}</span>
+          </div>
+          <div className="rounded-[14px] rounded-ss-none bg-navy px-7 py-8 shadow-[0_24px_60px_-28px_rgba(5,14,64,0.55)] md:px-10 md:py-10">
+            <p className="font-light text-ice text-[19px] leading-[1.8] md:text-[21px]">{noOrphan(b.text)}</p>
+          </div>
+        </aside>
+      );
+    case "note":
+      return (
+        <p className="mt-14 border-t border-gold/40 pt-6 font-light text-navy/60 text-[15px] leading-[1.7] md:text-[16px]">
+          {b.text}
+        </p>
+      );
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+function ArticleBody() {
+  const a = currentArticle();
+  const blocks = a.body ?? genericBody(a.excerpt);
+  // more reading: same topic first, then the most recent
+  const more = [
+    ...ARTICLES.filter((x) => x.slug !== a.slug && x.tag === a.tag),
+    ...ARTICLES.filter((x) => x.slug !== a.slug && x.tag !== a.tag),
+  ].slice(0, 3);
+
+  useEffect(() => {
+    document.title = `${a.title} | איתן שפיר ושות׳`;
+  }, [a.title]);
+
+  return (
+    <section className="relative flow-root bg-white text-navy">
+      {/* navy → white dome with gold arc (same shape as the other pages) */}
+      <svg viewBox="0 725 1325 102" className="relative z-10 -mt-[4.8302%] block h-auto w-full" aria-hidden>
+        <path
+          transform="translate(-292 727)"
+          className="fill-white"
+          d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H1617V1867H292V224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+        />
+        <path
+          transform="translate(-292 753)"
+          className="fill-gold"
+          d="M954.5 0C1370.58 0 1724.49 67.6399 1855.15 162H1851.71C1845.89 157.897 1839.64 153.836 1832.96 149.822C1784.9 120.953 1715.22 94.8848 1628.94 72.9648C1456.41 29.1326 1217.96 2 954.5 2C691.038 2 452.586 29.1326 280.059 72.9648C193.78 94.8848 124.101 120.953 76.0391 149.822C27.8526 178.766 2 210.146 2 242.5C2 274.854 27.8526 306.234 76.0391 335.178C79.2622 337.114 82.5839 339.035 86 340.945V343.235C30.7774 312.555 0 278.441 0 242.5C0 108.571 427.344 0 954.5 0Z"
+        />
+      </svg>
+
+      <article className={cn(wrap, "pt-[clamp(30px,5vw,64px)]")}>
+        {/* article header */}
+        <header className="mx-auto max-w-[900px] text-center" data-reveal>
+          <nav aria-label="מיקום בעמוד" className="font-normal text-[16px] text-navy/60">
+            <a href={ROUTES.articles} className="link-sweep hover:text-navy">
+              מאמרים
+            </a>
+            <span className="mx-2" aria-hidden>
+              /
+            </span>
+            <span className="font-semibold text-gold">{a.tag}</span>
+          </nav>
+          <h1 className="mt-5 font-semibold text-gold text-[clamp(38px,5vw,60px)] leading-[1.08] [text-wrap:balance]">{a.title}</h1>
+          <div className="mt-6 flex justify-center">
+            <ArticleMeta a={a} />
+          </div>
+        </header>
+
+        {/* the article image, on the site's cream paper with a gold frame */}
+        <figure className="mx-auto mt-[clamp(40px,5vw,64px)] max-w-[1000px] rounded-[10px] bg-cream p-2.5 shadow-[0_24px_60px_-30px_rgba(5,14,64,0.45)] md:p-3" data-reveal>
+          <div className="relative aspect-[16/8] overflow-hidden rounded-[8px] border-2 border-gold">
+            <img src={a.img} alt="" className="absolute inset-0 size-full object-cover" />
+          </div>
+        </figure>
+
+        {/* body */}
+        <div id="article-body" className="article-copy mx-auto mt-[clamp(48px,6vw,80px)] max-w-[760px]">
+          {blocks.map((b, i) => (
+            <Block key={i} b={b} />
+          ))}
+        </div>
+
+        {/* signature */}
+        <footer className="mx-auto mt-14 flex max-w-[760px] items-center gap-5 rounded-[10px] border border-[#E6DCC6] bg-cream px-6 py-5">
+          <img src="public/assets/es-mark.svg" alt="" className="h-auto w-[54px] shrink-0" />
+          <div>
+            <p className="font-semibold text-[18px]">צוות איתן שפיר ושות׳ רואי חשבון</p>
+            <p className="mt-0.5 font-light text-navy/70 text-[16px]">ראיית חשבון, מיסוי ובקרות שכר תחת קורת גג אחת</p>
+          </div>
+        </footer>
+      </article>
+
+      {/* more articles */}
+      <div className={cn(wrap, "pb-[clamp(100px,11vw,160px)] pt-[clamp(90px,10vw,140px)]")}>
+        <div className="mx-auto flex max-w-[1400px] items-end justify-between gap-6" data-reveal>
+          <h2 className="font-semibold text-gold text-[clamp(34px,4vw,52px)] leading-none">מאמרים נוספים</h2>
+          <a href={ROUTES.articles} className="link-sweep shrink-0 font-semibold text-navy text-[17px] md:text-[18px]">
+            לכל המאמרים ←
+          </a>
+        </div>
+        <ul className="mx-auto mt-10 grid max-w-[1400px] gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8" data-reveal-group>
+          {more.map((x) => (
+            <ArticleTile key={x.slug} a={x} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function ArticlePage() {
+  useRevealObserver();
+
+  return (
+    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+      <ReadingProgress />
+      <Header />
+      <ArticleHero />
+      <ArticleBody />
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Legal pages: accessibility statement, privacy policy, site terms   */
+/*  Text marked [[like this]] is a detail the firm still has to fill   */
+/*  in; it renders as a visible gold placeholder until replaced.       */
+/* ------------------------------------------------------------------ */
+
+type LegalBlock = string | string[];
+type LegalSection = { h: string; blocks: LegalBlock[] };
+
+const UPDATED = "ספטמבר 2026";
+
+/** renders a paragraph, turning [[...]] into a visible placeholder */
+function LegalText({ text }: { text: string }) {
+  const parts = text.split(/(\[\[.*?\]\])/g);
+  return (
+    <>
+      {parts.map((p, i) =>
+        p.startsWith("[[") ? (
+          <span key={i} className="legal-fill">
+            {p.slice(2, -2)}
+          </span>
+        ) : (
+          p
+        ),
+      )}
+    </>
+  );
+}
+
+function LegalLayout({ title, intro, sections }: { title: string; intro: string; sections: LegalSection[] }) {
+  useRevealObserver();
+
+  return (
+    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+      <Header />
+
+      {/* a quiet navy band instead of a photo */}
+      <section className="bg-navy pb-[clamp(90px,10vw,140px)] pt-[clamp(150px,15vw,200px)]">
+        <div className={cn(wrap, "text-center")}>
+          <h1 className="hero-in font-semibold text-gold text-[clamp(40px,5vw,60px)] leading-[1.05]">{title}</h1>
+          <p className="hero-in mt-2 text-center font-normal text-ice text-[16px] md:text-[18px]" style={{ "--hero-delay": "150ms" } as React.CSSProperties}>
+            עודכן לאחרונה: {UPDATED}
+          </p>
+        </div>
+      </section>
+
+      <section className="relative flow-root bg-white text-navy">
+        {/* navy → white dome with gold arc (same shape as the other pages) */}
+        <svg viewBox="0 725 1325 102" className="relative z-10 -mt-[4.8302%] block h-auto w-full" aria-hidden>
+          <path
+            transform="translate(-292 727)"
+            className="fill-white"
+            d="M954.5 0C1481.66 0 1909 99.8405 1909 223C1909 223.334 1909 223.667 1908.99 224H1617V1867H292V224H0.0107422C0.00448083 223.667 0 223.334 0 223C0 99.8405 427.344 0 954.5 0Z"
+          />
+          <path
+            transform="translate(-292 753)"
+            className="fill-gold"
+            d="M954.5 0C1370.58 0 1724.49 67.6399 1855.15 162H1851.71C1845.89 157.897 1839.64 153.836 1832.96 149.822C1784.9 120.953 1715.22 94.8848 1628.94 72.9648C1456.41 29.1326 1217.96 2 954.5 2C691.038 2 452.586 29.1326 280.059 72.9648C193.78 94.8848 124.101 120.953 76.0391 149.822C27.8526 178.766 2 210.146 2 242.5C2 274.854 27.8526 306.234 76.0391 335.178C79.2622 337.114 82.5839 339.035 86 340.945V343.235C30.7774 312.555 0 278.441 0 242.5C0 108.571 427.344 0 954.5 0Z"
+          />
+        </svg>
+
+        <div className={cn(wrap, "pb-[clamp(100px,11vw,150px)] pt-[clamp(30px,5vw,60px)]")}>
+          <article className="article-copy mx-auto max-w-[800px]">
+            <p className="font-normal text-[19px] leading-[1.75] md:text-[21px]">
+              <LegalText text={intro} />
+            </p>
+
+            {sections.map((s) => (
+              <section key={s.h} className="mt-12 md:mt-14">
+                <h2 className="font-semibold text-gold text-[clamp(24px,2.4vw,30px)] leading-[1.25]">{s.h}</h2>
+                <span className="mt-4 block h-px w-full bg-gold/60" aria-hidden />
+                {s.blocks.map((b, i) =>
+                  typeof b === "string" ? (
+                    <p key={i} className="mt-5 font-light text-[17px] leading-[1.85] md:text-[18px]">
+                      <LegalText text={b} />
+                    </p>
+                  ) : (
+                    <ul key={i} className="mt-5 space-y-3 font-light text-[17px] leading-[1.7] md:text-[18px]">
+                      {b.map((item) => (
+                        <li key={item} className="flex items-start gap-3">
+                          <span className="mt-[0.6em] size-[7px] shrink-0 rotate-45 bg-gold" aria-hidden />
+                          <span>
+                            <LegalText text={item} />
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  ),
+                )}
+              </section>
+            ))}
+          </article>
+        </div>
+      </section>
+
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Accessibility statement                                            */
+/*  Describes the site as it actually is today; update the level, the  */
+/*  test date and the "not yet accessible" list after each fix round.  */
+/* ------------------------------------------------------------------ */
+
+const ACCESSIBILITY: LegalSection[] = [
+  {
+    h: "מחויבות לנגישות",
+    blocks: [
+      "משרד איתן שפיר ושות׳ רואי חשבון רואה חשיבות רבה במתן שירות שוויוני לכלל הלקוחות והגולשים, ובכלל זה לאנשים עם מוגבלות. אנו פועלים כדי שכל אדם יוכל לגלוש באתר, לקרוא את התוכן וליצור עמנו קשר בקלות ובנוחות.",
+    ],
+  },
+  {
+    h: "רמת הנגישות באתר",
+    blocks: [
+      "האתר נמצא בתהליך הנגשה בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג־2013, ולתקן הישראלי ת״י 5568, המבוסס על הנחיות WCAG 2.0 ברמה AA. [[לאחר השלמת התיקונים והבדיקה: לציין אם האתר הונגש במלואו או חלקית.]]",
+      "תאריך הבדיקה האחרונה: [[תאריך]]. הבדיקה בוצעה על ידי: [[שם הבודק או הכלי]].",
+      "בין ההתאמות שבוצעו באתר:",
+      [
+        "אפשרות ניווט באמצעות המקלדת, עם סימון של הרכיב שבפוקוס",
+        "מבנה כותרות ותגיות סמנטיות המסייעים לשימוש בקוראי מסך",
+        "טקסט חלופי לתמונות בעלות משמעות, והסתרה מקוראי מסך של רכיבים עיצוביים בלבד",
+        "התאמה לגדלי מסך שונים, כולל טלפונים ניידים, ואפשרות להגדלת הטקסט בדפדפן",
+        "כיבוד הגדרת ״הפחתת תנועה״ של מערכת ההפעלה: מי שהפעיל אותה יראה את האתר ללא אנימציות",
+      ],
+    ],
+  },
+  {
+    h: "חלקים שטרם הונגשו במלואם",
+    blocks: [
+      "אנו מודעים לכך שהחלקים הבאים עדיין אינם נגישים במלואם, ופועלים לתקנם:",
+      [
+        "פסי הלוגואים הנעים וסרטון הרקע בדף הבית: טרם נוסף כפתור לעצירתם",
+        "כרטיסי ״מה באמת עושה את ההבדל״ בדף הבית: חלק מהטקסט מוצג כחלק מהתמונה",
+        "חלק מהכותרות בצבע זהב על רקע בהיר: ניגודיות הצבעים אינה מספקת",
+        "שדות טופס יצירת הקשר: אין להם עדיין תוויות גלויות",
+        "תוכן של צד שלישי, כגון שירותי המפות והניווט שאליהם מקשר האתר, שאינו בשליטתנו",
+      ],
+      "אם נתקלתם בקושי בחלק כלשהו באתר, נשמח שתעדכנו אותנו ונפעל לתקנו בהקדם.",
+    ],
+  },
+  {
+    h: "נגישות המשרד",
+    blocks: [
+      `משרדנו ממוקם ב${ADDRESS}. [[יש להשלים את הסדרי הנגישות הפיזיים: מעלית, חניית נכים, שירותים נגישים, דרכי הגעה, ואפשרות לפגישה מחוץ למשרד.]]`,
+    ],
+  },
+  {
+    h: "דרכים חלופיות לקבלת שירות",
+    blocks: [
+      "מי שמתקשה להשתמש באתר יכול לקבל את כל המידע והשירות גם בטלפון, בדוא״ל או בפגישה אישית, בפרטים שבהמשך.",
+    ],
+  },
+  {
+    h: "פנייה בנושא נגישות",
+    blocks: [
+      "לכל שאלה, הערה או בקשה בנושא נגישות, ניתן לפנות אלינו:",
+      [
+        "איש או אשת קשר לנגישות: [[שם. אם במשרד 25 עובדים ומעלה, יש למנות רכז או רכזת נגישות]]",
+        `טלפון: ${PHONE}`,
+        "דוא״ל: [[כתובת דוא״ל לפניות בנושא נגישות]]",
+        "שעות מענה וזמן תגובה: [[למשל: א׳ עד ה׳, 9:00 עד 17:00; מענה תוך 5 ימי עבודה]]",
+      ],
+      "נשמח לקבל פרטים על הבעיה שבה נתקלתם, הדף שבו היא הופיעה, והדפדפן או הטכנולוגיה המסייעת שבהם השתמשתם.",
+    ],
+  },
+];
+
+function AccessibilityPage() {
+  return (
+    <LegalLayout
+      title="הצהרת נגישות"
+      intro="אנו מאמינים שלכל אדם מגיעה גישה שווה למידע ולשירות. בדף זה מפורטים מצב הנגישות של האתר ושל המשרד, החלקים שעדיין בטיפול, וכיצד ניתן לפנות אלינו בנושא נגישות."
+      sections={ACCESSIBILITY}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Privacy policy                                                     */
+/* ------------------------------------------------------------------ */
+
+const PRIVACY: LegalSection[] = [
+  {
+    h: "מי אנחנו",
+    blocks: [
+      `האתר מופעל על ידי איתן שפיר ושות׳ רואי חשבון, [[ח.פ. או מספר שותפות]], ${ADDRESS} (״המשרד״). המשרד הוא האחראי על המידע הנאסף באמצעות האתר.`,
+    ],
+  },
+  {
+    h: "איזה מידע נאסף",
+    blocks: [
+      "כאשר אתם ממלאים את טופס יצירת הקשר, אנו מקבלים את הפרטים שמסרתם:",
+      ["שם", "מספר טלפון", "כתובת דוא״ל", "תוכן ההודעה"],
+      "אינכם חייבים על פי חוק למסור מידע זה. מסירתו נעשית מרצונכם, אולם ללא פרטי התקשרות לא נוכל לחזור אליכם.",
+      "בנוסף, ספק האחסון של האתר שומר באופן אוטומטי נתונים טכניים בסיסיים, כגון כתובת IP, סוג הדפדפן ושעת הגישה. [[להשלים לפי ספק האחסון בפועל.]]",
+      "אנא אל תכללו בטופס מידע רגיש, כגון מספרי תעודת זהות, פרטים פיננסיים מפורטים או מסמכים. מידע כזה נעביר יחד בערוץ מאובטח לאחר שניצור עמכם קשר.",
+      "האתר אינו משתמש כיום בעוגיות מעקב, פרסום או ניתוח סטטיסטי. אם יתווספו כלים כאלה, נעדכן מדיניות זו לפני הפעלתם.",
+    ],
+  },
+  {
+    h: "למה אנו משתמשים במידע",
+    blocks: [
+      "המידע משמש אך ורק למטרה שלשמה נמסר:",
+      ["חזרה אליכם בעקבות פנייתכם", "מתן מענה לשאלתכם ותיאום פגישה, ככל שתבקשו"],
+      "לא נשלח אליכם דברי פרסומת ללא הסכמתכם המפורשת, ולא נעביר את פרטיכם לצדדים שלישיים לצורכי שיווק.",
+    ],
+  },
+  {
+    h: "למי מועבר המידע והיכן הוא נשמר",
+    blocks: [
+      "המידע נשמר ומעובד אצל ספקים המספקים לנו שירותים, ורק במידה הנדרשת לשם כך:",
+      [
+        "אחסון האתר: [[שם הספק ומדינת האחסון]]",
+        "שליחת הטופס: [[שם השירות ומדינתו]]",
+        "דוא״ל המשרד: [[שם הספק ומדינתו]]",
+      ],
+      "[[אם המידע נשמר או מעובד מחוץ לישראל, לציין זאת כאן במפורש.]]",
+      "מעבר לכך, מידע יימסר לגורם אחר רק אם נידרש לכך על פי דין או לפי צו של רשות מוסמכת.",
+    ],
+  },
+  {
+    h: "אבטחת המידע ושמירתו",
+    blocks: [
+      "אנו נוקטים אמצעים סבירים ומקובלים כדי להגן על המידע, ובהם תקשורת מוצפנת (HTTPS) והגבלת הגישה למידע לגורמים המורשים בלבד. עם זאת, אין אפשרות להבטיח חסינות מוחלטת של מערכות מידע.",
+      "פניות שנשלחו דרך האתר נשמרות [[תקופת השמירה, למשל 24 חודשים]], ולאחר מכן נמחקות. אם הפונה הופך ללקוח המשרד, פנייתו עשויה להישמר בתיק הלקוח בהתאם לחובות שמירת המסמכים החלות על המשרד.",
+    ],
+  },
+  {
+    h: "הזכויות שלכם",
+    blocks: [
+      "בהתאם לחוק הגנת הפרטיות, התשמ״א־1981, אתם רשאים לעיין במידע שנשמר עליכם, לבקש לתקנו אם אינו נכון, שלם או מדויק, ולבקש את מחיקתו. בקשה כזו ניתן לשלוח אלינו בפרטים שבהמשך, ונשיב עליה תוך [[זמן מענה]].",
+    ],
+  },
+  {
+    h: "יצירת קשר",
+    blocks: [
+      "לשאלות בנוגע למדיניות זו או למידע שנשמר עליכם:",
+      [`טלפון: ${PHONE}`, `דוא״ל: ${EMAIL.includes("????") ? "[[כתובת הדוא״ל לפניות בענייני פרטיות]]" : EMAIL}`, `כתובת: ${ADDRESS}`],
+      "המשרד רשאי לעדכן מדיניות זו מעת לעת. הנוסח המחייב הוא הנוסח המופיע בדף זה.",
+    ],
+  },
+];
+
+function PrivacyPage() {
+  return (
+    <LegalLayout
+      title="מדיניות פרטיות"
+      intro="פרטיותכם חשובה לנו. מדיניות זו מסבירה איזה מידע נאסף באתר, כיצד אנו משתמשים בו וכיצד אנו שומרים עליו."
+      sections={PRIVACY}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Site terms (short)                                                 */
+/* ------------------------------------------------------------------ */
+
+const TERMS: LegalSection[] = [
+  {
+    h: "כללי",
+    blocks: [
+      `האתר מופעל על ידי איתן שפיר ושות׳ רואי חשבון, [[ח.פ. או מספר שותפות]], ${ADDRESS}, טלפון ${PHONE}. השימוש באתר כפוף לתנאים המפורטים בדף זה. התנאים מנוסחים בלשון רבים, אך מתייחסים לכל המגדרים.`,
+    ],
+  },
+  {
+    h: "מטרת האתר",
+    blocks: [
+      "האתר נועד למסור מידע כללי על המשרד ועל שירותיו. לא מתבצעת בו מכירה מקוונת.",
+      "פנייה באמצעות האתר אינה יוצרת יחסי לקוח ורואה חשבון. התקשרות מקצועית עם המשרד נוצרת רק בהסכם התקשרות חתום.",
+    ],
+  },
+  {
+    h: "המידע באתר",
+    blocks: [
+      "התכנים באתר, ובכלל זה המאמרים, נועדו למסירת מידע כללי בלבד. הם אינם מהווים ייעוץ חשבונאי, מיסויי או משפטי, ואינם מחליפים התייעצות אישית עם איש מקצוע המותאמת לנסיבות שלכם.",
+      "החקיקה והפסיקה משתנות מעת לעת, וכל מאמר נכון למועד פרסומו. אנו משקיעים מאמץ כדי שהמידע יהיה מדויק, אך ייתכנו בו טעויות או שינויים. ככל שהדין מתיר, המשרד לא יישא באחריות לנזק שייגרם כתוצאה מהסתמכות על המידע באתר ללא ייעוץ פרטני.",
+    ],
+  },
+  {
+    h: "קניין רוחני",
+    blocks: [
+      "הזכויות בתכנים, בעיצוב, בלוגו ובטקסטים באתר שמורות למשרד. תמונות, סרטונים וגופנים מסוימים משמשים ברישיון מבעלי הזכויות בהם. אין להעתיק, להפיץ או לעשות בתכנים שימוש מסחרי ללא אישור מראש ובכתב.",
+      "[[רק אם הושג אישור: הלוגואים של לקוחות ושל גופים אחרים המוצגים באתר הם קניינם של בעליהם, ומוצגים באישורם.]]",
+    ],
+  },
+  {
+    h: "קישורים לאתרים אחרים",
+    blocks: [
+      "האתר כולל קישורים לאתרים חיצוניים, כגון Google Maps ו־Waze. המשרד אינו אחראי לתוכנם או למדיניות הפרטיות שלהם.",
+    ],
+  },
+  {
+    h: "פרטיות ונגישות",
+    blocks: [
+      "השימוש במידע שתמסרו לנו כפוף למדיניות הפרטיות של האתר. פרטים על מצב הנגישות מופיעים בהצהרת הנגישות.",
+    ],
+  },
+  {
+    h: "דין וסמכות שיפוט",
+    blocks: [
+      "על השימוש באתר יחולו דיני מדינת ישראל, וכל מחלוקת תידון בבתי המשפט המוסמכים בישראל.",
+    ],
+  },
+];
+
+function TermsPage() {
+  return (
+    <LegalLayout
+      title="תקנון האתר"
+      intro="תנאי שימוש קצרים באתר איתן שפיר ושות׳ רואי חשבון."
+      sections={TERMS}
+    />
+  );
+}
+</script>
+<script>window.__ROOT__ = "Index";</script>
+<script>
+  const code = Babel.transform(document.getElementById("src").textContent, {
+    filename: "Index.tsx",
+    presets: [["typescript", { isTSX: true, allExtensions: true }], "react"],
+  }).code;
+  new Function("React", "ReactDOM", code + '\nReactDOM.createRoot(document.getElementById("root")).render(React.createElement(' + window.__ROOT__ + '));')(React, ReactDOM);
+</script>
+</body>
+</html>
