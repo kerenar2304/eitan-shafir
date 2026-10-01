@@ -743,7 +743,7 @@ function IntroLoader() {
   return (
     <div className={cn("intro fixed inset-0 z-[100] grid place-items-center bg-navy-deep", phase === "out" && "is-out")} aria-hidden>
       <div className="flex flex-col items-center">
-        <img src="public/assets/es-mark.svg" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
+        <img src="public/assets/es-mark.svg?v=1790855966" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
         <span className="intro-line mt-8 block h-px w-[150px] bg-gold md:w-[180px]" />
       </div>
     </div>
@@ -949,12 +949,12 @@ function Header() {
           <a href={ROUTES.home} className="brand-logo relative block shrink-0" aria-label="איתן שפיר ושות׳ רואי חשבון">
             {/* two inks, cross-faded: white text on dark backgrounds, navy text on light ones (the mark stays gold) */}
             <img
-              src="public/assets/logo-light.svg"
+              src="public/assets/logo-light.svg?v=1790855966"
               alt="איתן שפיר ושות׳ רואי חשבון"
               className="logo-ink-light block h-auto w-[clamp(140px,38vw,200px)] lg:absolute lg:right-0 lg:top-0 lg:w-[212px] lg:max-w-none"
             />
             <img
-              src="public/assets/logo-dark.svg"
+              src="public/assets/logo-dark.svg?v=1790855966"
               alt=""
               aria-hidden
               className="logo-ink-dark absolute right-0 top-0 block h-auto w-[clamp(140px,38vw,200px)] lg:w-[212px] lg:max-w-none"
@@ -1178,7 +1178,7 @@ function Footer() {
           {/* mobile: one centred column with thin gold dividers; desktop: contact on one side, links on the other */}
           <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-stretch md:justify-between md:gap-12 md:text-right" data-reveal>
             <div className="flex flex-col items-center md:items-start xl:-ms-[8px]">
-              <img src="public/assets/logo-dark.svg" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
+              <img src="public/assets/logo-dark.svg?v=1790855966" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
               <ul className="mt-8 space-y-4 text-[18px] leading-[26px] md:mt-[43px] md:space-y-[24px] md:text-[20px] md:leading-[28px]">
                 <li>
                   <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
@@ -1235,7 +1235,7 @@ function Footer() {
       <div className="border-y-2 border-gold bg-navy">
         <div className="flex h-[103px] items-center justify-center gap-4 px-4 pt-[9px] md:gap-[44px]">
           <span className="whitespace-nowrap text-[16px] leading-[28px] text-white md:text-[20px]">עיצוב ופיתוח האתר:</span>
-          <img src="public/assets/keren-logo.png" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
+          <img src="public/assets/keren-logo.png?v=1790855966" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
         </div>
       </div>
     </footer>
@@ -1590,7 +1590,7 @@ const genericBody = (excerpt: string): ArticleBlock[] => [
 const ARTICLES: Article[] = [
   {
     slug: "tax-planning-2026",
-    img: "public/assets/article-1.jpg",
+    img: "public/assets/article-1.jpg?v=1790855966",
     title: "תכנון מס 2026",
     tag: "מיסוי",
     date: "21/03/2026",
@@ -1600,7 +1600,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "payroll-controls",
-    img: "public/assets/article-2.jpg",
+    img: "public/assets/article-2.jpg?v=1790855966",
     title: "בקרות שכר",
     tag: "שכר",
     date: "14/03/2026",
@@ -1609,7 +1609,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "financial-statements",
-    img: "public/assets/article-3.jpg",
+    img: "public/assets/article-3.jpg?v=1790855966",
     title: "דוחות כספיים",
     tag: "ראיית חשבון",
     date: "02/03/2026",
@@ -1618,7 +1618,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "tax-refunds",
-    img: "public/assets/article-1.jpg",
+    img: "public/assets/article-1.jpg?v=1790855966",
     title: "החזרי מס",
     tag: "מיסוי",
     date: "23/02/2026",
@@ -1627,7 +1627,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "labor-law",
-    img: "public/assets/article-2.jpg",
+    img: "public/assets/article-2.jpg?v=1790855966",
     title: "דיני עבודה",
     tag: "שכר והעסקה",
     date: "11/02/2026",
@@ -1636,7 +1636,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "betterment-tax",
-    img: "public/assets/article-3.jpg",
+    img: "public/assets/article-3.jpg?v=1790855966",
     title: "מס שבח",
     tag: "נדל״ן",
     date: "29/01/2026",
@@ -1645,7 +1645,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "nonprofits",
-    img: "public/assets/article-1.jpg",
+    img: "public/assets/article-1.jpg?v=1790855966",
     title: "ליווי עמותות",
     tag: "רגולציה",
     date: "15/01/2026",
@@ -1654,7 +1654,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "risk-survey",
-    img: "public/assets/article-2.jpg",
+    img: "public/assets/article-2.jpg?v=1790855966",
     title: "סקר סיכונים",
     tag: "בקרות",
     date: "04/01/2026",
@@ -1719,33 +1719,33 @@ function ArticleTile({ a }: { a: Article }) {
 /* "Difference" cards — a wide, gentle arc (box 1175×480, card image 293px wide) */
 const DIFF_BOX = { w: 1175, h: 480, card: 293 };
 const DIFF_CARDS = [
-  { src: "public/assets/diff-1.png", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
-  { src: "public/assets/diff-2.png", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
-  { src: "public/assets/diff-3.png", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
-  { src: "public/assets/diff-4.png", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
-  { src: "public/assets/diff-5.png", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
+  { src: "public/assets/diff-1.png?v=1790855966", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
+  { src: "public/assets/diff-2.png?v=1790855966", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
+  { src: "public/assets/diff-3.png?v=1790855966", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
+  { src: "public/assets/diff-4.png?v=1790855966", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
+  { src: "public/assets/diff-5.png?v=1790855966", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
 ];
 
 type LogoItem = { src: string; alt: string; w: number; h: number; crop?: { h: number; top: number } };
 
 const LOGOS_ROW_1: LogoItem[] = [
-  { src: "public/assets/logo-bituach-leumi-white.png", alt: "ביטוח לאומי", w: 132, h: 61 },
-  { src: "public/assets/logo-netivei-white.png", alt: "נתיבי ישראל", w: 190, h: 57 },
-  { src: "public/assets/logo-kakal-white.png", alt: "קק״ל", w: 74, h: 49 },
-  { src: "public/assets/logo-mekorot-white.png", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
-  { src: "public/assets/logo-finance-white.png", alt: "משרד האוצר", w: 70, h: 75 },
-  { src: "public/assets/logo-mavaker-white.png", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
-  { src: "public/assets/logo-bitahon-white.png", alt: "משרד הביטחון", w: 63, h: 75, crop: { h: 100.46, top: -0.23 } },
+  { src: "public/assets/logo-bituach-leumi-white.png?v=1790855966", alt: "ביטוח לאומי", w: 132, h: 61 },
+  { src: "public/assets/logo-netivei-white.png?v=1790855966", alt: "נתיבי ישראל", w: 190, h: 57 },
+  { src: "public/assets/logo-kakal-white.png?v=1790855966", alt: "קק״ל", w: 74, h: 49 },
+  { src: "public/assets/logo-mekorot-white.png?v=1790855966", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
+  { src: "public/assets/logo-finance-white.png?v=1790855966", alt: "משרד האוצר", w: 70, h: 75 },
+  { src: "public/assets/logo-mavaker-white.png?v=1790855966", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
+  { src: "public/assets/logo-bitahon-white.png?v=1790855966", alt: "משרד הביטחון", w: 63, h: 75, crop: { h: 100.46, top: -0.23 } },
 ];
 
 const LOGOS_ROW_2: LogoItem[] = [
-  { src: "public/assets/logo-vingate-white.png", alt: "מכון וינגייט", w: 85, h: 72 },
-  { src: "public/assets/logo-cal-white.png", alt: "Cal", w: 82, h: 41 },
-  { src: "public/assets/logo-markantil-white.png", alt: "מרכנתיל", w: 114, h: 48 },
-  { src: "public/assets/logo-minrav-white.png", alt: "מנרב", w: 108, h: 45 },
-  { src: "public/assets/logo-yohananof-white.png", alt: "יוחננוף", w: 102, h: 51 },
-  { src: "public/assets/logo-carmel-white.png", alt: "כרמל", w: 107, h: 43.878, crop: { h: 243.86, top: -71.93 } },
-  { src: "public/assets/logo-astrazeneca-white.png", alt: "AstraZeneca", w: 132, h: 33.702 },
+  { src: "public/assets/logo-vingate-white.png?v=1790855966", alt: "מכון וינגייט", w: 85, h: 72 },
+  { src: "public/assets/logo-cal-white.png?v=1790855966", alt: "Cal", w: 82, h: 41 },
+  { src: "public/assets/logo-markantil-white.png?v=1790855966", alt: "מרכנתיל", w: 114, h: 48 },
+  { src: "public/assets/logo-minrav-white.png?v=1790855966", alt: "מנרב", w: 108, h: 45 },
+  { src: "public/assets/logo-yohananof-white.png?v=1790855966", alt: "יוחננוף", w: 102, h: 51 },
+  { src: "public/assets/logo-carmel-white.png?v=1790855966", alt: "כרמל", w: 107, h: 43.878, crop: { h: 243.86, top: -71.93 } },
+  { src: "public/assets/logo-astrazeneca-white.png?v=1790855966", alt: "AstraZeneca", w: 132, h: 33.702 },
 ];
 
 /* demo articles — replace with real content */
@@ -1812,8 +1812,8 @@ function Hero() {
         <video
           ref={videoRef}
           className="size-full object-cover object-[7%_35%] lg:object-center motion-reduce:hidden"
-          src="public/assets/hero-lighthouse.mp4"
-          poster="public/assets/hero.jpg"
+          src="public/assets/hero-lighthouse.mp4?v=1790855966"
+          poster="public/assets/hero.jpg?v=1790855966"
           autoPlay
           muted
           loop
@@ -1822,7 +1822,7 @@ function Hero() {
           aria-hidden
         />
         <img
-          src="public/assets/hero.jpg"
+          src="public/assets/hero.jpg?v=1790855966"
           alt=""
           className="hidden size-full object-cover object-[7%_35%] motion-reduce:block lg:object-center"
         />
@@ -2372,14 +2372,14 @@ function About() {
           <div className="zoom-soft absolute bottom-0 right-0 aspect-[660/522] w-full overflow-hidden rounded-b-[5px]">
             <div className="absolute -bottom-[3px] left-[46.21%] top-[12.835%] w-[53.79%] -scale-x-100 overflow-hidden">
               <img
-                src="public/assets/avidan.png"
+                src="public/assets/avidan.png?v=1790855966"
                 alt='רו"ח אבידן טרבלסי'
                 className="absolute left-[-14.52%] top-[-0.06%] h-[100.12%] w-[131.68%] max-w-none"
               />
             </div>
             <div className="absolute -bottom-[3px] left-0 top-0 w-[66.515%] overflow-hidden">
               <img
-                src="public/assets/eitan.png"
+                src="public/assets/eitan.png?v=1790855966"
                 alt='רו"ח איתן שפיר'
                 className="absolute left-[-15.08%] top-0 h-full w-[121.89%] max-w-none"
               />
@@ -2392,7 +2392,7 @@ function About() {
       <div className="es-divider mt-[162px] flex items-center" data-anim aria-hidden>
         <span className="es-line es-line--from-right h-[2px] flex-1 bg-gold" />
         <img
-          src="public/assets/es-mark.svg"
+          src="public/assets/es-mark.svg?v=1790855966"
           alt=""
           className="es-mark mx-[clamp(24px,6.7vw,89px)] h-auto w-[clamp(64px,7.54vw,100px)] xl:ml-[78px] xl:mr-[89px]"
         />
@@ -2595,7 +2595,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח איתן שפיר",
     role: "מייסד המשרד ומנהלו",
-    img: "public/assets/eitan.png",
+    img: "public/assets/eitan.png?v=1790855966",
     paragraphs: [
       "רו\"ח איתן שפיר הקים את המשרד ומנהל אותו, ומביא עמו ניסיון מקצועי של למעלה מארבעים שנה.",
       "בעבר כיהן כסגן מנהל רשות החברות הממשלתיות וכמנהל יחידת ההפרטה. בהובלתו מתמחה המשרד בביקורת דוחות כספיים, ביקורת פנים וביקורות מיוחדות, ובפרט במוסדות להשכלה גבוהה.",
@@ -2609,7 +2609,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח אבידן טרבלסי",
     role: "מנהל תחום ביקורות השכר והבקרות",
-    img: "public/assets/avidan.png",
+    img: "public/assets/avidan.png?v=1790855966",
     flip: true,
     paragraphs: [
       "רו\"ח אבידן טרבלסי, בודק שכר מוסמך ובעל תואר MBA, מוביל במשרד את תחום ביקורות השכר, דיני העבודה והבקרות.",
@@ -2674,7 +2674,7 @@ function AboutHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">אודות איתן שפיר ושות׳ רואי חשבון</h1>
       <img
-        src="public/assets/about-hero.jpg"
+        src="public/assets/about-hero.jpg?v=1790855966"
         alt="קבלת הפנים במשרד איתן שפיר ושות׳"
         className="absolute inset-0 -z-10 size-full object-cover object-[62%_42%]"
       />
@@ -2828,12 +2828,12 @@ type TeamMember = { name: string; role: string; img?: string };
 
 /* the office team (the partners have their own sections above) */
 const TEAM: TeamMember[] = [
-  { name: "אורה יורצ'נקו", role: "מנהלת מחלקת הנהלת חשבונות", img: "public/assets/team/ora-yurchenko.webp" },
+  { name: "אורה יורצ'נקו", role: "מנהלת מחלקת הנהלת חשבונות", img: "public/assets/team/ora-yurchenko.webp?v=1790855966" },
   { name: "אירנה פיטקובסקי", role: "מנהלת תיקי לקוחות" },
-  { name: "אלוני שניידר", role: "מנהלת תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp" },
-  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה ומנהלת תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp" },
+  { name: "אלוני שניידר", role: "מנהלת תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1790855966" },
+  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה ומנהלת תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1790855966" },
   { name: "ולריה ליטבק", role: "רואת חשבון" },
-  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp" },
+  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1790855966" },
   { name: "מיכאל זלוטסקי", role: "חשב ועוזר מנכ\"ל" },
   { name: "שלמה שם טוב", role: "עוזר רואה חשבון" },
 ];
@@ -2955,7 +2955,7 @@ function ServicesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">תחומי התמחות</h1>
       <img
-        src="public/assets/services-hero.jpg"
+        src="public/assets/services-hero.jpg?v=1790855966"
         alt="שולחן עבודה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_62%]"
       />
@@ -3239,7 +3239,7 @@ function ArticlesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">מאמרים</h1>
       <img
-        src="public/assets/articles-hero.jpg"
+        src="public/assets/articles-hero.jpg?v=1790855966"
         alt="ספרייה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]"
       />
@@ -3388,7 +3388,7 @@ function ReadingProgress() {
 function ArticleHero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-deep" aria-hidden>
-      <img src="public/assets/articles-hero.jpg" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
+      <img src="public/assets/articles-hero.jpg?v=1790855966" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
       <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" />
       <div className="h-[clamp(300px,34vw,440px)]" />
     </section>
@@ -3515,7 +3515,7 @@ function ArticleBody() {
 
         {/* signature */}
         <footer className="mx-auto mt-14 flex max-w-[760px] items-center gap-5 rounded-[10px] border border-[#E6DCC6] bg-cream px-6 py-5">
-          <img src="public/assets/es-mark.svg" alt="" className="h-auto w-[54px] shrink-0" />
+          <img src="public/assets/es-mark.svg?v=1790855966" alt="" className="h-auto w-[54px] shrink-0" />
           <div>
             <p className="font-semibold text-[18px]">צוות איתן שפיר ושות׳ רואי חשבון</p>
             <p className="mt-0.5 font-light text-navy/70 text-[16px]">ראיית חשבון, מיסוי ובקרות שכר תחת קורת גג אחת</p>
