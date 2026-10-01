@@ -2503,7 +2503,7 @@ function Articles() {
             <br />
             לדעת
           </h2>
-          <GoldButton href="#articles">למאמרים נוספים ←</GoldButton>
+          <GoldButton href={ROUTES.articles}>למאמרים נוספים ←</GoldButton>
         </div>
 
         <div className="-mx-6 min-w-0 flex-1 md:-mx-8 lg:mx-0 lg:ml-[calc(-1*max(2rem,(100vw-1175px)/2))] lg:mt-[10px]">
@@ -2829,13 +2829,12 @@ type TeamMember = { name: string; role: string; img?: string };
 /* the office team (the partners have their own sections above) */
 const TEAM: TeamMember[] = [
   { name: "אורה יורצ'נקו", role: "מנהלת מחלקת הנהלת חשבונות", img: "public/assets/team/ora-yurchenko.webp" },
-  { name: "אירנה פיטקובסקי", role: "מנהלת חשבונות" },
-  { name: "אלוני שניידר", role: "מנהלת חשבונות", img: "public/assets/team/aloni-schneider.webp" },
-  { name: "אירנה ספיבק לברוב", role: "מנהלת אדמיניסטרטיבית", img: "public/assets/team/irena-spivak-lavrov.webp" },
+  { name: "אירנה פיטקובסקי", role: "מנהלת תיקי לקוחות" },
+  { name: "אלוני שניידר", role: "מנהלת תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp" },
+  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה ומנהלת תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp" },
   { name: "ולריה ליטבק", role: "רואת חשבון" },
   { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp" },
-  { name: "מיכאל זלוטסקי", role: "עוזר מנכ\"ל" },
-  { name: "אבי קדוש", role: "רואה חשבון" },
+  { name: "מיכאל זלוטסקי", role: "חשב ועוזר מנכ\"ל" },
   { name: "שלמה שם טוב", role: "עוזר רואה חשבון" },
 ];
 
@@ -2864,7 +2863,7 @@ function TeamSection() {
       <div className={cn(wrap, "text-center")} data-reveal>
         <h2 className={sectionTitle}>האנשים שלנו</h2>
         <p className="mx-auto mt-6 max-w-[640px] text-center font-light text-[18px] leading-[1.7] md:text-[20px]">
-          {noOrphan("צוות מסור של אנשי מקצוע, שכל אחד מהם מביא ניסיון, דיוק ואכפתיות אמיתית לכל לקוח ולכל תיק.")}
+          {noOrphan("צוות מסור של אנשי מקצוע, שכל אחד מהם מביא ניסיון, דיוק ואכפתיות לכל לקוח ולכל תיק.")}
         </p>
       </div>
 
