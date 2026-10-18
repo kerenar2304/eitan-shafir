@@ -4,6 +4,16 @@
 <meta charset="utf-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg?v=1792327817" />
+<meta name="theme-color" content="#050E40" />
+<meta name="description" content="משרד רואי חשבון המעניק ליווי בתחומי ראיית החשבון, המיסוי, הייעוץ העסקי ובקרות השכר." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="he_IL" />
+<meta property="og:site_name" content="איתן שפיר ושות׳ רואי חשבון" />
+<meta property="og:title" content="איתן שפיר ושות׳ רואי חשבון" />
+<meta property="og:description" content="מעטפת מקצועית אחת לעסקים ולארגונים: ראיית חשבון, מיסוי, ליווי עסקי ובקרות שכר." />
+<meta property="og:image" content="https://kerenar2304.github.io/eitan-shafir/public/assets/hero.jpg?v=1792327817" />
+<meta name="twitter:card" content="summary_large_image" />
 <script>(function(){var w=innerWidth,z=w>=1024?Math.min(1.8,1+(w/1546-1)*0.6):1,r=document.documentElement;if(z!==1)r.style.zoom=z.toFixed(4);r.style.setProperty("--z",z.toFixed(4))})()</script>
 <title>איתן שפיר ושות׳ | תצוגה מקדימה</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -492,6 +502,116 @@ html.intro-running .hero-fill { animation-play-state: paused; }
     box-shadow: 0 1px 0 rgba(185, 158, 100, 0.4);
   }
 }
+
+/* ---------- Accessibility menu + skip link ---------- */
+.skip-link {
+  position: fixed;
+  inset-inline-start: 50%;
+  top: 10px;
+  transform: translate(50%, -200%);
+  z-index: 80;
+  background: #FFFCFC;
+  color: #050E40;
+  border: 2px solid #B99E64;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 17px;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus { transform: translate(50%, 0); }
+
+.a11y-root { position: fixed; inset-inline-start: 18px; bottom: 18px; z-index: 70; }
+.a11y-button {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #050E40;
+  color: #E8D4A8;
+  border: 2px solid #B99E64;
+  box-shadow: 0 6px 18px rgb(5 14 64 / 0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.a11y-button:hover { transform: scale(1.06); background: #0A1555; }
+.a11y-button:focus-visible { outline: 3px solid #B99E64; outline-offset: 3px; }
+
+.a11y-panel {
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 64px;
+  width: 268px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #FFFCFC;
+  color: #050E40;
+  border: 1px solid #E6DCC6;
+  box-shadow: 0 18px 44px rgb(5 14 64 / 0.28);
+  text-align: start;
+}
+.a11y-title { margin: 0 0 12px; font-size: 19px; font-weight: 600; color: #8A6F35; }
+.a11y-font { display: flex; align-items: center; justify-content: space-between; font-size: 16px; margin-bottom: 10px; }
+.a11y-font-actions { display: flex; align-items: center; gap: 8px; }
+.a11y-font-actions button {
+  width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E6DCC6;
+  background: #fff; color: #050E40; font-size: 19px; line-height: 1; cursor: pointer;
+}
+.a11y-font-actions button:hover { border-color: #B99E64; }
+.a11y-font-actions span { min-width: 46px; text-align: center; font-size: 15px; }
+.a11y-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  width: 100%; padding: 9px 11px; margin-bottom: 6px;
+  border: 1px solid #E6DCC6; border-radius: 6px; background: #fff;
+  color: #050E40; font-size: 16px; text-align: start; cursor: pointer;
+}
+.a11y-item:hover { border-color: #B99E64; }
+.a11y-item.is-on { background: #050E40; color: #fff; border-color: #050E40; }
+.a11y-mark { font-size: 15px; }
+.a11y-reset {
+  width: 100%; margin-top: 6px; padding: 9px 11px; border-radius: 6px;
+  border: 1px solid #B99E64; background: #B99E64; color: #050E40; font-size: 16px; cursor: pointer;
+}
+.a11y-reset:hover { filter: brightness(1.05); }
+.a11y-link { display: block; margin-top: 10px; text-align: center; font-size: 15px; color: #8A6F35; text-decoration: underline; }
+.a11y-item:focus-visible, .a11y-reset:focus-visible, .a11y-link:focus-visible, .a11y-font-actions button:focus-visible {
+  outline: 3px solid #8A6F35; outline-offset: 2px;
+}
+
+/* what the visitor's choices actually do */
+html.a11y-contrast body { background: #000 !important; }
+html.a11y-contrast :is(p, li, span, h1, h2, h3, h4, dt, dd, figcaption, label, input, textarea) { color: #fff !important; }
+html.a11y-contrast :is(section, article, div, header, footer, main, aside) { background-color: #000 !important; }
+html.a11y-contrast a:not(.a11y-link) { color: #FFE25A !important; }
+html.a11y-contrast img:not(.logo-ink-light):not(.logo-ink-dark) { filter: contrast(1.15); }
+html.a11y-contrast .a11y-panel, html.a11y-contrast .a11y-panel * { background: #000 !important; color: #fff !important; }
+html.a11y-grayscale body { filter: grayscale(1); }
+html.a11y-links a { text-decoration: underline !important; text-underline-offset: 3px; }
+html.a11y-readable :is(body, p, li, h1, h2, h3, h4, span, a, button, input, textarea) {
+  font-family: Arial, "Segoe UI", system-ui, sans-serif !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+html.a11y-stop-motion *, html.a11y-stop-motion *::before, html.a11y-stop-motion *::after {
+  animation-play-state: paused !important;
+  animation-duration: 0.001s !important;
+  transition-duration: 0.001s !important;
+  scroll-behavior: auto !important;
+}
+html.a11y-stop-motion video { display: none; }
+html.a11y-big-cursor, html.a11y-big-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M8 4 38 22 24 25 31 40 25 43 18 28 8 36Z' fill='%23050E40' stroke='%23fff' stroke-width='2.5'/%3E%3C/svg%3E") 6 4, auto !important;
+}
+html.a11y-big-cursor .cursor-light { display: none; }
+
+/* ---------- gold text on light backgrounds: a darker ink, for contrast ---------- */
+:is(.bg-white, .bg-cream, .bg-ice) :is(.text-gold, .sector-pill) {
+  color: #8A6F35;
+}
+:is(.bg-white, .bg-cream, .bg-ice) .border-gold\/60,
+:is(.bg-white, .bg-cream, .bg-ice) .border-2.border-gold {
+  border-color: #8A6F35;
+}
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
@@ -751,7 +871,7 @@ function IntroLoader() {
   return (
     <div className={cn("intro fixed inset-0 z-[100] grid place-items-center bg-navy-deep", phase === "out" && "is-out")} aria-hidden>
       <div className="flex flex-col items-center">
-        <img src="public/assets/es-mark.svg?v=1792327102" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
+        <img src="public/assets/es-mark.svg?v=1792327817" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
         <span className="intro-line mt-8 block h-px w-[150px] bg-gold md:w-[180px]" />
       </div>
     </div>
@@ -872,10 +992,27 @@ const MAX_SCALE = 1.8;
     the content column is a percentage, so the margins stay proportional anyway */
 const SCALE_RATE = 0.6;
 
+
+/** the tab title and the description search engines show, per page */
+function usePageMeta(title: string, description: string) {
+  useEffect(() => {
+    document.title = title;
+    let tag = document.head.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.name = "description";
+      document.head.appendChild(tag);
+    }
+    tag.content = description;
+  }, [title, description]);
+}
+
 function applyFluidScale() {
   const w = window.innerWidth;
-  const z = w >= MIN_DESKTOP ? Math.min(MAX_SCALE, 1 + (w / DESIGN_WIDTH - 1) * SCALE_RATE) : 1;
+  const base = w >= MIN_DESKTOP ? Math.min(MAX_SCALE, 1 + (w / DESIGN_WIDTH - 1) * SCALE_RATE) : 1;
   const root = document.documentElement;
+  /* the accessibility menu enlarges the page on top of the fluid scale */
+  const z = base * (Number(getComputedStyle(root).getPropertyValue("--a11y-font")) || 1);
   root.style.zoom = z === 1 ? "" : z.toFixed(4);
   root.style.setProperty("--z", z.toFixed(4));
 }
@@ -902,6 +1039,189 @@ function isLightBehind(x: number, y: number, header: HTMLElement) {
     }
   }
   return false;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Accessibility menu                                                  */
+/* ------------------------------------------------------------------ */
+
+type A11yState = {
+  fontStep: number;
+  contrast: boolean;
+  grayscale: boolean;
+  links: boolean;
+  readable: boolean;
+  stopMotion: boolean;
+  bigCursor: boolean;
+};
+
+const A11Y_DEFAULT: A11yState = {
+  fontStep: 0,
+  contrast: false,
+  grayscale: false,
+  links: false,
+  readable: false,
+  stopMotion: false,
+  bigCursor: false,
+};
+
+const A11Y_KEY = "es-a11y";
+
+/** the visitor's choices are kept on this device only, and re-applied on every page */
+function readA11y(): A11yState {
+  try {
+    const raw = window.localStorage.getItem(A11Y_KEY);
+    return raw ? { ...A11Y_DEFAULT, ...JSON.parse(raw) } : A11Y_DEFAULT;
+  } catch {
+    return A11Y_DEFAULT;
+  }
+}
+
+function applyA11y(s: A11yState) {
+  const root = document.documentElement;
+  root.classList.toggle("a11y-contrast", s.contrast);
+  root.classList.toggle("a11y-grayscale", s.grayscale);
+  root.classList.toggle("a11y-links", s.links);
+  root.classList.toggle("a11y-readable", s.readable);
+  root.classList.toggle("a11y-stop-motion", s.stopMotion);
+  root.classList.toggle("a11y-big-cursor", s.bigCursor);
+  root.style.setProperty("--a11y-font", String(1 + s.fontStep * 0.1));
+  applyFluidScale();
+  try {
+    window.localStorage.setItem(A11Y_KEY, JSON.stringify(s));
+  } catch {
+    /* private browsing: the choices simply do not persist */
+  }
+}
+
+function AccessibilityMenu() {
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState<A11yState>(A11Y_DEFAULT);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const saved = readA11y();
+    setState(saved);
+    applyA11y(saved);
+  }, []);
+
+  const set = (patch: Partial<A11yState>) => {
+    setState((prev) => {
+      const next = { ...prev, ...patch };
+      applyA11y(next);
+      return next;
+    });
+  };
+
+  const reset = () => {
+    setState(A11Y_DEFAULT);
+    applyA11y(A11Y_DEFAULT);
+  };
+
+  /* while the panel is open: Escape closes it, and the focus stays inside it */
+  useEffect(() => {
+    if (!open) return;
+    const panel = panelRef.current;
+    panel?.querySelector<HTMLElement>("button, a")?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !panel) return;
+      const items = [...panel.querySelectorAll<HTMLElement>("button, a[href]")].filter((el) => !el.hasAttribute("disabled"));
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    const onClick = (e: MouseEvent) => {
+      if (!panel) return;
+      const t = e.target as Node;
+      if (!panel.contains(t) && !buttonRef.current?.contains(t)) setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClick);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClick);
+    };
+  }, [open]);
+
+  const Toggle = ({ label, on, onClick }: { label: string; on: boolean; onClick: () => void }) => (
+    <button type="button" className={cn("a11y-item", on && "is-on")} aria-pressed={on} onClick={onClick}>
+      <span>{label}</span>
+      <span className="a11y-mark" aria-hidden>
+        {on ? "✓" : ""}
+      </span>
+    </button>
+  );
+
+  return (
+    <div className="a11y-root">
+      <button
+        ref={buttonRef}
+        type="button"
+        className="a11y-button"
+        aria-expanded={open}
+        aria-controls="a11y-panel"
+        aria-label="תפריט נגישות"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <svg viewBox="0 0 24 24" className="size-[26px]" aria-hidden focusable="false">
+          <circle cx="12" cy="4.2" r="2" fill="currentColor" />
+          <path
+            d="M4 8.2h16M12 8.2v6m0 0 3.2 6.6M12 14.2l-3.2 6.6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.9"
+            strokeLinecap="round"
+          />
+        </svg>
+      </button>
+
+      {open && (
+        <div ref={panelRef} id="a11y-panel" className="a11y-panel" role="dialog" aria-label="אפשרויות נגישות">
+          <p className="a11y-title">נגישות</p>
+
+          <div className="a11y-font">
+            <span>הגדלת תצוגה</span>
+            <span className="a11y-font-actions">
+              <button type="button" onClick={() => set({ fontStep: Math.max(0, state.fontStep - 1) })} aria-label="הקטנת טקסט">
+                −
+              </button>
+              <span aria-live="polite">{Math.round((1 + state.fontStep * 0.1) * 100)}%</span>
+              <button type="button" onClick={() => set({ fontStep: Math.min(5, state.fontStep + 1) })} aria-label="הגדלת טקסט">
+                +
+              </button>
+            </span>
+          </div>
+
+          <Toggle label="ניגודיות גבוהה" on={state.contrast} onClick={() => set({ contrast: !state.contrast })} />
+          <Toggle label="גווני אפור" on={state.grayscale} onClick={() => set({ grayscale: !state.grayscale })} />
+          <Toggle label="הדגשת קישורים" on={state.links} onClick={() => set({ links: !state.links })} />
+          <Toggle label="פונט קריא" on={state.readable} onClick={() => set({ readable: !state.readable })} />
+          <Toggle label="עצירת אנימציות" on={state.stopMotion} onClick={() => set({ stopMotion: !state.stopMotion })} />
+          <Toggle label="סמן גדול" on={state.bigCursor} onClick={() => set({ bigCursor: !state.bigCursor })} />
+
+          <button type="button" className="a11y-reset" onClick={reset}>
+            ביטול כל ההתאמות
+          </button>
+          <a className="a11y-link" href={ROUTES.accessibility}>
+            הצהרת נגישות
+          </a>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function Header() {
@@ -983,6 +1303,8 @@ function Header() {
     <>
     <IntroLoader />
     <CursorLight />
+    <AccessibilityMenu />
+    <a href="#main-content" className="skip-link">דלג לתוכן המרכזי</a>
     <header
       ref={headerRef}
       className={cn(
@@ -1003,12 +1325,12 @@ function Header() {
           <a href={ROUTES.home} className="brand-logo relative block shrink-0" aria-label="איתן שפיר ושות׳ רואי חשבון">
             {/* two inks, cross-faded: white text on dark backgrounds, navy text on light ones (the mark stays gold) */}
             <img
-              src="public/assets/logo-light.svg?v=1792327102"
+              src="public/assets/logo-light.svg?v=1792327817"
               alt="איתן שפיר ושות׳ רואי חשבון"
               className="logo-ink-light block h-auto w-[clamp(140px,38vw,200px)] lg:absolute lg:right-0 lg:top-0 lg:w-[212px] lg:max-w-none"
             />
             <img
-              src="public/assets/logo-dark.svg?v=1792327102"
+              src="public/assets/logo-dark.svg?v=1792327817"
               alt=""
               aria-hidden
               className="logo-ink-dark absolute right-0 top-0 block h-auto w-[clamp(140px,38vw,200px)] lg:w-[212px] lg:max-w-none"
@@ -1065,7 +1387,7 @@ const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
 
 const field =
-  "field-anim w-full rounded-[5px] bg-white/10 pr-[14px] pl-3 text-right font-normal text-white text-[20px] leading-[22px] placeholder:text-white outline-none";
+  "field-anim w-full rounded-[5px] border border-white/45 bg-white/10 pr-[14px] pl-3 text-right font-normal text-white text-[20px] leading-[22px] placeholder:text-white outline-none focus:border-gold";
 
 function Contact() {
   return (
@@ -1108,9 +1430,32 @@ function Contact() {
           }}
         >
           <div className="grid gap-[13px] md:grid-cols-3 md:gap-[31.5px]">
-            <input type="text" name="name" placeholder="שם מלא" aria-label="שם מלא" className={cn(field, "h-[41px]")} />
-            <input type="email" name="email" placeholder="אימייל" aria-label="אימייל" className={cn(field, "h-[41px]")} />
-            <input type="tel" name="phone" placeholder="טלפון" aria-label="טלפון" className={cn(field, "h-[41px]")} />
+            <input
+              type="text"
+              name="name"
+              placeholder="שם מלא *"
+              aria-label="שם מלא"
+              required
+              autoComplete="name"
+              className={cn(field, "h-[41px]")}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="אימייל *"
+              aria-label="אימייל"
+              required
+              autoComplete="email"
+              className={cn(field, "h-[41px]")}
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="טלפון"
+              aria-label="טלפון"
+              autoComplete="tel"
+              className={cn(field, "h-[41px]")}
+            />
           </div>
           <textarea
             name="message"
@@ -1251,7 +1596,7 @@ function Footer() {
           {/* mobile: one centred column with thin gold dividers; desktop: contact on one side, links on the other */}
           <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-stretch md:justify-between md:gap-12 md:text-right" data-reveal>
             <div className="flex flex-col items-center md:items-start xl:-ms-[8px]">
-              <img src="public/assets/logo-dark.svg?v=1792327102" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
+              <img src="public/assets/logo-dark.svg?v=1792327817" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
               <ul className="mt-8 space-y-4 text-[18px] leading-[26px] md:mt-[43px] md:space-y-[24px] md:text-[20px] md:leading-[28px]">
                 <li>
                   <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
@@ -1277,7 +1622,7 @@ function Footer() {
             <div className="flex w-full flex-col border-t border-gold/40 pt-9 md:w-auto md:border-0 md:pt-0 lg:-ml-[9px]">
               <div className="grid grid-cols-2 gap-6 md:flex md:gap-[46px]">
                 <nav aria-label="מפת האתר">
-                  <h4 className="whitespace-nowrap font-semibold text-[20px] leading-[26px] md:text-[30px] md:leading-[28px]">מפת האתר</h4>
+                  <h2 className="whitespace-nowrap font-semibold text-[20px] leading-[26px] md:text-[30px] md:leading-[28px]">מפת האתר</h2>
                   <ul className="mt-4 space-y-3 text-[17px] leading-[24px] md:mt-[19px] md:space-y-[19px] md:text-[20px] md:leading-[28px]">
                     {siteMap.map((l) => (
                       <li key={l.label}><a href={l.href} className="link-sweep">{l.label}</a></li>
@@ -1285,7 +1630,7 @@ function Footer() {
                   </ul>
                 </nav>
                 <nav aria-label="מאמרים אחרונים">
-                  <h4 className="whitespace-nowrap font-semibold text-[20px] leading-[26px] md:text-[30px] md:leading-[28px]">מאמרים אחרונים</h4>
+                  <h2 className="whitespace-nowrap font-semibold text-[20px] leading-[26px] md:text-[30px] md:leading-[28px]">מאמרים אחרונים</h2>
                   <ul className="mt-4 space-y-3 text-[17px] leading-[24px] md:mt-[19px] md:space-y-[19px] md:text-[20px] md:leading-[28px]">
                     {latest.map((a) => (
                       <li key={a.slug}><a href={articleHref(a.slug)} className="link-sweep">{a.title}</a></li>
@@ -1308,7 +1653,7 @@ function Footer() {
       <div className="border-y-2 border-gold bg-navy">
         <div className="flex h-[103px] items-center justify-center gap-4 px-4 pt-[9px] md:gap-[44px]">
           <span className="whitespace-nowrap text-[16px] leading-[28px] text-white md:text-[20px]">עיצוב ופיתוח האתר:</span>
-          <img src="public/assets/keren-logo.png?v=1792327102" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
+          <img src="public/assets/keren-logo.png?v=1792327817" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
         </div>
       </div>
     </footer>
@@ -1655,7 +2000,7 @@ const genericBody = (excerpt: string): ArticleBlock[] => [
 const ARTICLES: Article[] = [
   {
     slug: "tax-planning-2026",
-    img: "public/assets/article-1.jpg?v=1792327102",
+    img: "public/assets/article-1.jpg?v=1792327817",
     title: "תכנון מס 2026",
     tag: "מיסוי",
     date: "21/03/2026",
@@ -1665,7 +2010,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "payroll-controls",
-    img: "public/assets/article-2.jpg?v=1792327102",
+    img: "public/assets/article-2.jpg?v=1792327817",
     title: "בקרות שכר",
     tag: "שכר",
     date: "14/03/2026",
@@ -1674,7 +2019,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "financial-statements",
-    img: "public/assets/article-3.jpg?v=1792327102",
+    img: "public/assets/article-3.jpg?v=1792327817",
     title: "דוחות כספיים",
     tag: "ראיית חשבון",
     date: "02/03/2026",
@@ -1683,7 +2028,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "tax-refunds",
-    img: "public/assets/article-1.jpg?v=1792327102",
+    img: "public/assets/article-1.jpg?v=1792327817",
     title: "החזרי מס",
     tag: "מיסוי",
     date: "23/02/2026",
@@ -1692,7 +2037,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "labor-law",
-    img: "public/assets/article-2.jpg?v=1792327102",
+    img: "public/assets/article-2.jpg?v=1792327817",
     title: "דיני עבודה",
     tag: "שכר והעסקה",
     date: "11/02/2026",
@@ -1701,7 +2046,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "betterment-tax",
-    img: "public/assets/article-3.jpg?v=1792327102",
+    img: "public/assets/article-3.jpg?v=1792327817",
     title: "מס שבח",
     tag: "נדל״ן",
     date: "29/01/2026",
@@ -1710,7 +2055,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "nonprofits",
-    img: "public/assets/article-1.jpg?v=1792327102",
+    img: "public/assets/article-1.jpg?v=1792327817",
     title: "ליווי עמותות",
     tag: "רגולציה",
     date: "15/01/2026",
@@ -1719,7 +2064,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "risk-survey",
-    img: "public/assets/article-2.jpg?v=1792327102",
+    img: "public/assets/article-2.jpg?v=1792327817",
     title: "סקר סיכונים",
     tag: "בקרות",
     date: "04/01/2026",
@@ -1784,33 +2129,33 @@ function ArticleTile({ a }: { a: Article }) {
 /* "Difference" cards — a wide, gentle arc (box 1175×480, card image 293px wide) */
 const DIFF_BOX = { w: 1175, h: 480, card: 293 };
 const DIFF_CARDS = [
-  { src: "public/assets/diff-1.png?v=1792327102", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
-  { src: "public/assets/diff-2.png?v=1792327102", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
-  { src: "public/assets/diff-3.png?v=1792327102", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
-  { src: "public/assets/diff-4.png?v=1792327102", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
-  { src: "public/assets/diff-5.png?v=1792327102", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
+  { src: "public/assets/diff-1.png?v=1792327817", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
+  { src: "public/assets/diff-2.png?v=1792327817", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
+  { src: "public/assets/diff-3.png?v=1792327817", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
+  { src: "public/assets/diff-4.png?v=1792327817", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
+  { src: "public/assets/diff-5.png?v=1792327817", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
 ];
 
 type LogoItem = { src: string; alt: string; w: number; h: number; crop?: { h: number; top: number } };
 
 const LOGOS_ROW_1: LogoItem[] = [
-  { src: "public/assets/logo-bituach-leumi-white.png?v=1792327102", alt: "ביטוח לאומי", w: 132, h: 61 },
-  { src: "public/assets/logo-netivei-white.png?v=1792327102", alt: "נתיבי ישראל", w: 190, h: 57 },
-  { src: "public/assets/logo-kakal-white.png?v=1792327102", alt: "קק״ל", w: 74, h: 49 },
-  { src: "public/assets/logo-mekorot-white.png?v=1792327102", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
-  { src: "public/assets/logo-finance-white.png?v=1792327102", alt: "משרד האוצר", w: 70, h: 75 },
-  { src: "public/assets/logo-mavaker-white.png?v=1792327102", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
-  { src: "public/assets/logo-bitahon-white.png?v=1792327102", alt: "משרד הביטחון", w: 63, h: 75, crop: { h: 100.46, top: -0.23 } },
+  { src: "public/assets/logo-bituach-leumi-white.png?v=1792327817", alt: "ביטוח לאומי", w: 132, h: 61 },
+  { src: "public/assets/logo-netivei-white.png?v=1792327817", alt: "נתיבי ישראל", w: 190, h: 57 },
+  { src: "public/assets/logo-kakal-white.png?v=1792327817", alt: "קק״ל", w: 74, h: 49 },
+  { src: "public/assets/logo-mekorot-white.png?v=1792327817", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
+  { src: "public/assets/logo-finance-white.png?v=1792327817", alt: "משרד האוצר", w: 70, h: 75 },
+  { src: "public/assets/logo-mavaker-white.png?v=1792327817", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
+  { src: "public/assets/logo-bitahon-white.png?v=1792327817", alt: "משרד הביטחון", w: 63, h: 75, crop: { h: 100.46, top: -0.23 } },
 ];
 
 const LOGOS_ROW_2: LogoItem[] = [
-  { src: "public/assets/logo-vingate-white.png?v=1792327102", alt: "מכון וינגייט", w: 85, h: 72 },
-  { src: "public/assets/logo-cal-white.png?v=1792327102", alt: "Cal", w: 82, h: 41 },
-  { src: "public/assets/logo-markantil-white.png?v=1792327102", alt: "מרכנתיל", w: 114, h: 48 },
-  { src: "public/assets/logo-minrav-white.png?v=1792327102", alt: "מנרב", w: 108, h: 45 },
-  { src: "public/assets/logo-yohananof-white.png?v=1792327102", alt: "יוחננוף", w: 102, h: 51 },
-  { src: "public/assets/logo-carmel-white.png?v=1792327102", alt: "כרמל", w: 107, h: 43.878, crop: { h: 243.86, top: -71.93 } },
-  { src: "public/assets/logo-astrazeneca-white.png?v=1792327102", alt: "AstraZeneca", w: 132, h: 33.702 },
+  { src: "public/assets/logo-vingate-white.png?v=1792327817", alt: "מכון וינגייט", w: 85, h: 72 },
+  { src: "public/assets/logo-cal-white.png?v=1792327817", alt: "Cal", w: 82, h: 41 },
+  { src: "public/assets/logo-markantil-white.png?v=1792327817", alt: "מרכנתיל", w: 114, h: 48 },
+  { src: "public/assets/logo-minrav-white.png?v=1792327817", alt: "מנרב", w: 108, h: 45 },
+  { src: "public/assets/logo-yohananof-white.png?v=1792327817", alt: "יוחננוף", w: 102, h: 51 },
+  { src: "public/assets/logo-carmel-white.png?v=1792327817", alt: "כרמל", w: 107, h: 43.878, crop: { h: 243.86, top: -71.93 } },
+  { src: "public/assets/logo-astrazeneca-white.png?v=1792327817", alt: "AstraZeneca", w: 132, h: 33.702 },
 ];
 
 /* demo articles — replace with real content */
@@ -1877,8 +2222,8 @@ function Hero() {
         <video
           ref={videoRef}
           className="size-full object-cover object-[7%_35%] lg:object-center motion-reduce:hidden"
-          src="public/assets/hero-lighthouse.mp4?v=1792327102"
-          poster="public/assets/hero.jpg?v=1792327102"
+          src="public/assets/hero-lighthouse.mp4?v=1792327817"
+          poster="public/assets/hero.jpg?v=1792327817"
           autoPlay
           muted
           loop
@@ -1887,7 +2232,7 @@ function Hero() {
           aria-hidden
         />
         <img
-          src="public/assets/hero.jpg?v=1792327102"
+          src="public/assets/hero.jpg?v=1792327817"
           alt=""
           className="hidden size-full object-cover object-[7%_35%] motion-reduce:block lg:object-center"
         />
@@ -2367,7 +2712,7 @@ function LogoMarquee({
   minHeight: number;
 }) {
   return (
-    <div className="marquee-mask overflow-hidden" dir="ltr" aria-hidden={reverse}>
+    <div className="marquee-mask overflow-hidden" dir="ltr" aria-hidden>
       <div className={cn("marquee-track items-center", reverse && "marquee-track-reverse")}>
         {[0, 1].map((copy) => (
           // each half holds the row twice, so it is always wider than the screen and the loop never shows a gap
@@ -2397,6 +2742,13 @@ function Clients() {
         <LogoMarquee items={LOGOS_ROW_1} gap="max(clamp(48px,8.377vw,111px),min(160px,calc(6.94vw/var(--z,1))))" minHeight={75} />
         <LogoMarquee items={LOGOS_ROW_2} gap="max(clamp(48px,8.151vw,108px),min(156px,calc(6.75vw/var(--z,1))))" minHeight={72} reverse />
       </div>
+
+      {/* the rows above only scroll by; the names themselves are read here, once */}
+      <ul className="sr-only">
+        {[...LOGOS_ROW_1, ...LOGOS_ROW_2].map((l) => (
+          <li key={l.alt}>{l.alt}</li>
+        ))}
+      </ul>
     </section>
   );
 }
@@ -2437,14 +2789,14 @@ function About() {
           <div className="zoom-soft absolute bottom-0 right-0 aspect-[660/522] w-full overflow-hidden rounded-b-[5px]">
             <div className="absolute -bottom-[3px] left-[46.21%] top-[12.835%] w-[53.79%] -scale-x-100 overflow-hidden">
               <img
-                src="public/assets/avidan.png?v=1792327102"
+                src="public/assets/avidan.png?v=1792327817"
                 alt='רו"ח אבידן טרבלסי'
                 className="absolute left-[-14.52%] top-[-0.06%] h-[100.12%] w-[131.68%] max-w-none"
               />
             </div>
             <div className="absolute -bottom-[3px] left-0 top-0 w-[66.515%] overflow-hidden">
               <img
-                src="public/assets/eitan.png?v=1792327102"
+                src="public/assets/eitan.png?v=1792327817"
                 alt='רו"ח איתן שפיר'
                 className="absolute left-[-15.08%] top-0 h-full w-[121.89%] max-w-none"
               />
@@ -2457,7 +2809,7 @@ function About() {
       <div className="es-divider mt-[162px] flex items-center" data-anim aria-hidden>
         <span className="es-line es-line--from-right h-[2px] flex-1 bg-gold" />
         <img
-          src="public/assets/es-mark.svg?v=1792327102"
+          src="public/assets/es-mark.svg?v=1792327817"
           alt=""
           className="es-mark mx-[clamp(24px,6.7vw,89px)] h-auto w-[clamp(64px,7.54vw,100px)] xl:ml-[78px] xl:mr-[89px]"
         />
@@ -2600,10 +2952,14 @@ function Articles() {
 /* ------------------------------------------------------------------ */
 
 function Index() {
+  usePageMeta(
+    "איתן שפיר ושות׳ | רואי חשבון, מיסוי ובקרות שכר",
+    "משרד רואי חשבון המעניק ליווי בתחומי ראיית החשבון, המיסוי, הייעוץ העסקי ובקרות השכר, לעסקים, לארגונים ולגופים ציבוריים.",
+  );
   useRevealObserver();
 
   return (
-    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
       {/* fixed header lives at the page root so no section can paint over it */}
       <Header />
       <Hero />
@@ -2661,7 +3017,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח איתן שפיר",
     role: "מייסד המשרד ומנהלו",
-    img: "public/assets/eitan.png?v=1792327102",
+    img: "public/assets/eitan.png?v=1792327817",
     paragraphs: [
       "רו\"ח איתן שפיר, מייסד המשרד ומנהלו, מביא עמו ניסיון מקצועי של למעלה מארבעים שנה בתחומי ראיית החשבון, המיסוי והייעוץ העסקי. בעבר כיהן בתפקיד בכיר במשרד האוצר, וניסיונו משלב היכרות מעמיקה עם המגזר הציבורי והעסקי כאחד.",
       "בהובלתו מעניק המשרד ללקוחותיו ליווי אישי, יסודי ומקיף, תוך ראייה רחבה של מכלול הסוגיות הנוגעות ליחידים, לחברות ולארגונים.",
@@ -2675,7 +3031,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח אבידן טרבלסי",
     role: "מנהל תחום ביקורות השכר והבקרות",
-    img: "public/assets/avidan.png?v=1792327102",
+    img: "public/assets/avidan.png?v=1792327817",
     flip: true,
     paragraphs: [
       "אבידן טרבלסי, רואה חשבון, מבקר פנימי ובודק שכר מוסמך, בעל ניסיון של למעלה מעשרים שנה בליווי גופים ציבוריים, חברות וארגונים עתירי כוח אדם.",
@@ -2741,7 +3097,7 @@ function AboutHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">אודות איתן שפיר ושות׳ רואי חשבון</h1>
       <img
-        src="public/assets/about-hero.jpg?v=1792327102"
+        src="public/assets/about-hero.jpg?v=1792327817"
         alt="קבלת הפנים במשרד איתן שפיר ושות׳"
         className="absolute inset-0 -z-10 size-full object-cover object-[62%_42%]"
       />
@@ -2895,14 +3251,14 @@ type TeamMember = { name: string; role: string; img?: string };
 
 /* the office team (the partners have their own sections above) */
 const TEAM: TeamMember[] = [
-  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1792327102" },
-  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1792327102" },
-  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1792327102" },
-  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1792327102" },
-  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1792327102" },
-  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1792327102" },
-  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1792327102" },
-  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1792327102" },
+  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1792327817" },
+  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1792327817" },
+  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1792327817" },
+  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1792327817" },
+  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1792327817" },
+  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1792327817" },
+  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1792327817" },
+  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1792327817" },
 ];
 
 /** neutral head-and-shoulders placeholder, resting on the same navy desk as the photos */
@@ -2971,10 +3327,14 @@ function TeamSection() {
 /* ------------------------------------------------------------------ */
 
 function AboutPage() {
+  usePageMeta(
+    "אודות המשרד | איתן שפיר ושות׳",
+    "על משרד איתן שפיר ושות׳, השותפים, תחומי הליבה והצוות המקצועי שמלווה עסקים, ארגונים וגופים ציבוריים.",
+  );
   useRevealObserver();
 
   return (
-    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
       {/* fixed header lives at the page root so no section can paint over it */}
       <Header />
       <AboutHero />
@@ -3022,7 +3382,7 @@ function ServicesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">תחומי התמחות</h1>
       <img
-        src="public/assets/services-hero.jpg?v=1792327102"
+        src="public/assets/services-hero.jpg?v=1792327817"
         alt="שולחן עבודה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_62%]"
       />
@@ -3278,10 +3638,14 @@ function ServicesBody() {
 }
 
 function ServicesPage() {
+  usePageMeta(
+    "תחומי התמחות | איתן שפיר ושות׳",
+    "תחומי ההתמחות של המשרד: ראיית חשבון, מיסוי וליווי עסקי לצד ביקורות שכר, דיני עבודה ובקרות.",
+  );
   useRevealObserver();
 
   return (
-    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
       <Header />
       <ServicesHero />
       <ServicesBody />
@@ -3310,7 +3674,7 @@ function ArticlesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">מאמרים</h1>
       <img
-        src="public/assets/articles-hero.jpg?v=1792327102"
+        src="public/assets/articles-hero.jpg?v=1792327817"
         alt="ספרייה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]"
       />
@@ -3416,10 +3780,14 @@ function ArticlesBody() {
 }
 
 function ArticlesPage() {
+  usePageMeta(
+    "מאמרים | איתן שפיר ושות׳",
+    "תובנות ועדכונים מקצועיים בתחומי המיסוי, השכר וראיית החשבון, מאת משרד איתן שפיר ושות׳.",
+  );
   useRevealObserver();
 
   return (
-    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
       <Header />
       <ArticlesHero />
       <ArticlesBody />
@@ -3459,7 +3827,7 @@ function ReadingProgress() {
 function ArticleHero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-deep" aria-hidden>
-      <img src="public/assets/articles-hero.jpg?v=1792327102" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
+      <img src="public/assets/articles-hero.jpg?v=1792327817" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
       <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" />
       <div className="h-[clamp(300px,34vw,440px)]" />
     </section>
@@ -3586,7 +3954,7 @@ function ArticleBody() {
 
         {/* signature */}
         <footer className="mx-auto mt-14 flex max-w-[760px] items-center gap-5 rounded-[10px] border border-[#E6DCC6] bg-cream px-6 py-5">
-          <img src="public/assets/es-mark.svg?v=1792327102" alt="" className="h-auto w-[54px] shrink-0" />
+          <img src="public/assets/es-mark.svg?v=1792327817" alt="" className="h-auto w-[54px] shrink-0" />
           <div>
             <p className="font-semibold text-[18px]">צוות איתן שפיר ושות׳ רואי חשבון</p>
             <p className="mt-0.5 font-light text-navy/70 text-[16px]">ראיית חשבון, מיסוי ובקרות שכר תחת קורת גג אחת</p>
@@ -3616,7 +3984,7 @@ function ArticlePage() {
   useRevealObserver();
 
   return (
-    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
       <ReadingProgress />
       <Header />
       <ArticleHero />
@@ -3657,10 +4025,11 @@ function LegalText({ text }: { text: string }) {
 }
 
 function LegalLayout({ title, intro, sections }: { title: string; intro: string; sections: LegalSection[] }) {
+  usePageMeta(`${title} | איתן שפיר ושות׳`, intro.slice(0, 155));
   useRevealObserver();
 
   return (
-    <main dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
       <Header />
 
       {/* a quiet navy band instead of a photo */}
