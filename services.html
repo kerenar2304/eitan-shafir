@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg?v=1792409969" />
+<link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg?v=1792410365" />
 <meta name="theme-color" content="#050E40" />
 <meta name="description" content="משרד רואי חשבון המעניק ליווי בתחומי ראיית החשבון, המיסוי, הייעוץ העסקי ובקרות השכר." />
 <meta property="og:type" content="website" />
@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="איתן שפיר ושות׳ רואי חשבון" />
 <meta property="og:title" content="איתן שפיר ושות׳ רואי חשבון" />
 <meta property="og:description" content="מעטפת מקצועית אחת לעסקים ולארגונים: ראיית חשבון, מיסוי, ליווי עסקי ובקרות שכר." />
-<meta property="og:image" content="https://kerenar2304.github.io/eitan-shafir/public/assets/hero.jpg?v=1792409969" />
+<meta property="og:image" content="https://kerenar2304.github.io/eitan-shafir/public/assets/hero.jpg?v=1792410365" />
 <meta name="twitter:card" content="summary_large_image" />
 <script>(function(){var w=innerWidth,z=w>=1024?Math.min(1.8,1+(w/1546-1)*0.6):1,r=document.documentElement;if(z!==1)r.style.zoom=z.toFixed(4);r.style.setProperty("--z",z.toFixed(4))})()</script>
 <title>איתן שפיר ושות׳ | תצוגה מקדימה</title>
@@ -873,7 +873,7 @@ function IntroLoader() {
   return (
     <div className={cn("intro fixed inset-0 z-[100] grid place-items-center bg-navy-deep", phase === "out" && "is-out")} aria-hidden>
       <div className="flex flex-col items-center">
-        <img src="public/assets/es-mark.svg?v=1792409969" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
+        <img src="public/assets/es-mark.svg?v=1792410365" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
         <span className="intro-line mt-8 block h-px w-[150px] bg-gold md:w-[180px]" />
       </div>
     </div>
@@ -1327,12 +1327,12 @@ function Header() {
           <a href={ROUTES.home} className="brand-logo relative block shrink-0" aria-label="איתן שפיר ושות׳ רואי חשבון">
             {/* two inks, cross-faded: white text on dark backgrounds, navy text on light ones (the mark stays gold) */}
             <img
-              src="public/assets/logo-light.svg?v=1792409969"
+              src="public/assets/logo-light.svg?v=1792410365"
               alt="איתן שפיר ושות׳ רואי חשבון"
               className="logo-ink-light block h-auto w-[clamp(140px,38vw,200px)] lg:absolute lg:right-0 lg:top-0 lg:w-[212px] lg:max-w-none"
             />
             <img
-              src="public/assets/logo-dark.svg?v=1792409969"
+              src="public/assets/logo-dark.svg?v=1792410365"
               alt=""
               aria-hidden
               className="logo-ink-dark absolute right-0 top-0 block h-auto w-[clamp(140px,38vw,200px)] lg:w-[212px] lg:max-w-none"
@@ -1598,7 +1598,7 @@ function Footer() {
           {/* mobile: one centred column with thin gold dividers; desktop: contact on one side, links on the other */}
           <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-stretch md:justify-between md:gap-12 md:text-right" data-reveal>
             <div className="flex flex-col items-center md:items-start xl:-ms-[8px]">
-              <img src="public/assets/logo-dark.svg?v=1792409969" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
+              <img src="public/assets/logo-dark.svg?v=1792410365" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
               <ul className="mt-8 space-y-4 text-[18px] leading-[26px] md:mt-[43px] md:space-y-[24px] md:text-[20px] md:leading-[28px]">
                 <li>
                   <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
@@ -1655,7 +1655,7 @@ function Footer() {
       <div className="border-y-2 border-gold bg-navy">
         <div className="flex h-[103px] items-center justify-center gap-4 px-4 pt-[9px] md:gap-[44px]">
           <span className="whitespace-nowrap text-[16px] leading-[28px] text-white md:text-[20px]">עיצוב ופיתוח האתר:</span>
-          <img src="public/assets/keren-logo.png?v=1792409969" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
+          <img src="public/assets/keren-logo.png?v=1792410365" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
         </div>
       </div>
     </footer>
@@ -1922,6 +1922,8 @@ type Article = {
   date: string;
   excerpt: string;
   minutes: number;
+  /** shown under the title on the article page */
+  author?: string;
   body?: ArticleBlock[];
 };
 
@@ -1930,46 +1932,201 @@ const articleHref = (slug) => "article.html?slug=" + slug;
 
 const DISCLAIMER = "המידע במאמר הוא כללי ואינו מהווה ייעוץ מקצועי. לפני כל החלטה מומלץ להתייעץ עם איש מקצוע.";
 
-const TAX_PLANNING_BODY: ArticleBlock[] = [
+const PAYROLL_AUDITOR_BODY: ArticleBlock[] = [
   {
     t: "lead",
-    text: "כל שנה מביאה איתה עדכונים בחקיקת המס, בתקרות ובנקודות הזיכוי. מי שמתכנן מראש יכול לחסוך סכומים משמעותיים, ומי שמחכה לסוף השנה מגלה לא פעם שכבר מאוחר מדי.",
+    text: "ארגונים רבים מתקשרים עם קבלני שירות בתחומי הניקיון, השמירה והאבטחה, ומעסיקים באמצעותם עשרות ואף מאות עובדים. אף שהעובדים מועסקים על ידי הקבלן, האחריות להבטחת זכויותיהם אינה מוטלת בהכרח על הקבלן בלבד.",
   },
-  { t: "h2", text: "למה לתכנן עכשיו ולא בסוף השנה" },
   {
     t: "p",
-    text: "רוב ההטבות במס תלויות בפעולות שמתבצעות במהלך השנה עצמה: הפקדות לחיסכון פנסיוני, מועד משיכת דיבידנד, רכישת ציוד לעסק או שינוי במבנה ההעסקה. בדצמבר כבר קשה לשנות את התמונה, ולכן התכנון הנכון מתחיל ברבעון הראשון.",
+    text: "החוק להגברת האכיפה של דיני העבודה, התשע\"ב 2011, קובע בנסיבות מסוימות אחריות גם למזמין השירות. מציאות זו מחייבת ארגונים לאמץ גישה של בקרה מתמשכת, ולא להסתפק בבדיקת שכר נקודתית או בטיפול בליקויים רק לאחר שהתגלו.",
   },
-  { t: "p", text: "תכנון מוקדם גם מאפשר לפזר את תזרים המזומנים בצורה נוחה יותר, ולהימנע מהפתעות בדוח השנתי." },
-  { t: "h2", text: "חמש נקודות שכדאי לבדוק כבר השנה" },
   {
-    t: "list",
-    items: [
-      "ניצול מלא של ההפקדות המוטבות לפנסיה ולקרן השתלמות",
-      "בחינת מבנה ההתאגדות: עוסק מורשה או חברה",
-      "תזמון נכון של משיכת דיבידנדים ומשכורת לבעלי שליטה",
-      "בדיקת זכאות לנקודות זיכוי ולהטבות אזוריות",
-      "ריכוז הוצאות מוכרות ותיעוד מסודר שלהן",
-    ],
+    t: "p",
+    text: "שילוב בודק שכר מוסמך כחלק ממערך הבקרה השוטף של הארגון מאפשר לזהות ליקויים בזמן אמת, לצמצם חשיפות ולבסס מנגנון מסודר להגנה על זכויות העובדים ועל הארגון עצמו.",
+  },
+  { t: "h2", text: "בדיקות שכר תקופתיות, מעבר לעמידה בדרישות החוק" },
+  {
+    t: "p",
+    text: "בדיקות שכר באמצעות בודק שכר מוסמך הן כלי מרכזי לבחינת עמידת הקבלנים בהוראות דיני העבודה. במסגרת הבדיקות נבחנים, בין היתר, תלושי השכר, דיווחי הנוכחות, תשלום שעות נוספות, עבודה במנוחה השבועית, הפרשות פנסיוניות, פיצויים, קרנות השתלמות וזכויות סוציאליות נוספות.",
+  },
+  {
+    t: "p",
+    text: "מומלץ לקבוע תוכנית בדיקות שנתית הכוללת מחזורי בקרה רבעוניים, תוך התאמת היקף המדגמים, מועדי הבדיקה והמתודולוגיה לדרישות הדין ולמאפייני ההתקשרות. ביצוע בדיקות באופן שיטתי מאפשר לזהות ליקויים חוזרים, לעקוב אחר תיקונם ולמנוע הצטברות של הפרות לאורך תקופת ההתקשרות.",
+  },
+  { t: "quote", text: "היתרון המרכזי אינו רק בעצם ביצוע הבדיקה, אלא ביצירת רצף של בקרה, דיווח, תיקון ומעקב." },
+  { t: "h2", text: "בדיקות השכר כמרכיב מרכזי בהיערכות לביקורות משרד העבודה" },
+  {
+    t: "p",
+    text: "ביקורות של מינהל הסדרה ואכיפת חוקי עבודה במשרד העבודה עשויות לחשוף את מזמין השירות ואת הקבלן להליכי אכיפה, לעיצומים כספיים ולהליכים נוספים בהתאם לנסיבות. ארגון המקיים מערך בדיקות שכר מסודר, מתעד את ממצאיו ופועל לתיקון ליקויים, נמצא בעמדה טובה יותר להציג את פעולות הבקרה והפיקוח שביצע.",
+  },
+  {
+    t: "p",
+    text: "דוחות בודק השכר, תיעוד הטיפול בליקויים, אסמכתאות לתשלומים מתקנים והתכתבויות עם הקבלנים מהווים חלק מתיק הבקרה של הארגון. במובן זה, בדיקות השכר הן מעין תעודת ביטוח ארגונית לקראת ביקורת משרד העבודה, לא כהבטחה לחסינות מפני אכיפה, אלא כראיה משמעותית לקיומו של מנגנון פיקוח פעיל ואחראי.",
+  },
+  { t: "h2", text: "מנגנון לצמצום חשיפות משפטיות ואחריות מזמין השירות" },
+  {
+    t: "p",
+    text: "סעיף 27 לחוק להגברת האכיפה של דיני העבודה קובע הגנות אפשריות למזמין השירות בתובענות אזרחיות, בין היתר כאשר הסתמך בתום לב על בדיקות תקופתיות של בודק שכר מוסמך ועמד בתנאים הקבועים בחוק. לפיכך, עצם קיומה של בדיקת שכר אינו מספיק.",
+  },
+  {
+    t: "p",
+    text: "נדרש מנגנון המבטיח כי ממצאי הבדיקות יועברו לגורמים הרלוונטיים בארגון, שהקבלן יידרש לתקן הפרות, וכי יבוצע מעקב אחר התיקון בפועל. לשם כך מומלץ לקבוע נוהל הכולל לוחות זמנים לטיפול בממצאים, דיווח להנהלה והסלמת הטיפול במקרים שבהם הקבלן אינו מתקן את הליקויים.",
   },
   {
     t: "callout",
     title: "בשורה התחתונה",
-    text: "תכנון מס טוב אינו תרגיל חד פעמי. הוא נבנה מתוך היכרות עם העסק, עם בעלי המניות ועם התוכניות לשנים הקרובות, ומתעדכן בכל פעם שמשהו משתנה.",
+    text: "מנגנון בקרה מסודר עשוי לצמצם את החשיפה לתביעות עובדים, למחלוקות משפטיות ולהפרות חוזרות לאורך תקופת ההתקשרות.",
   },
-  { t: "h2", text: "בעלי שליטה בחברות: תשומת לב מיוחדת" },
+  { t: "h2", text: "שילוב בודק השכר במערך הארגוני, ולא רק בסיום כל רבעון" },
   {
     t: "p",
-    text: "בעלי שליטה נדרשים לאזן בין משכורת, דיבידנד והלוואות בעלים. כל אחת מהאפשרויות ממוסה אחרת, ולשילוב ביניהן יש השפעה ישירה על סך המס, על ביטוח לאומי ועל הזכויות הפנסיוניות.",
+    text: "הערך המוסף המשמעותי ביותר מתקבל כאשר בודק השכר אינו פועל רק כגורם המבצע בדיקה תקופתית, אלא משמש גורם מקצועי מלווה למערך הרכש, הכספים, משאבי האנוש והייעוץ המשפטי. ליווי כזה עשוי לכלול:",
   },
-  { t: "p", text: "הבחירה הנכונה משתנה מלקוח ללקוח, ולכן אנו בונים לכל בעל שליטה מודל אישי ובוחנים אותו מחדש מדי שנה." },
-  { t: "quote", text: "המטרה אינה לשלם כמה שפחות מס בשנה אחת, אלא לבנות מסלול נכון לאורך שנים." },
-  { t: "h2", text: "איך אנחנו מלווים את התהליך" },
+  {
+    t: "list",
+    items: [
+      "בחינת הסכמי התקשרות עם קבלנים חדשים וחידוש הסכמים קיימים",
+      "בדיקת עדכוני שכר מינימום, צווי הרחבה והסכמים קיבוציים והשפעתם על תעריפי השירות",
+      "בחינת דרישות קבלנים לתוספות תשלום בגין שינויי חקיקה ועלויות העסקה",
+      "ייעוץ לגבי מנגנוני התחשבנות, הצמדה ותמחור שעות נוספות, שבתות וחגים",
+      "ליווי בתהליכי חילופי קבלנים ובדיקת רציפות זכויות העובדים",
+      "מעקב אחר יישום המלצות הביקורת ותיקון הפרות",
+    ],
+  },
   {
     t: "p",
-    text: "בפגישת תכנון אנו ממפים את מקורות ההכנסה, את ההוצאות ואת היעדים, ומציגים המלצות מעשיות עם לוח זמנים ברור. במהלך השנה אנו עוקבים אחר הביצוע ומעדכנים את התכנון לפי השינויים בחקיקה ובעסק.",
+    text: "שילוב זה מאפשר לזהות בעיות עוד בשלב קבלת ההחלטות, במקום להתמודד עם השלכותיהן לאחר מעשה. חשוב להדגיש כי הבדיקות התקופתיות המחייבות צריכות להתבצע תוך שמירה על עצמאותו המקצועית של בודק השכר והימנעות מניגודי עניינים, כנדרש בחוק.",
+  },
+  { t: "h2", text: "ליווי בעדכון חוזים ומניעת תשלומים עודפים" },
+  {
+    t: "p",
+    text: "אחד היתרונות הכלכליים של ליווי שוטף הוא האפשרות לבחון בזמן אמת דרישות קבלנים לעדכון תעריפי השירות. לדוגמה, עלייה בשכר המינימום אינה מחייבת בהכרח הגדלה בשיעור זהה של מלוא תעריף השירות, הכולל גם רכיבי תקורה, ניהול ורווח קבלני.",
+  },
+  {
+    t: "p",
+    text: "באופן דומה, יש לבחון אילו רכיבי עלות משתנים בעקבות עדכון צו הרחבה או הסכם קיבוצי, והאם הקבלן כבר מקבל תמורה בגינם במסגרת ההסכם. בדיקה מקצועית מאפשרת להבחין בין תוספות מוצדקות הנובעות מחובות המעסיק לבין דרישות שאינן משקפות גידול אמיתי בעלויות. בארגונים עתירי כוח אדם, גם פערים קטנים בתעריף השעתי עשויים להצטבר לסכומים משמעותיים לאורך שנות ההתקשרות.",
+  },
+  { t: "h2", text: "יצירת מערך בקרה מתמשך ושיפור איכות הניהול" },
+  {
+    t: "p",
+    text: "מודל העבודה המומלץ מבוסס על שילוב בין בדיקות שכר תקופתיות לבין ליווי מקצועי שוטף. במסגרת זו נקבעת תוכנית עבודה שנתית, מבוצעות בדיקות מדגמיות, מוגשים דוחות ממצאים, מתקבלות תגובות הקבלנים ונערכות בדיקות חוזרות לבחינת תיקון הליקויים.",
+  },
+  {
+    t: "p",
+    text: "במקביל, בודק השכר מלווה שינויים בהסכמים, בתעריפים ובתנאי ההעסקה ומסייע לגורמי ההנהלה לזהות חשיפות חדשות. כך הופכת בדיקת השכר מפעולה נקודתית למנגנון ניהולי המשלב ציות לדין, בקרה כלכלית, ניהול סיכונים והגנה על זכויות העובדים.",
+  },
+  { t: "h2", text: "לסיכום: השקעה בבקרה שוטפת ולא רק תגובה לליקויים" },
+  {
+    t: "p",
+    text: "הניסיון המקצועי מלמד כי ארגונים המשלבים בודק שכר מוסמך במערך הבקרה שלהם נהנים מהאפשרות לזהות מוקדם ליקויי שכר, לצמצם חשיפות משפטיות ולשפר את הבקרה על התשלומים לקבלני השירות.",
+  },
+  {
+    t: "p",
+    text: "בדיקת שכר תקופתית היא מרכיב חשוב בעמידה בדרישות החוק, ושילוב בודק שכר מוסמך במערך הארגוני הוא כבר כלי ניהולי וכלכלי. ליווי מקצועי מתמשך מאפשר לארגון לפעול באופן יזום, להיערך לביקורות רגולטוריות, לשפר את ההתקשרויות עם קבלני השירות ולשמור על זכויות העובדים, תוך ניהול יעיל ואחראי של משאביו.",
   },
   { t: "note", text: DISCLAIMER },
+];
+
+const TENDERS_BODY: ArticleBlock[] = [
+  {
+    t: "lead",
+    text: "תכנון נכון של מכרזי שמירה, אבטחה וניקיון עשוי לחסוך למזמין השירות עלויות משמעותיות, לצמצם חשיפות משפטיות ולמנוע מחלוקות מיותרות עם קבלנים.",
+  },
+  {
+    t: "p",
+    text: "מכרזים בתחומי השמירה, האבטחה, הניקיון ושירותים עתירי כוח אדם מתאפיינים במורכבות כלכלית ומשפטית. חלק ניכר מעלות השירות נובע משכר העובדים ומהזכויות הסוציאליות המגיעות להם מכוח החוק, צווי הרחבה והסכמים קיבוציים.",
+  },
+  {
+    t: "p",
+    text: "למרות זאת, לא אחת מכרזים נערכים ללא בחינה מקצועית מספקת של מרכיבי עלות ההעסקה, אופן חישובם והתאמתם לצורכי המזמין. שילוב בודק שכר מוסמך כבר בשלב גיבוש המכרז מאפשר לא רק לוודא עמידה בדרישות הדין, אלא גם לבנות מודל תמחור יעיל, שקוף וחסכוני יותר.",
+  },
+  { t: "h2", text: "קביעת ערך שעת עבודה נכון ומדויק" },
+  {
+    t: "p",
+    text: "אחד המרכיבים המרכזיים במכרזי שירותים הוא קביעת ערך שעת העבודה, הכולל את עלויות השכר והזכויות המתחייבות על פי דין. בדיקה מקצועית מאפשרת לבחון את מרכיבי השכר, ההפרשות הפנסיוניות, הפיצויים, קרן ההשתלמות, החופשה, ההבראה, החגים, דמי הביטוח הלאומי ורכיבים נוספים, בהתאם להוראות החלות על הענף ועל העובדים.",
+  },
+  { t: "p", text: "חשיבות מיוחדת קיימת להבחנה בין שלושה מרכיבים:" },
+  {
+    t: "list",
+    items: [
+      "עלויות שכר וזכויות עובדים המתחייבות על פי דין",
+      "עלויות תפעוליות נוספות, כגון ציוד, הכשרות, פיקוח וניהול",
+      "תקורה ורווח קבלני",
+    ],
+  },
+  {
+    t: "p",
+    text: "הבחנה זו מאפשרת למזמין השירות לבחון את סבירות ההצעות, להימנע מכפל תשלומים ולהבטיח כי התמחור משקף את העלויות הנדרשות בפועל.",
+  },
+  { t: "h2", text: "חיסכון משמעותי בתמחור שעות נוספות, שבתות וחגים" },
+  {
+    t: "p",
+    text: "אחד התחומים שבהם ניתן לזהות פוטנציאל לחיסכון כלכלי הוא אופן תמחור שעות עבודה נוספות, עבודה במנוחה השבועית ובחגים. במכרזים רבים נגזר תעריף השעות הנוספות מתעריף שעת השירות הרגילה, באמצעות הכפלת התעריף כולו במקדם של 125%, 150%, 175% או 200%, לפי העניין.",
+  },
+  {
+    t: "p",
+    text: "אולם תוספת השכר המשולמת לעובד אינה בהכרח מצדיקה הגדלה בשיעור זהה של מלוא תעריף השירות המשולם לקבלן. תעריף השירות הרגיל כולל רכיבים שונים, שחלקם אינם גדלים באופן יחסי בעת ביצוע שעה נוספת, כגון עלויות ניהול ופיקוח קבועות, רכיבי תקורה וחלק מהזכויות הסוציאליות.",
+  },
+  {
+    t: "callout",
+    title: "דוגמה מספרית",
+    text: "כאשר תעריף שעת שירות רגילה עומד על 70 ש\"ח, חיוב שעה נוספת בשיעור 150% יביא לתעריף של 105 ש\"ח. בחישוב כלכלי המבוסס על העלות התוספתית בפועל, ייתכן שהתעריף הראוי יהיה נמוך יותר, תוך שמירה מלאה על זכויות העובד ועל רווחיות סבירה לקבלן.",
+  },
+  {
+    t: "p",
+    text: "פער של שקלים בודדים לשעה עשוי להצטבר לסכומים משמעותיים בהתקשרויות הכוללות אלפי שעות נוספות, שבתות וחגים מדי שנה. לפיכך, מומלץ לקבוע במכרז מנגנון תמחור נפרד לשעות אלו, המבוסס על תוספת העלות האמיתית לקבלן, ולא בהכרח על הכפלה אוטומטית של מלוא תעריף השירות.",
+  },
+  { t: "h2", text: "התאמת המכרז למצבת העובדים ולתנאי העסקתם" },
+  {
+    t: "p",
+    text: "במכרזים שבהם קיימת מצבת עובדים ותיקה, יש חשיבות לבחינת נתוני ההעסקה הקיימים, לרבות ותק, שכר, היקפי משרה, זכויות שנצברו ותנאי העסקה מיוחדים. התעלמות מנתונים אלה עלולה להוביל לתמחור חסר של עלויות העסקה, או לחלופין לקביעת תעריפים גבוהים מהנדרש.",
+  },
+  {
+    t: "p",
+    text: "בחינה מוקדמת מאפשרת לקבוע מנגנון מתאים להתחשבנות בגין ותק, זכויות תלויות עובד ואירועים מזכים, תוך צמצום אי הוודאות הן למזמין השירות והן למציעים.",
+  },
+  { t: "h2", text: "מניעת מחלוקות בנוגע להצעות הפסדיות" },
+  {
+    t: "p",
+    text: "סוגיה שכיחה נוספת במכרזים היא בחינת הצעות שבהן חלק ממרכיבי ערך שעת העבודה תומחרו בחסר. יש להבחין בין בחינה כלכלית של רווחיות ההצעה לבין בחינת עמידתה בדרישות הדין והמכרז.",
+  },
+  {
+    t: "p",
+    text: "הצעה עשויה להציג רווחיות כוללת חיובית, גם כאשר קיימים פערים בתמחור רכיבים מסוימים. עם זאת, רווחיות כוללת אינה פוטרת מעמידה בהוראות מחייבות ביחס לערך שעת העבודה ולזכויות העובדים. בדיקה מקצועית מוקדמת של מסמכי המכרז, לרבות הגדרת רכיבי העלות ואופן הצגתם, עשויה לצמצם מחלוקות, השגות והליכים משפטיים בשלב בחינת ההצעות.",
+  },
+  { t: "h2", text: "קביעת מנגנוני הצמדה ועדכון תעריפים" },
+  {
+    t: "p",
+    text: "התקשרויות עם קבלני שירותים נמשכות לעיתים מספר שנים, שבמהלכן חלים שינויים בשכר המינימום, בצווי ההרחבה, בהפרשות הסוציאליות ובעלויות נוספות. ללא מנגנון עדכון ברור, עלולות להתעורר מחלוקות בנוגע לזכאות הקבלן לתוספות תשלום.",
+  },
+  {
+    t: "p",
+    text: "ליווי מקצועי בשלב הכנת המכרז מאפשר לקבוע מראש אילו רכיבים יעודכנו, באילו תנאים וכיצד יחושבו השינויים, תוך מניעת הצמדה כפולה או הגדלת רכיבים שאינם מושפעים מהשינוי.",
+  },
+  { t: "h2", text: "צמצום חשיפת מזמין השירות להפרות זכויות עובדים" },
+  {
+    t: "p",
+    text: "לחוק להגברת האכיפה של דיני העבודה חשיבות מיוחדת בהתקשרויות עם קבלני שירות בתחומים שעליהם הוא חל. מזמין השירות עלול להיחשף לאחריות בגין הפרת זכויות עובדים בנסיבות הקבועות בדין.",
+  },
+  {
+    t: "p",
+    text: "לכן, חשוב לוודא כבר בשלב הכנת המכרז כי התמחור מאפשר תשלום מלוא זכויות העובדים, וכי ההסכם כולל מנגנוני בקרה, דיווח והתחשבנות מתאימים. בדיקות תקופתיות באמצעות בודק שכר מוסמך הן נדבך נוסף במערך הבקרה, אך אינן מחליפות תכנון נכון של ההתקשרות מלכתחילה.",
+  },
+  { t: "h2", text: "לסיכום: בודק שכר מוסמך אינו רק גורם בקרה, אלא גם יועץ כלכלי" },
+  {
+    t: "p",
+    text: "הניסיון המקצועי מלמד כי בדיקה מוקדמת של מכרזים עתירי כוח אדם עשויה להביא לחיסכון כספי משמעותי לאורך תקופת ההתקשרות, לצד שיפור איכות המכרז, צמצום מחלוקות והבטחת זכויות העובדים.",
+  },
+  {
+    t: "p",
+    text: "הערך המוסף של בודק שכר מוסמך אינו מסתכם בבדיקת תלושי שכר לאחר תחילת ההתקשרות. הוא מתחיל כבר בשלב התכנון, באמצעות בחינת מודל התמחור, הגדרת רכיבי העלות, התאמת מנגנוני ההתחשבנות ובניית בסיס מקצועי לבחינת ההצעות.",
+  },
+  { t: "quote", text: "מכרז שמתוכנן נכון מראש הוא מכרז שמאפשר תחרות הוגנת, שומר על זכויות העובדים ומונע תשלומים עודפים לאורך שנים." },
+  {
+    t: "note",
+    text: "המאמר נכתב על בסיס ניסיון מקצועי בליווי ובדיקת מכרזים עתירי כוח אדם בתחומי השמירה, האבטחה, הניקיון והשירותים, ובבחינת עלויות העסקה, זכויות עובדים ותמחור התקשרויות עם קבלני שירות. " + DISCLAIMER,
+  },
 ];
 
 /** placeholder body for the other demo articles, opened by the article's own summary */
@@ -2001,77 +2158,28 @@ const genericBody = (excerpt: string): ArticleBlock[] => [
 
 const ARTICLES: Article[] = [
   {
-    slug: "tax-planning-2026",
-    img: "public/assets/article-1.jpg?v=1792409969",
-    title: "תכנון מס 2026",
-    tag: "מיסוי",
-    date: "21/03/2026",
-    excerpt: "השינויים העיקריים בחקיקת המס לשנה הקרובה, ומה כדאי לבדוק כבר עכשיו כדי לא להפסיד הטבות.",
-    minutes: 6,
-    body: TAX_PLANNING_BODY,
+    slug: "payroll-auditor-as-control",
+    img: "public/assets/article-2.jpg?v=1792410365",
+    title: "בודק שכר מוסמך כחלק ממערך הבקרה של הארגון",
+    tag: "ביקורות שכר",
+    date: "19/10/2026",
+    excerpt:
+      "לא רק בדיקה תקופתית, אלא מנגנון הגנה מתמשך: איך שילוב בודק שכר מוסמך בבקרה השוטפת מצמצם חשיפות מול קבלני שירות.",
+    minutes: 8,
+    author: "רו\"ח אבידן טרבלסי, בודק שכר מוסמך",
+    body: PAYROLL_AUDITOR_BODY,
   },
   {
-    slug: "payroll-controls",
-    img: "public/assets/article-2.jpg?v=1792409969",
-    title: "בקרות שכר",
-    tag: "שכר",
-    date: "14/03/2026",
-    excerpt: "איך בקרה תקופתית על מערך השכר חושפת טעויות בזמן, וחוסכת לארגון חשיפות משפטיות וכספיות.",
-    minutes: 5,
-  },
-  {
-    slug: "financial-statements",
-    img: "public/assets/article-3.jpg?v=1792409969",
-    title: "דוחות כספיים",
-    tag: "ראיית חשבון",
-    date: "02/03/2026",
-    excerpt: "מה באמת מספרים הדוחות הכספיים של העסק שלכם, ואילו נתונים כדאי לבחון לפני כל החלטה.",
-    minutes: 7,
-  },
-  {
-    slug: "tax-refunds",
-    img: "public/assets/article-1.jpg?v=1792409969",
-    title: "החזרי מס",
-    tag: "מיסוי",
-    date: "23/02/2026",
-    excerpt: "רבים זכאים להחזר מס ואינם יודעים זאת. כך תבדקו אם גם אתם ביניהם, ומה צריך להגיש.",
-    minutes: 4,
-  },
-  {
-    slug: "labor-law",
-    img: "public/assets/article-2.jpg?v=1792409969",
-    title: "דיני עבודה",
-    tag: "שכר והעסקה",
-    date: "11/02/2026",
-    excerpt: "עדכונים בצווי ההרחבה ובפסיקה האחרונה, ומה המשמעות שלהם עבור מעסיקים גדולים וקטנים.",
-    minutes: 6,
-  },
-  {
-    slug: "betterment-tax",
-    img: "public/assets/article-3.jpg?v=1792409969",
-    title: "מס שבח",
-    tag: "נדל״ן",
-    date: "29/01/2026",
-    excerpt: "מוכרים דירה? כך מחשבים את מס השבח, ואילו פטורים והקלות עשויים לחול גם עליכם.",
-    minutes: 5,
-  },
-  {
-    slug: "nonprofits",
-    img: "public/assets/article-1.jpg?v=1792409969",
-    title: "ליווי עמותות",
-    tag: "רגולציה",
-    date: "15/01/2026",
-    excerpt: "הדיווחים, האישורים והמועדים שכל עמותה חייבת להכיר כדי לשמור על ניהול תקין.",
-    minutes: 5,
-  },
-  {
-    slug: "risk-survey",
-    img: "public/assets/article-2.jpg?v=1792409969",
-    title: "סקר סיכונים",
-    tag: "בקרות",
-    date: "04/01/2026",
-    excerpt: "למה סקר סיכונים בתחום השכר וההעסקה הוא הכלי המדויק ביותר לצמצום חשיפות בארגון.",
-    minutes: 6,
+    slug: "manpower-tenders",
+    img: "public/assets/article-3.jpg?v=1792410365",
+    title: "מכרזים עתירי כוח אדם",
+    tag: "מכרזים",
+    date: "19/10/2026",
+    excerpt:
+      "מדוע כדאי לשלב בודק שכר מוסמך עוד לפני פרסום המכרז, ואיך תכנון נכון של ערך שעת העבודה חוסך עלויות לאורך שנים.",
+    minutes: 9,
+    author: "רו\"ח אבידן טרבלסי, בודק שכר מוסמך",
+    body: TENDERS_BODY,
   },
 ];
 
@@ -2101,6 +2209,12 @@ function ArticleMeta({ a, light }: { a: Article; light?: boolean }) {
       <span>{a.date}</span>
       <span aria-hidden>·</span>
       <span>{a.minutes} דקות קריאה</span>
+      {a.author && (
+        <>
+          <span aria-hidden>·</span>
+          <span>{a.author}</span>
+        </>
+      )}
     </p>
   );
 }
@@ -2131,29 +2245,29 @@ function ArticleTile({ a }: { a: Article }) {
 /* "Difference" cards — a wide, gentle arc (box 1175×480, card image 293px wide) */
 const DIFF_BOX = { w: 1175, h: 480, card: 293 };
 const DIFF_CARDS = [
-  { src: "public/assets/diff-1.png?v=1792409969", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
-  { src: "public/assets/diff-2.png?v=1792409969", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
-  { src: "public/assets/diff-3.png?v=1792409969", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
-  { src: "public/assets/diff-4.png?v=1792409969", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
-  { src: "public/assets/diff-5.png?v=1792409969", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
+  { src: "public/assets/diff-1.png?v=1792410365", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
+  { src: "public/assets/diff-2.png?v=1792410365", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
+  { src: "public/assets/diff-3.png?v=1792410365", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
+  { src: "public/assets/diff-4.png?v=1792410365", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
+  { src: "public/assets/diff-5.png?v=1792410365", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
 ];
 
 type LogoItem = { src: string; alt: string; w: number; h: number; crop?: { h: number; top: number } };
 
 const LOGOS_ROW_1: LogoItem[] = [
-  { src: "public/assets/logo-bituach-leumi-white.png?v=1792409969", alt: "ביטוח לאומי", w: 132, h: 61 },
-  { src: "public/assets/logo-netivei-white.png?v=1792409969", alt: "נתיבי ישראל", w: 190, h: 57 },
-  { src: "public/assets/logo-kakal-white.png?v=1792409969", alt: "קק״ל", w: 74, h: 49 },
-  { src: "public/assets/logo-mekorot-white.png?v=1792409969", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
-  { src: "public/assets/logo-finance-white.png?v=1792409969", alt: "משרד האוצר", w: 70, h: 75 },
+  { src: "public/assets/logo-bituach-leumi-white.png?v=1792410365", alt: "ביטוח לאומי", w: 132, h: 61 },
+  { src: "public/assets/logo-netivei-white.png?v=1792410365", alt: "נתיבי ישראל", w: 190, h: 57 },
+  { src: "public/assets/logo-kakal-white.png?v=1792410365", alt: "קק״ל", w: 74, h: 49 },
+  { src: "public/assets/logo-mekorot-white.png?v=1792410365", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
+  { src: "public/assets/logo-finance-white.png?v=1792410365", alt: "משרד האוצר", w: 70, h: 75 },
 ];
 
 const LOGOS_ROW_2: LogoItem[] = [
-  { src: "public/assets/logo-mavaker-white.png?v=1792409969", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
-  { src: "public/assets/logo-cal-white.png?v=1792409969", alt: "Cal", w: 82, h: 41 },
-  { src: "public/assets/logo-markantil-white.png?v=1792409969", alt: "מרכנתיל", w: 114, h: 48 },
-  { src: "public/assets/logo-yohananof-white.png?v=1792409969", alt: "יוחננוף", w: 102, h: 51 },
-  { src: "public/assets/logo-astrazeneca-white.png?v=1792409969", alt: "AstraZeneca", w: 132, h: 33.702 },
+  { src: "public/assets/logo-mavaker-white.png?v=1792410365", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
+  { src: "public/assets/logo-cal-white.png?v=1792410365", alt: "Cal", w: 82, h: 41 },
+  { src: "public/assets/logo-markantil-white.png?v=1792410365", alt: "מרכנתיל", w: 114, h: 48 },
+  { src: "public/assets/logo-yohananof-white.png?v=1792410365", alt: "יוחננוף", w: 102, h: 51 },
+  { src: "public/assets/logo-astrazeneca-white.png?v=1792410365", alt: "AstraZeneca", w: 132, h: 33.702 },
 ];
 
 /* demo articles — replace with real content */
@@ -2220,8 +2334,8 @@ function Hero() {
         <video
           ref={videoRef}
           className="size-full object-cover object-[7%_35%] lg:object-center motion-reduce:hidden"
-          src="public/assets/hero-lighthouse.mp4?v=1792409969"
-          poster="public/assets/hero.jpg?v=1792409969"
+          src="public/assets/hero-lighthouse.mp4?v=1792410365"
+          poster="public/assets/hero.jpg?v=1792410365"
           autoPlay
           muted
           loop
@@ -2230,7 +2344,7 @@ function Hero() {
           aria-hidden
         />
         <img
-          src="public/assets/hero.jpg?v=1792409969"
+          src="public/assets/hero.jpg?v=1792410365"
           alt=""
           className="hidden size-full object-cover object-[7%_35%] motion-reduce:block lg:object-center"
         />
@@ -2787,14 +2901,14 @@ function About() {
           <div className="zoom-soft absolute bottom-0 right-0 aspect-[660/522] w-full overflow-hidden rounded-b-[5px]">
             <div className="absolute -bottom-[3px] left-[46.21%] top-[12.835%] w-[53.79%] -scale-x-100 overflow-hidden">
               <img
-                src="public/assets/avidan.png?v=1792409969"
+                src="public/assets/avidan.png?v=1792410365"
                 alt='רו"ח אבידן טרבלסי'
                 className="absolute left-[-14.52%] top-[-0.06%] h-[100.12%] w-[131.68%] max-w-none"
               />
             </div>
             <div className="absolute -bottom-[3px] left-0 top-0 w-[66.515%] overflow-hidden">
               <img
-                src="public/assets/eitan.png?v=1792409969"
+                src="public/assets/eitan.png?v=1792410365"
                 alt='רו"ח איתן שפיר'
                 className="absolute left-[-15.08%] top-0 h-full w-[121.89%] max-w-none"
               />
@@ -2807,7 +2921,7 @@ function About() {
       <div className="es-divider mt-[162px] flex items-center" data-anim aria-hidden>
         <span className="es-line es-line--from-right h-[2px] flex-1 bg-gold" />
         <img
-          src="public/assets/es-mark.svg?v=1792409969"
+          src="public/assets/es-mark.svg?v=1792410365"
           alt=""
           className="es-mark mx-[clamp(24px,6.7vw,89px)] h-auto w-[clamp(64px,7.54vw,100px)] xl:ml-[78px] xl:mr-[89px]"
         />
@@ -3015,7 +3129,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח איתן שפיר",
     role: "מייסד המשרד ומנהלו",
-    img: "public/assets/eitan.png?v=1792409969",
+    img: "public/assets/eitan.png?v=1792410365",
     paragraphs: [
       "רו\"ח איתן שפיר, מייסד המשרד ומנהלו, מביא עמו ניסיון מקצועי של למעלה מארבעים שנה בתחומי ראיית החשבון, המיסוי והייעוץ העסקי. בעבר כיהן בתפקיד בכיר במשרד האוצר, וניסיונו משלב היכרות מעמיקה עם המגזר הציבורי והעסקי כאחד.",
       "בהובלתו מעניק המשרד ללקוחותיו ליווי אישי, יסודי ומקיף, תוך ראייה רחבה של מכלול הסוגיות הנוגעות ליחידים, לחברות ולארגונים.",
@@ -3029,7 +3143,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח אבידן טרבלסי",
     role: "מנהל תחום ביקורות השכר והבקרות",
-    img: "public/assets/avidan.png?v=1792409969",
+    img: "public/assets/avidan.png?v=1792410365",
     flip: true,
     paragraphs: [
       "אבידן טרבלסי, רואה חשבון, מבקר פנימי ובודק שכר מוסמך, בעל ניסיון של למעלה מעשרים שנה בליווי גופים ציבוריים, חברות וארגונים עתירי כוח אדם.",
@@ -3095,7 +3209,7 @@ function AboutHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">אודות איתן שפיר ושות׳ רואי חשבון</h1>
       <img
-        src="public/assets/about-hero.jpg?v=1792409969"
+        src="public/assets/about-hero.jpg?v=1792410365"
         alt="קבלת הפנים במשרד איתן שפיר ושות׳"
         className="absolute inset-0 -z-10 size-full object-cover object-[62%_42%]"
       />
@@ -3249,14 +3363,14 @@ type TeamMember = { name: string; role: string; img?: string };
 
 /* the office team (the partners have their own sections above) */
 const TEAM: TeamMember[] = [
-  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1792409969" },
-  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1792409969" },
-  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1792409969" },
-  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1792409969" },
-  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1792409969" },
-  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1792409969" },
-  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1792409969" },
-  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1792409969" },
+  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1792410365" },
+  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1792410365" },
+  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1792410365" },
+  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1792410365" },
+  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1792410365" },
+  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1792410365" },
+  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1792410365" },
+  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1792410365" },
 ];
 
 /** neutral head-and-shoulders placeholder, resting on the same navy desk as the photos */
@@ -3380,7 +3494,7 @@ function ServicesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">תחומי התמחות</h1>
       <img
-        src="public/assets/services-hero.jpg?v=1792409969"
+        src="public/assets/services-hero.jpg?v=1792410365"
         alt="שולחן עבודה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_62%]"
       />
@@ -3672,7 +3786,7 @@ function ArticlesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">מאמרים</h1>
       <img
-        src="public/assets/articles-hero.jpg?v=1792409969"
+        src="public/assets/articles-hero.jpg?v=1792410365"
         alt="ספרייה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]"
       />
@@ -3765,7 +3879,17 @@ function ArticlesBody() {
         <div key={filter} className="panel-in mt-[clamp(48px,5vw,72px)]">
           {featured && <FeaturedArticle a={featured} />}
           {rest.length > 0 && (
-            <ul className="mx-auto mt-[clamp(48px,5vw,72px)] grid max-w-[1400px] gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <ul
+              className={cn(
+                "mx-auto mt-[clamp(48px,5vw,72px)] grid gap-6 lg:gap-8",
+                /* with only one or two more pieces, keep the row centred instead of leaving a hole */
+                rest.length === 1
+                  ? "max-w-[430px]"
+                  : rest.length === 2
+                    ? "max-w-[900px] sm:grid-cols-2"
+                    : "max-w-[1400px] sm:grid-cols-2 lg:grid-cols-3",
+              )}
+            >
               {rest.map((a, i) => (
                 <ArticleTile key={`${a.title}-${i}`} a={a} />
               ))}
@@ -3825,7 +3949,7 @@ function ReadingProgress() {
 function ArticleHero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-deep" aria-hidden>
-      <img src="public/assets/articles-hero.jpg?v=1792409969" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
+      <img src="public/assets/articles-hero.jpg?v=1792410365" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
       <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" />
       <div className="h-[clamp(300px,34vw,440px)]" />
     </section>
@@ -3952,7 +4076,7 @@ function ArticleBody() {
 
         {/* signature */}
         <footer className="mx-auto mt-14 flex max-w-[760px] items-center gap-5 rounded-[10px] border border-[#E6DCC6] bg-cream px-6 py-5">
-          <img src="public/assets/es-mark.svg?v=1792409969" alt="" className="h-auto w-[54px] shrink-0" />
+          <img src="public/assets/es-mark.svg?v=1792410365" alt="" className="h-auto w-[54px] shrink-0" />
           <div>
             <p className="font-semibold text-[18px]">צוות איתן שפיר ושות׳ רואי חשבון</p>
             <p className="mt-0.5 font-light text-navy/70 text-[16px]">ראיית חשבון, מיסוי ובקרות שכר תחת קורת גג אחת</p>
