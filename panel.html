@@ -92,6 +92,20 @@
     border:1px solid var(--line); background:#fff; color:var(--ink)}
   .block .sp{flex:1}
 
+  details.card > summary{cursor:pointer; font-weight:600; min-height:44px; display:flex; align-items:center}
+  details.card[open] > summary{border-bottom:1px solid var(--line); margin-bottom:14px; padding-bottom:10px}
+  .paste textarea{min-height:340px; line-height:1.8}
+  .paste .tip{margin:0 0 10px; font-size:15px; color:var(--grey); line-height:1.6}
+  .linkish{display:inline-flex; align-items:center; min-height:44px; padding:0 16px; margin-top:4px;
+    border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--gold-ink); font-size:16px}
+  .linkish:hover{border-color:var(--gold)}
+
+  .picrow{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+  .picrow img{width:124px; height:92px; object-fit:contain; border:1px solid var(--line);
+    border-radius:10px; background:#F0F1F4}
+  .picside{flex:1 1 220px}
+  .picnote{margin:0 0 8px; font-size:15px; color:var(--grey)}
+
   @media (max-width:560px){
     .bar{flex-wrap:wrap}
     .bar .state{width:100%; order:9}
@@ -194,7 +208,10 @@ function touch() {
   dirty = true;
   $("save").disabled = false;
   setState("יש שינויים שלא נשמרו");
-  try { localStorage.setItem("es-panel-draft", JSON.stringify(data)); } catch (e) { /* storage blocked */ }
+  /* pictures are left out of the draft: they are far too big for the browser's store */
+  try {
+    localStorage.setItem("es-panel-draft", JSON.stringify({ content: data.content, bodies: data.bodies }));
+  } catch (e) { /* storage blocked or full */ }
 }
 
 /* ---------------- entry ---------------- */
@@ -223,20 +240,33 @@ async function load() {
       else localStorage.removeItem("es-panel-draft");
     } catch (e) { /* a broken draft is ignored */ }
   }
+  data.uploads = data.uploads || {};   /* pictures added in this session */
   setState(dirty ? "יש שינויים שלא נשמרו" : "");
   render();
 }
 
 /* ---------------- small builders ---------------- */
-function field(labelText, value, onInput, long) {
+function field(labelText, value, onInput, long, quiet) {
   const wrap = el("div", "field");
   const label = el("label", null, labelText);
   const input = el(long ? "textarea" : "input");
   if (long) input.rows = Math.min(9, Math.ceil(String(value || "").length / 55) + 2);
   input.value = value == null ? "" : value;
-  input.addEventListener("input", () => { onInput(input.value); touch(); });
+  input.addEventListener("input", () => { onInput(input.value); if (!quiet) touch(); });
   wrap.appendChild(label);
   wrap.appendChild(input);
+  return wrap;
+}
+
+/* a big box for pasting a whole article */
+function pasteBox(labelText, tipText, value, onInput, quiet) {
+  const wrap = el("div", "paste");
+  const f = field(labelText, value, onInput, true, quiet);
+  if (tipText) {
+    const tip = el("p", "tip", tipText);
+    f.insertBefore(tip, f.querySelector("textarea"));
+  }
+  wrap.appendChild(f);
   return wrap;
 }
 
@@ -266,6 +296,143 @@ function blankLike(sample) {
   const out = {};
   Object.keys(sample).forEach((k) => (out[k] = blankLike(sample[k])));
   return out;
+}
+
+/* ---------------- article text ---------------- *
+ *  The panel works with plain text: an empty line starts a new paragraph,
+ *  a short line on its own becomes a subheading, and a line that starts
+ *  with a dash becomes a list item.
+ */
+const PASTE_TIP = "מדביקים את המאמר כמו שהוא. שורה ריקה מפרידה בין פסקאות. שורה קצרה לבדה, בלי נקודה בסוף, הופכת לכותרת ביניים. שורה שמתחילה במקף הופכת לפריט ברשימה.";
+
+const isBullet = (line) => /^[-–•*]\s+/.test(line);
+const stripBullet = (line) => line.replace(/^[-–•*]\s+/, "").trim();
+
+function parseArticleText(text) {
+  const parts = String(text || "").replace(/\r/g, "").split(/\n\s*\n/);
+  const blocks = [];
+  parts.forEach((part) => {
+    const lines = part.split("\n").map((l) => l.trim()).filter(Boolean);
+    lines.forEach((line) => {
+      if (isBullet(line)) {
+        const last = blocks[blocks.length - 1];
+        if (last && last.t === "list") last.items.push(stripBullet(line));
+        else blocks.push({ t: "list", items: [stripBullet(line)] });
+        return;
+      }
+      const alone = lines.length === 1;
+      if (blocks.length && alone && line.length <= 70 && !/[.,:;!?]$/.test(line)) {
+        blocks.push({ t: "h2", text: line });
+        return;
+      }
+      blocks.push({ t: blocks.length ? "p" : "lead", text: line });
+    });
+  });
+  return blocks;
+}
+
+function articleTextOf(body) {
+  return (body || []).map((b) => {
+    if (b.t === "list") return (b.items || []).map((i) => "- " + i).join("\n");
+    if (b.t === "callout") return [b.title, b.text].filter(Boolean).join("\n");
+    return b.text || "";
+  }).filter((s) => s.trim()).join("\n\n");
+}
+
+function autoExcerpt(text) {
+  const first = String(text || "").replace(/\r/g, "").split(/\n\s*\n/)[0] || "";
+  const clean = first.replace(/\s+/g, " ").trim();
+  if (clean.length <= 170) return clean;
+  const cut = clean.slice(0, 170);
+  const stop = Math.max(cut.lastIndexOf("."), cut.lastIndexOf("!"), cut.lastIndexOf("?"));
+  if (stop > 90) return cut.slice(0, stop + 1);
+  return cut.slice(0, cut.lastIndexOf(" ")).trim() + "…";
+}
+
+const manualExcerpt = {};   /* slugs where the excerpt was written by hand */
+
+/* ---------------- pictures ---------------- *
+ *  A picture chosen here is scaled down in the browser and travels inside
+ *  the saved file, so the file holds both the texts and the new pictures.
+ */
+const MAX_SIDE = 1600;
+
+function shrinkImage(file, done) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, MAX_SIDE / Math.max(img.width, img.height));
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+      const canvas = el("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+      let url = "";
+      try { url = canvas.toDataURL("image/webp", 0.9); } catch (e) { url = ""; }
+      if (url.indexOf("data:image/webp") !== 0) url = canvas.toDataURL("image/png");
+      done(url);
+    };
+    img.onerror = () => done(null);
+    img.src = reader.result;
+  };
+  reader.onerror = () => done(null);
+  reader.readAsDataURL(file);
+}
+
+const extOf = (dataUrl) => (dataUrl.indexOf("data:image/webp") === 0 ? "webp" : "png");
+const previewSrc = (path) => (String(path || "").indexOf("/assets/") === 0 ? "public" + path : path);
+const sizeOf = (dataUrl) => Math.round((dataUrl.length * 3) / 4 / 1024);
+
+/* one picture: a preview, a button that opens the computer, and the file it points to */
+function picture(labelText, current, nameFor, onPick, allowClear) {
+  const wrap = el("div", "field pic");
+  wrap.appendChild(el("label", null, labelText));
+
+  const shot = el("img");
+  shot.alt = "";
+  shot.src = data.uploads[current] || previewSrc(current) || "";
+  shot.hidden = !current;
+
+  const note = el("p", "picnote", current ? (data.uploads[current] ? "תמונה חדשה, תעלה לאתר עם השמירה" : "התמונה שנמצאת באתר") : "אין תמונה");
+
+  const input = el("input");
+  input.type = "file";
+  input.accept = "image/*";
+  input.hidden = true;
+  input.onchange = () => {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    note.textContent = "מכין את התמונה…";
+    shrinkImage(file, (url) => {
+      if (!url) { note.textContent = "לא הצלחתי לקרוא את הקובץ הזה"; return; }
+      const path = nameFor(extOf(url));
+      data.uploads[path] = url;
+      onPick(path);
+      touch();
+      render();
+    });
+  };
+
+  const pick = el("button", "linkish", current ? "החלפת התמונה" : "בחירת תמונה מהמחשב");
+  pick.type = "button";
+  pick.onclick = () => input.click();
+
+  const row = el("div", "picrow");
+  row.appendChild(shot);
+  const side = el("div", "picside");
+  side.appendChild(note);
+  side.appendChild(pick);
+  if (allowClear && current) {
+    const clear = tool("הסרה", "del", () => { onPick(""); touch(); render(); });
+    clear.style.marginInlineStart = "8px";
+    side.appendChild(clear);
+  }
+  row.appendChild(side);
+  wrap.appendChild(row);
+  wrap.appendChild(input);
+  return wrap;
 }
 
 const labelFor = (key) => (LABELS[scope] && LABELS[scope][key]) || key;
@@ -393,16 +560,53 @@ function scrArticles(box) {
 
   const add = el("button", "add", "מאמר חדש +");
   add.type = "button";
-  add.onclick = () => {
-    const slug = "article-" + Date.now().toString(36);
-    const today = new Date().toLocaleDateString("he-IL").replace(/\./g, "/");
-    arts.unshift({ slug: slug, title: "", tag: "", date: today, img: arts[0] ? arts[0].img : "", author: "", excerpt: "" });
-    data.bodies[slug] = [{ t: "lead", text: "" }, { t: "p", text: "" }];
-    touch(); go("article", 0);
-  };
+  add.onclick = () => go("new");
   box.appendChild(add);
 }
 
+/* ---- a new article: four things, the rest fills itself ---- */
+let draft = null;
+
+function scrNew(box) {
+  head(box, "מאמר חדש", "ממלאים ארבעה דברים. התאריך והתקציר יושלמו לבד.", { s: "articles" }, "חזרה למאמרים");
+
+  const arts = data.content.articles;
+  if (!draft) draft = { title: "", author: arts[0] ? arts[0].author : "", tag: "", img: "", text: "" };
+
+  const card = el("div", "card");
+  card.appendChild(field("כותרת המאמר", draft.title, (v) => (draft.title = v), false, true));
+  const row = el("div", "row");
+  row.appendChild(field("מאת", draft.author, (v) => (draft.author = v), false, true));
+  row.appendChild(field("נושא (מופיע כתגית, לא חובה)", draft.tag, (v) => (draft.tag = v), false, true));
+  card.appendChild(row);
+  card.appendChild(picture("תמונה", draft.img, (ext) => "/assets/article-" + Date.now().toString(36) + "." + ext,
+    (path) => (draft.img = path), true));
+  box.appendChild(card);
+
+  const textCard = el("div", "card");
+  textCard.appendChild(pasteBox("טקסט המאמר", PASTE_TIP, draft.text, (v) => (draft.text = v), true));
+  box.appendChild(textCard);
+
+  const create = el("button", "add", "יצירת המאמר");
+  create.type = "button";
+  create.onclick = () => {
+    if (!draft.title.trim() || !draft.text.trim()) { alert("צריך כותרת וטקסט."); return; }
+    const slug = "article-" + Date.now().toString(36);
+    const today = new Date().toLocaleDateString("he-IL").replace(/\./g, "/");
+    arts.unshift({
+      slug: slug, title: draft.title.trim(), tag: draft.tag.trim(), date: today,
+      img: draft.img || (arts[0] ? arts[0].img : ""), author: draft.author.trim(),
+      excerpt: autoExcerpt(draft.text),
+    });
+    data.bodies[slug] = parseArticleText(draft.text);
+    draft = null;
+    touch();
+    go("article", 0);
+  };
+  box.appendChild(create);
+}
+
+/* ---- one article ---- */
 function scrArticle(box, i) {
   const a = data.content.articles[i];
   if (!a) return go("articles");
@@ -411,18 +615,40 @@ function scrArticle(box, i) {
   const card = el("div", "card");
   card.appendChild(field("כותרת המאמר", a.title, (v) => (a.title = v)));
   const row = el("div", "row");
+  row.appendChild(field("מאת", a.author, (v) => (a.author = v)));
   row.appendChild(field("נושא", a.tag, (v) => (a.tag = v)));
-  row.appendChild(field("תאריך", a.date, (v) => (a.date = v)));
   card.appendChild(row);
-  card.appendChild(field("מאת", a.author, (v) => (a.author = v)));
-  card.appendChild(field("תקציר, מופיע בכרטיס ברשימה", a.excerpt, (v) => (a.excerpt = v), true));
-  card.appendChild(field("תמונה (נתיב הקובץ, לתמונה חדשה יש לשלוח לי אותה)", a.img, (v) => (a.img = v)));
+  card.appendChild(picture("תמונה", a.img, (ext) => "/assets/article-" + a.slug + "." + ext, (path) => (a.img = path)));
   box.appendChild(card);
 
-  const t = el("h3", null, "גוף המאמר");
-  t.style.cssText = "margin:26px 0 4px;font-size:20px";
-  box.appendChild(t);
-  box.appendChild(el("p", "lede", "כל חלק הוא פסקה, כותרת או רשימה. אפשר להוסיף, להזיז ולמחוק."));
+  const body = (data.bodies[a.slug] = data.bodies[a.slug] || []);
+  const textCard = el("div", "card");
+  textCard.appendChild(pasteBox("טקסט המאמר", PASTE_TIP, articleTextOf(body), (v) => {
+    data.bodies[a.slug] = parseArticleText(v);
+    if (!manualExcerpt[a.slug]) a.excerpt = autoExcerpt(v);
+  }));
+  box.appendChild(textCard);
+
+  const more = el("details", "card");
+  more.appendChild(el("summary", null, "תאריך ותקציר"));
+  const inner = el("div");
+  inner.appendChild(el("p", "lede", "שניהם מולאו לבד, ואפשר לשנות אותם."));
+  inner.appendChild(field("תאריך", a.date, (v) => (a.date = v)));
+  inner.appendChild(field("תקציר, מופיע בכרטיס ברשימה", a.excerpt, (v) => { a.excerpt = v; manualExcerpt[a.slug] = true; }, true));
+  more.appendChild(inner);
+  box.appendChild(more);
+
+  const adv = el("button", "linkish", "עריכה מדויקת של החלקים");
+  adv.type = "button";
+  adv.onclick = () => go("blocks", i);
+  box.appendChild(adv);
+}
+
+/* ---- the same article, part by part ---- */
+function scrBlocks(box, i) {
+  const a = data.content.articles[i];
+  if (!a) return go("articles");
+  head(box, "החלקים של המאמר", "כאן אפשר לקבוע סוג לכל חלק: כותרת, רשימה, ציטוט או תיבת הדגשה.", { s: "article", arg: i }, "חזרה למאמר");
 
   const body = (data.bodies[a.slug] = data.bodies[a.slug] || []);
   body.forEach((b, j) => box.appendChild(renderBlock(body, b, j)));
@@ -483,7 +709,7 @@ function renderBlock(body, b, j) {
 
 /* ---- team ---- */
 function scrTeam(box) {
-  head(box, "אנשי הצוות", "הסדר כאן הוא הסדר בעמוד אודות. לתמונה חדשה יש לשלוח לי את הקובץ.", { s: "home" }, "חזרה");
+  head(box, "אנשי הצוות", "הסדר כאן הוא הסדר בעמוד אודות.", { s: "home" }, "חזרה");
 
   const team = data.content.about.team;
   team.forEach((m, i) => {
@@ -502,7 +728,8 @@ function scrTeam(box) {
     row.appendChild(field("שם", m.name, (v) => { m.name = v; title.textContent = v || "איש צוות חדש"; }));
     row.appendChild(field("תפקיד", m.role, (v) => (m.role = v)));
     card.appendChild(row);
-    card.appendChild(field("תמונה (נתיב הקובץ, אפשר להשאיר ריק)", m.img, (v) => (m.img = v)));
+    card.appendChild(picture("תמונה", m.img, (ext) => "/assets/team/member-" + Date.now().toString(36) + "." + ext,
+      (path) => (m.img = path), true));
     box.appendChild(card);
   });
 
@@ -564,7 +791,9 @@ function render() {
   box.innerHTML = "";
   scope = "home";
   if (view.s === "articles") return scrArticles(box);
+  if (view.s === "new") return scrNew(box);
   if (view.s === "article") return scrArticle(box, view.arg);
+  if (view.s === "blocks") return scrBlocks(box, view.arg);
   if (view.s === "team") return scrTeam(box);
   if (view.s === "texts") return scrTexts(box);
   if (view.s === "page") return scrPage(box, view.arg);
@@ -588,8 +817,10 @@ $("save").onclick = () => {
   setState("הקובץ ירד למחשב");
 
   const note = el("div", "note");
-  note.innerHTML = "<b>הקובץ ירד למחשב.</b><br />הוא מכיל את כל התוכן המעודכן. שולחים אותו לקרן, והשינויים עולים לאתר." +
-    "<br />מה שערכת נשמר גם בדפדפן הזה, אז אפשר לסגור ולחזור להמשיך.";
+  const pics = Object.keys(data.uploads).length;
+  note.innerHTML = "<b>הקובץ ירד למחשב.</b><br />הוא מכיל את כל התוכן המעודכן" +
+    (pics ? " ואת " + pics + " התמונות החדשות" : "") + ". שולחים אותו לקרן, והשינויים עולים לאתר." +
+    "<br />הטקסטים נשמרים גם בדפדפן הזה, אז אפשר לסגור ולחזור להמשיך. תמונות חדשות לא נשמרות בדפדפן, ולכן כדאי לשמור את הקובץ באותה ישיבה שבה העלית אותן.";
   $("screen").prepend(note);
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
