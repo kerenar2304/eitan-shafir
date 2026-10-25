@@ -4,18 +4,28 @@
 <meta charset="utf-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg?v=1792412087" />
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'none'; form-action 'self'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg?v=1792937913" />
+<link rel="icon" type="image/png" sizes="48x48" href="public/assets/favicon-48.png?v=1792937913" />
+<link rel="apple-touch-icon" sizes="180x180" href="public/assets/apple-touch-icon.png?v=1792937913" />
 <meta name="theme-color" content="#050E40" />
-<meta name="description" content="משרד רואי חשבון המעניק ליווי בתחומי ראיית החשבון, המיסוי, הייעוץ העסקי ובקרות השכר." />
+<title>מדיניות פרטיות | איתן שפיר ושות׳</title>
+<meta name="description" content="איזה מידע נאסף באתר איתן שפיר ושות׳, למה הוא משמש, ואילו זכויות עומדות לכם." />
+<link rel="canonical" href="https://kerenar2304.github.io/eitan-shafir/privacy.html" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="he_IL" />
 <meta property="og:site_name" content="איתן שפיר ושות׳ רואי חשבון" />
-<meta property="og:title" content="איתן שפיר ושות׳ רואי חשבון" />
-<meta property="og:description" content="מעטפת מקצועית אחת לעסקים ולארגונים: ראיית חשבון, מיסוי, ליווי עסקי ובקרות שכר." />
-<meta property="og:image" content="https://kerenar2304.github.io/eitan-shafir/public/assets/hero.jpg?v=1792412087" />
+<meta property="og:title" content="מדיניות פרטיות | איתן שפיר ושות׳" />
+<meta property="og:description" content="איזה מידע נאסף באתר איתן שפיר ושות׳, למה הוא משמש, ואילו זכויות עומדות לכם." />
+<meta property="og:url" content="https://kerenar2304.github.io/eitan-shafir/privacy.html" />
+<meta property="og:image" content="https://kerenar2304.github.io/eitan-shafir/public/assets/hero.jpg?v=1792937913" />
+<meta property="og:image:width" content="1325" />
+<meta property="og:image:height" content="745" />
+<meta property="og:image:alt" content="מגדלור בשעת שקיעה, תמונת הפתיחה של אתר המשרד" />
 <meta name="twitter:card" content="summary_large_image" />
+<script>window.__SITE__ = "https://kerenar2304.github.io/eitan-shafir";</script>
 <script>(function(){var w=innerWidth,z=w>=1024?Math.min(1.8,1+(w/1546-1)*0.6):1,r=document.documentElement;if(z!==1)r.style.zoom=z.toFixed(4);r.style.setProperty("--z",z.toFixed(4))})()</script>
-<title>איתן שפיר ושות׳ | תצוגה מקדימה</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = { theme: { extend: {
@@ -546,7 +556,7 @@ html.intro-running .hero-fill { animation-play-state: paused; }
   border-radius: 10px;
   background: #FFFCFC;
   color: #050E40;
-  border: 1px solid #E6DCC6;
+  border: 1px solid #C2AC7C;
   box-shadow: 0 18px 44px rgb(5 14 64 / 0.28);
   text-align: start;
 }
@@ -554,7 +564,7 @@ html.intro-running .hero-fill { animation-play-state: paused; }
 .a11y-font { display: flex; align-items: center; justify-content: space-between; font-size: 16px; margin-bottom: 10px; }
 .a11y-font-actions { display: flex; align-items: center; gap: 8px; }
 .a11y-font-actions button {
-  width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E6DCC6;
+  width: 30px; height: 30px; border-radius: 6px; border: 1px solid #C2AC7C;
   background: #fff; color: #050E40; font-size: 19px; line-height: 1; cursor: pointer;
 }
 .a11y-font-actions button:hover { border-color: #B99E64; }
@@ -562,7 +572,7 @@ html.intro-running .hero-fill { animation-play-state: paused; }
 .a11y-item {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
   width: 100%; padding: 9px 11px; margin-bottom: 6px;
-  border: 1px solid #E6DCC6; border-radius: 6px; background: #fff;
+  border: 1px solid #C2AC7C; border-radius: 6px; background: #fff;
   color: #050E40; font-size: 16px; text-align: start; cursor: pointer;
 }
 .a11y-item:hover { border-color: #B99E64; }
@@ -587,13 +597,23 @@ html.a11y-contrast img:not(.logo-ink-light):not(.logo-ink-dark) { filter: contra
 html.a11y-contrast .a11y-panel, html.a11y-contrast .a11y-panel * { background: #000 !important; color: #fff !important; }
 /* the filter goes on the page regions, never on body: a filtered ancestor breaks position:fixed
    and would drag the accessibility button to the bottom of the document */
-html.a11y-grayscale main > *:not(.a11y-root) { filter: grayscale(1); }
+html.a11y-grayscale .page-root > *:not(.a11y-root) { filter: grayscale(1); }
 html.a11y-links a { text-decoration: underline !important; text-underline-offset: 3px; }
 html.a11y-readable :is(body, p, li, h1, h2, h3, h4, span, a, button, input, textarea) {
   font-family: Arial, "Segoe UI", system-ui, sans-serif !important;
   letter-spacing: normal !important;
   word-spacing: normal !important;
 }
+/* text spacing, to the metrics of WCAG 1.4.12: the visitor turns it on, so the wider
+   setting is allowed to override the design */
+html.a11y-spacing :is(p, li, dd, dt, blockquote, figcaption, label, span, a, h1, h2, h3, h4) {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+html.a11y-spacing :is(p, li, blockquote) { margin-bottom: 2em !important; }
+html.a11y-spacing :is(h1, h2, h3, h4) { text-wrap: wrap !important; }
+
 html.a11y-stop-motion *, html.a11y-stop-motion *::before, html.a11y-stop-motion *::after {
   animation-play-state: paused !important;
   animation-duration: 0.001s !important;
@@ -633,11 +653,25 @@ html.a11y-big-cursor .cursor-light { display: none; }
   .article-read p { text-align: start; hyphens: manual; }
 }
 </style>
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":["Organization","AccountingService"],"@id":"https://kerenar2304.github.io/eitan-shafir/#office","name":"איתן שפיר ושות׳ רואי חשבון","url":"https://kerenar2304.github.io/eitan-shafir/","logo":"https://kerenar2304.github.io/eitan-shafir/public/assets/apple-touch-icon.png?v=1792937913","image":"https://kerenar2304.github.io/eitan-shafir/public/assets/hero.jpg?v=1792937913","telephone":"+972-3-5614085","email":"michael@shafircpa.co.il","address":{"@type":"PostalAddress","streetAddress":"רח׳ נתן ילין מור 24","addressLocality":"תל אביב","addressCountry":"IL"},"areaServed":{"@type":"Country","name":"ישראל"},"knowsLanguage":["he","en"],"description":"משרד רואי חשבון המעניק ליווי בתחומי ראיית החשבון, המיסוי, הייעוץ העסקי ובקרות השכר."},
+{"@type":"WebSite","@id":"https://kerenar2304.github.io/eitan-shafir/#site","url":"https://kerenar2304.github.io/eitan-shafir/","name":"איתן שפיר ושות׳ רואי חשבון","inLanguage":"he-IL","publisher":{"@id":"https://kerenar2304.github.io/eitan-shafir/#office"}}
+]}
+</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js" integrity="sha384-x/ilTFv/u/eu6YSmkFDZl5V5Mm/pkxxcVv2cVJOrr1J0rvILhMvRBCy6yA75wYBj" crossorigin="anonymous"></script>
 </head>
 <body>
+<noscript>
+  <div style="padding:28px;max-width:640px;margin:0 auto;font-family:system-ui,sans-serif;color:#fff;line-height:1.7">
+    <h1 style="color:#B99E64">איתן שפיר ושות׳ רואי חשבון</h1>
+    <p>לצפייה באתר יש לאפשר JavaScript בדפדפן. אפשר גם ליצור קשר ישירות:</p>
+    <p>טלפון 03-5614085 · דוא״ל michael@shafircpa.co.il</p>
+    <p>רח׳ נתן ילין מור 24, תל אביב</p>
+  </div>
+</noscript>
 <div id="root"></div>
 <script id="src" type="text/plain">
 const { useState, useRef, useEffect, useCallback, useLayoutEffect } = React;
@@ -668,7 +702,7 @@ const WAZE_URL = `https://waze.com/ul?q=${encodeURIComponent("נתן ילין מ
 
 
 /** glue the last two words so a line never ends with a single orphan word (older browsers) */
-const noOrphan = (text: string) => text.replace(/\s+(\S+)\s*$/, " $1");
+const noOrphan = (text?: string | null) => String(text ?? "").replace(/\s+(\S+)\s*$/, " $1");
 
 
 /* ------------------------------------------------------------------ */
@@ -828,6 +862,55 @@ const wrapWide = wrap;
 const sectionTitle =
   "font-semibold text-gold text-[clamp(40px,6vw,64px)] leading-[0.95]";
 
+/**
+ * Shared behaviour for an open dialog: the page behind it stops scrolling, Escape closes it,
+ * Tab stays inside it, and when it closes the focus goes back to whatever opened it.
+ */
+function useDialogFocus(panelRef: RefObject<HTMLElement | null>, onClose: () => void) {
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const items = () => {
+      const panel = panelRef.current;
+      if (!panel) return [] as HTMLElement[];
+      return [...panel.querySelectorAll<HTMLElement>('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter(
+        (el) => !el.hasAttribute("disabled") && el.offsetParent !== null,
+      );
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const list = items();
+      if (!list.length) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      const inside = panelRef.current?.contains(document.activeElement);
+      if (e.shiftKey && (document.activeElement === first || !inside)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (document.activeElement === last || !inside)) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+      opener?.focus?.();
+    };
+    // the dialog is mounted only while it is open, so this runs once per opening
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+
 /** rolling label (after blumental-chadad): on hover the text slides up and an identical copy rolls in from below */
 function RollText({ children }: { children: ReactNode }) {
   return (
@@ -891,7 +974,7 @@ function IntroLoader() {
   return (
     <div className={cn("intro fixed inset-0 z-[100] grid place-items-center bg-navy-deep", phase === "out" && "is-out")} aria-hidden>
       <div className="flex flex-col items-center">
-        <img src="public/assets/es-mark.svg?v=1792412087" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
+        <img src="public/assets/es-mark.svg?v=1792937913" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
         <span className="intro-line mt-8 block h-px w-[150px] bg-gold md:w-[180px]" />
       </div>
     </div>
@@ -1014,17 +1097,61 @@ const SCALE_RATE = 0.6;
 
 
 /** the tab title and the description search engines show, per page */
-function usePageMeta(title: string, description: string) {
+/** the site's own address, written into every page by the build */
+const SITE_URL: string = (typeof window !== "undefined" && (window as any).__SITE__) || "";
+
+function headTag<T extends HTMLElement>(selector: string, make: () => T): T {
+  let tag = document.head.querySelector<T>(selector);
+  if (!tag) {
+    tag = make();
+    document.head.appendChild(tag);
+  }
+  return tag;
+}
+
+/**
+ * Title and description for the page, and with a path also the share tags and the
+ * canonical address, so that every page says which address it belongs to.
+ */
+function usePageMeta(title: string, description: string, path?: string) {
   useEffect(() => {
     document.title = title;
-    let tag = document.head.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!tag) {
-      tag = document.createElement("meta");
-      tag.name = "description";
-      document.head.appendChild(tag);
+
+    const meta = (name: string, attr: "name" | "property") =>
+      headTag<HTMLMetaElement>(`meta[${attr}="${name}"]`, () => {
+        const m = document.createElement("meta");
+        m.setAttribute(attr, name);
+        return m;
+      });
+
+    meta("description", "name").content = description;
+    meta("og:title", "property").content = title;
+    meta("og:description", "property").content = description;
+
+    if (path !== undefined && SITE_URL) {
+      const href = SITE_URL + path;
+      meta("og:url", "property").content = href;
+      headTag<HTMLLinkElement>('link[rel="canonical"]', () => {
+        const l = document.createElement("link");
+        l.rel = "canonical";
+        return l;
+      }).href = href;
     }
-    tag.content = description;
-  }, [title, description]);
+  }, [title, description, path]);
+}
+
+/** structured data for one page, replaced whenever the page changes */
+function useJsonLd(data: unknown | null) {
+  useEffect(() => {
+    if (!data) return;
+    const tag = headTag<HTMLScriptElement>('script[data-page-schema]', () => {
+      const s = document.createElement("script");
+      s.type = "application/ld+json";
+      s.setAttribute("data-page-schema", "");
+      return s;
+    });
+    tag.textContent = JSON.stringify(data);
+  }, [data]);
 }
 
 function applyFluidScale() {
@@ -1073,6 +1200,7 @@ type A11yState = {
   readable: boolean;
   stopMotion: boolean;
   bigCursor: boolean;
+  spacing: boolean;
 };
 
 const A11Y_DEFAULT: A11yState = {
@@ -1083,6 +1211,7 @@ const A11Y_DEFAULT: A11yState = {
   readable: false,
   stopMotion: false,
   bigCursor: false,
+  spacing: false,
 };
 
 const A11Y_KEY = "es-a11y";
@@ -1105,6 +1234,7 @@ function applyA11y(s: A11yState) {
   root.classList.toggle("a11y-readable", s.readable);
   root.classList.toggle("a11y-stop-motion", s.stopMotion);
   root.classList.toggle("a11y-big-cursor", s.bigCursor);
+  root.classList.toggle("a11y-spacing", s.spacing);
   root.style.setProperty("--a11y-font", String(1 + s.fontStep * 0.1));
   applyFluidScale();
   try {
@@ -1219,7 +1349,7 @@ function AccessibilityMenu() {
                 −
               </button>
               <span aria-live="polite">{Math.round((1 + state.fontStep * 0.1) * 100)}%</span>
-              <button type="button" onClick={() => set({ fontStep: Math.min(5, state.fontStep + 1) })} aria-label="הגדלת טקסט">
+              <button type="button" onClick={() => set({ fontStep: Math.min(10, state.fontStep + 1) })} aria-label="הגדלת טקסט">
                 +
               </button>
             </span>
@@ -1229,6 +1359,7 @@ function AccessibilityMenu() {
           <Toggle label="גווני אפור" on={state.grayscale} onClick={() => set({ grayscale: !state.grayscale })} />
           <Toggle label="הדגשת קישורים" on={state.links} onClick={() => set({ links: !state.links })} />
           <Toggle label="פונט קריא" on={state.readable} onClick={() => set({ readable: !state.readable })} />
+          <Toggle label="ריווח טקסט" on={state.spacing} onClick={() => set({ spacing: !state.spacing })} />
           <Toggle label="עצירת אנימציות" on={state.stopMotion} onClick={() => set({ stopMotion: !state.stopMotion })} />
           <Toggle label="סמן גדול" on={state.bigCursor} onClick={() => set({ bigCursor: !state.bigCursor })} />
 
@@ -1292,6 +1423,24 @@ function Header() {
     };
   }, [menuOpen]);
 
+  /* the phone menu closes on Escape and on a tap anywhere outside the header */
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    const onDown = (e: PointerEvent) => {
+      const el = headerRef.current;
+      if (el && !el.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
+  }, [open]);
+
   // logo + menu switch between light and navy ink depending on what is behind them
   useEffect(() => {
     let frame = 0;
@@ -1345,12 +1494,12 @@ function Header() {
           <a href={ROUTES.home} className="brand-logo relative block shrink-0" aria-label="איתן שפיר ושות׳ רואי חשבון">
             {/* two inks, cross-faded: white text on dark backgrounds, navy text on light ones (the mark stays gold) */}
             <img
-              src="public/assets/logo-light.svg?v=1792412087"
+              src="public/assets/logo-light.svg?v=1792937913"
               alt="איתן שפיר ושות׳ רואי חשבון"
               className="logo-ink-light block h-auto w-[clamp(140px,38vw,200px)] lg:absolute lg:right-0 lg:top-0 lg:w-[212px] lg:max-w-none"
             />
             <img
-              src="public/assets/logo-dark.svg?v=1792412087"
+              src="public/assets/logo-dark.svg?v=1792937913"
               alt=""
               aria-hidden
               className="logo-ink-dark absolute right-0 top-0 block h-auto w-[clamp(140px,38vw,200px)] lg:w-[212px] lg:max-w-none"
@@ -1409,7 +1558,12 @@ const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
 const field =
   "field-anim w-full rounded-[5px] border border-white/45 bg-white/10 pr-[14px] pl-3 text-right font-normal text-white text-[20px] leading-[22px] placeholder:text-white outline-none focus:border-gold";
 
+/** small visible label above a field, so the name stays readable while typing */
+const fieldLabel = "mb-[6px] block font-normal text-[15px] leading-[20px] text-ice/85";
+
 function Contact() {
+  const [sent, setSent] = useState(false);
+
   return (
     <section id="contact" className="mt-[110px] md:mt-[200px]">
 
@@ -1446,43 +1600,28 @@ function Contact() {
               get("message"),
             ].join("\n");
             const subject = get("name") ? `פנייה מהאתר מאת ${get("name")}` : "פנייה מהאתר";
+            setSent(true);
             window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           }}
         >
           <div className="grid gap-[13px] md:grid-cols-3 md:gap-[31.5px]">
-            <input
-              type="text"
-              name="name"
-              placeholder="שם מלא *"
-              aria-label="שם מלא"
-              required
-              autoComplete="name"
-              className={cn(field, "h-[41px]")}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="אימייל *"
-              aria-label="אימייל"
-              required
-              autoComplete="email"
-              className={cn(field, "h-[41px]")}
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="טלפון"
-              aria-label="טלפון"
-              autoComplete="tel"
-              className={cn(field, "h-[41px]")}
-            />
+            <label className="block">
+              <span className={fieldLabel}>שם מלא *</span>
+              <input type="text" name="name" required autoComplete="name" className={cn(field, "h-[41px]")} />
+            </label>
+            <label className="block">
+              <span className={fieldLabel}>אימייל *</span>
+              <input type="email" name="email" required autoComplete="email" className={cn(field, "h-[41px]")} />
+            </label>
+            <label className="block">
+              <span className={fieldLabel}>טלפון</span>
+              <input type="tel" name="phone" autoComplete="tel" className={cn(field, "h-[41px]")} />
+            </label>
           </div>
-          <textarea
-            name="message"
-            placeholder="תוכן הפניה"
-            aria-label="תוכן הפניה"
-            className={cn(field, "mt-[13px] block h-[108px] resize-none pt-[7px]")}
-          />
+          <label className="mt-[13px] block">
+            <span className={fieldLabel}>תוכן הפניה</span>
+            <textarea name="message" className={cn(field, "block h-[108px] resize-none pt-[7px]")} />
+          </label>
 
           <div className="mt-[15px] flex flex-col-reverse items-start gap-6 md:flex-row md:justify-between">
             <div className="flex flex-col gap-4 pt-[13px] sm:flex-row sm:gap-[56px] md:-me-[2px]">
@@ -1502,9 +1641,17 @@ function Contact() {
               <RollText>שלח ←</RollText>
             </button>
           </div>
+          {/* the form hands the details to the visitor's own mail app, which does not always open:
+              this line says what happened and gives the address and the number to use instead */}
+          <p role="status" aria-live="polite" className="mt-4 text-[15px] leading-[1.7] text-ice md:text-[16px]">
+            {sent
+              ? `נפתח אצלכם חלון דוא״ל עם הפרטים. אם הוא לא נפתח, אפשר לכתוב ישירות אל ${EMAIL} או להתקשר ל־${PHONE}.`
+              : ""}
+          </p>
+
           {/* privacy notice where the details are given, on its own line under the form */}
-          <p className="mt-5 text-[14px] leading-[1.6] text-ice/80 md:text-[15px]">
-            הפרטים שתמסרו ישמשו לחזרה אליכם בלבד.{" "}
+          <p className="mt-2 text-[14px] leading-[1.6] text-ice/80 md:text-[15px]">
+            אינכם חייבים למסור את הפרטים, והם ישמשו לחזרה אליכם בלבד.{" "}
             <a href={ROUTES.privacy} className="link-sweep text-gold">
               למדיניות הפרטיות
             </a>
@@ -1616,7 +1763,7 @@ function Footer() {
           {/* mobile: one centred column with thin gold dividers; desktop: contact on one side, links on the other */}
           <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-stretch md:justify-between md:gap-12 md:text-right" data-reveal>
             <div className="flex flex-col items-center md:items-start xl:-ms-[8px]">
-              <img src="public/assets/logo-dark.svg?v=1792412087" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
+              <img src="public/assets/logo-dark.svg?v=1792937913" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
               <ul className="mt-8 space-y-4 text-[18px] leading-[26px] md:mt-[43px] md:space-y-[24px] md:text-[20px] md:leading-[28px]">
                 <li>
                   <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
@@ -1666,14 +1813,22 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <p className="mt-3 text-center font-light text-[14px] leading-[24px] text-navy/70 md:hidden">© כל הזכויות שמורות לחברת איתן שפיר ושות’</p>
+          {/* clear of the legal links above it at narrow widths */}
+          <p className="mt-8 pt-1 text-center font-light text-[14px] leading-[24px] text-navy/70 md:hidden">© כל הזכויות שמורות לחברת איתן שפיר ושות’</p>
         </div>
       </div>
 
       <div className="border-y-2 border-gold bg-navy">
         <div className="flex h-[103px] items-center justify-center gap-4 px-4 pt-[9px] md:gap-[44px]">
           <span className="whitespace-nowrap text-[16px] leading-[28px] text-white md:text-[20px]">עיצוב ופיתוח האתר:</span>
-          <img src="public/assets/keren-logo.png?v=1792412087" alt="Keren Arlihman Graphic Designer" className="h-auto w-[clamp(150px,15.25vw,202px)]" />
+          <img
+            src="public/assets/keren-logo.png?v=1792937913"
+            alt="Keren Arlihman Graphic Designer"
+            lang="en"
+            width={202}
+            height={58}
+            className="h-auto w-[clamp(150px,15.25vw,202px)]"
+          />
         </div>
       </div>
     </footer>
@@ -1945,6 +2100,12 @@ type Article = {
   body?: ArticleBlock[];
 };
 
+/** the displayed 19/10/2026 as the machine readable 2026-10-19 */
+const isoDate = (date?: string) => {
+  const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(String(date ?? "").trim());
+  return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : "";
+};
+
 /** link to a single article (the preview build rewrites this line) */
 const articleHref = (slug) => "article.html?slug=" + slug;
 
@@ -2177,7 +2338,7 @@ const genericBody = (excerpt: string): ArticleBlock[] => [
 const ARTICLES: Article[] = [
   {
     slug: "payroll-auditor-as-control",
-    img: "public/assets/article-payroll-audit.jpg?v=1792412087",
+    img: "public/assets/article-payroll-audit.jpg?v=1792937913",
     title: "בודק שכר מוסמך כחלק ממערך הבקרה של הארגון",
     tag: "ביקורות שכר",
     date: "19/10/2026",
@@ -2188,7 +2349,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "manpower-tenders",
-    img: "public/assets/article-tenders.jpg?v=1792412087",
+    img: "public/assets/article-tenders.jpg?v=1792937913",
     title: "מכרזים עתירי כוח אדם",
     tag: "מכרזים",
     date: "19/10/2026",
@@ -2200,10 +2361,10 @@ const ARTICLES: Article[] = [
 ];
 
 /** the article to show: /articles/:slug in the app, ?slug= in the local preview; falls back to the latest */
-function currentArticle(): Article {
+function currentArticle(): Article | null {
   const slug =
     new URLSearchParams(window.location.search).get("slug") ?? window.location.pathname.split("/").filter(Boolean).pop();
-  return ARTICLES.find((a) => a.slug === slug) ?? ARTICLES[0];
+  return ARTICLES.find((a) => a.slug === slug) ?? null;
 }
 
 /* Pieces shared by the /articles list and the single article page */
@@ -2222,7 +2383,7 @@ function ArticleMeta({ a, light }: { a: Article; light?: boolean }) {
     <p className={cn("flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px]", light ? "text-ice/80" : "text-navy/60")}>
       <span className="font-semibold text-gold">{a.tag}</span>
       <span aria-hidden>·</span>
-      <span>{a.date}</span>
+      <time dateTime={isoDate(a.date)}>{a.date}</time>
       {a.author && (
         <>
           <span aria-hidden>·</span>
@@ -2238,7 +2399,7 @@ function ArticleTile({ a }: { a: Article }) {
     <li className="h-full">
       <a
         href={articleHref(a.slug)}
-        className="article-tile article-copy group flex h-full flex-col overflow-hidden rounded-[10px] border border-[#E6DCC6] bg-white text-navy shadow-[0_14px_34px_-22px_rgba(5,14,64,0.45)]"
+        className="article-tile article-copy group flex h-full flex-col overflow-hidden rounded-[10px] border border-[#C2AC7C] bg-white text-navy shadow-[0_14px_34px_-22px_rgba(5,14,64,0.45)]"
       >
         <div className="article-img relative aspect-[16/10] overflow-hidden">
           <img src={a.img} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
@@ -2258,30 +2419,61 @@ function ArticleTile({ a }: { a: Article }) {
 
 /* "Difference" cards — a wide, gentle arc (box 1175×480, card image 293px wide) */
 const DIFF_BOX = { w: 1175, h: 480, card: 293 };
+/* the cards carry their wording inside the picture, so the alt text repeats all of it */
 const DIFF_CARDS = [
-  { src: "public/assets/diff-1.png?v=1792412087", alt: "מומחיות רחבה, מבט אחד", left: -9, top: 95, rotate: -14 },
-  { src: "public/assets/diff-2.png?v=1792412087", alt: "ניסיון שרואה כמה צעדים קדימה", left: 216, top: 28, rotate: -7 },
-  { src: "public/assets/diff-3.png?v=1792412087", alt: "מכירים את השטח משני הצדדים", left: 441, top: 0, rotate: 0 },
-  { src: "public/assets/diff-4.png?v=1792412087", alt: "רואים את התמונה, מזהים את הסיכון", left: 666, top: 28, rotate: 7 },
-  { src: "public/assets/diff-5.png?v=1792412087", alt: "מקצועיות שמרגישים גם בדרך", left: 891, top: 95, rotate: 14 },
+  {
+    src: "public/assets/diff-1.png?v=1792937913",
+    alt: "מומחיות רחבה, מבט אחד. ראיית חשבון, רגולציה ובקרות שכר מתחברים לתמונה מקצועית שלמה.",
+    left: -9,
+    top: 95,
+    rotate: -14,
+  },
+  {
+    src: "public/assets/diff-2.png?v=1792937913",
+    alt: "ניסיון שרואה כמה צעדים קדימה. שנים של ליווי עסקים, ארגונים וגופים גדולים ומורכבים.",
+    left: 216,
+    top: 28,
+    rotate: -7,
+  },
+  {
+    src: "public/assets/diff-3.png?v=1792937913",
+    alt: "מכירים את השטח משני הצדדים. היכרות עמוקה עם המגזר העסקי והציבורי ועם האתגרים של כל אחד מהם.",
+    left: 441,
+    top: 0,
+    rotate: 0,
+  },
+  {
+    src: "public/assets/diff-4.png?v=1792937913",
+    alt: "רואים את התמונה, מזהים את הסיכון. ראייה מערכתית שמאפשרת לזהות חשיפות ולקבל החלטות מדויקות יותר.",
+    left: 666,
+    top: 28,
+    rotate: 7,
+  },
+  {
+    src: "public/assets/diff-5.png?v=1792937913",
+    alt: "מקצועיות שמרגישים גם בדרך. ליווי אישי, זמינות, יסודיות ואמינות לאורך כל הדרך.",
+    left: 891,
+    top: 95,
+    rotate: 14,
+  },
 ];
 
 type LogoItem = { src: string; alt: string; w: number; h: number; crop?: { h: number; top: number } };
 
 const LOGOS_ROW_1: LogoItem[] = [
-  { src: "public/assets/logo-bituach-leumi-white.png?v=1792412087", alt: "ביטוח לאומי", w: 132, h: 61 },
-  { src: "public/assets/logo-netivei-white.png?v=1792412087", alt: "נתיבי ישראל", w: 190, h: 57 },
-  { src: "public/assets/logo-kakal-white.png?v=1792412087", alt: "קק״ל", w: 74, h: 49 },
-  { src: "public/assets/logo-mekorot-white.png?v=1792412087", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
-  { src: "public/assets/logo-finance-white.png?v=1792412087", alt: "משרד האוצר", w: 70, h: 75 },
+  { src: "public/assets/logo-bituach-leumi-white.png?v=1792937913", alt: "ביטוח לאומי", w: 132, h: 61 },
+  { src: "public/assets/logo-netivei-white.png?v=1792937913", alt: "נתיבי ישראל", w: 190, h: 57 },
+  { src: "public/assets/logo-kakal-white.png?v=1792937913", alt: "קק״ל", w: 74, h: 49 },
+  { src: "public/assets/logo-mekorot-white.png?v=1792937913", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
+  { src: "public/assets/logo-finance-white.png?v=1792937913", alt: "משרד האוצר", w: 70, h: 75 },
 ];
 
 const LOGOS_ROW_2: LogoItem[] = [
-  { src: "public/assets/logo-mavaker-white.png?v=1792412087", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
-  { src: "public/assets/logo-cal-white.png?v=1792412087", alt: "Cal", w: 82, h: 41 },
-  { src: "public/assets/logo-markantil-white.png?v=1792412087", alt: "מרכנתיל", w: 114, h: 48 },
-  { src: "public/assets/logo-yohananof-white.png?v=1792412087", alt: "יוחננוף", w: 102, h: 51 },
-  { src: "public/assets/logo-astrazeneca-white.png?v=1792412087", alt: "AstraZeneca", w: 132, h: 33.702 },
+  { src: "public/assets/logo-mavaker-white.png?v=1792937913", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
+  { src: "public/assets/logo-cal-white.png?v=1792937913", alt: "Cal", w: 82, h: 41 },
+  { src: "public/assets/logo-markantil-white.png?v=1792937913", alt: "מרכנתיל", w: 114, h: 48 },
+  { src: "public/assets/logo-yohananof-white.png?v=1792937913", alt: "יוחננוף", w: 102, h: 51 },
+  { src: "public/assets/logo-astrazeneca-white.png?v=1792937913", alt: "AstraZeneca", w: 132, h: 33.702 },
 ];
 
 /* demo articles — replace with real content */
@@ -2348,18 +2540,22 @@ function Hero() {
         <video
           ref={videoRef}
           className="size-full object-cover object-[7%_35%] lg:object-center motion-reduce:hidden"
-          src="public/assets/hero-lighthouse.mp4?v=1792412087"
-          poster="public/assets/hero.jpg?v=1792412087"
+          src="public/assets/hero-lighthouse.mp4?v=1792937913"
+          poster="public/assets/hero.jpg?v=1792937913"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden
         />
+        {/* the still only appears for reduced motion; lazy keeps it from downloading for everyone else */}
         <img
-          src="public/assets/hero.jpg?v=1792412087"
+          src="public/assets/hero.jpg?v=1792937913"
           alt=""
+          loading="lazy"
+          width={1325}
+          height={745}
           className="hidden size-full object-cover object-[7%_35%] motion-reduce:block lg:object-center"
         />
         </div>
@@ -2440,6 +2636,7 @@ function Folder({ label, onOpen }: { label: string; onOpen?: () => void }) {
 
 function FolderModal({ title, detail, onClose }: { title: string; detail: FolderDetail; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const [closing, setClosing] = useState(false);
 
   const close = () => {
@@ -2447,19 +2644,9 @@ function FolderModal({ title, detail, onClose }: { title: string; detail: Folder
     window.setTimeout(onClose, 260);
   };
 
+  useDialogFocus(panelRef, close);
   useEffect(() => {
     closeRef.current?.focus();
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKey);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -2473,7 +2660,7 @@ function FolderModal({ title, detail, onClose }: { title: string; detail: Folder
       <div className="modal-backdrop absolute inset-0 bg-navy/75 backdrop-blur-[6px]" onClick={close} />
 
       {/* the "paper" from inside the folder: white sheet, gold frame, same rounded corners */}
-      <div className="modal-panel relative w-full max-w-[780px] rounded-[7px] bg-cream shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+      <div ref={panelRef} className="modal-panel relative w-full max-w-[780px] rounded-[7px] bg-cream shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
         <div className="service-copy modal-scroll m-[12px] max-h-[calc(88dvh/var(--z,1)-24px)] overflow-y-auto rounded-[7px] border-2 border-gold px-7 pb-10 pt-11 text-navy md:m-[16px] md:px-16 md:pb-14 md:pt-14">
           <button
             ref={closeRef}
@@ -2490,7 +2677,9 @@ function FolderModal({ title, detail, onClose }: { title: string; detail: Folder
           <h3 id="folder-modal-title" className="pl-12 font-semibold text-gold text-[clamp(28px,3.4vw,40px)] leading-[1.15]">
             {noOrphan(detail.title ?? title.replace("\n", " "))}
           </h3>
-          <p className="mt-3 font-semibold text-[18px] leading-[1.5] md:text-[21px]">{noOrphan(detail.subtitle)}</p>
+          {detail.subtitle && (
+            <p className="mt-3 font-semibold text-[18px] leading-[1.5] md:text-[21px]">{noOrphan(detail.subtitle)}</p>
+          )}
           <span className="mt-6 block h-[2px] w-full bg-gold" aria-hidden />
 
           <div className="mt-8 space-y-5 font-light text-[17px] leading-[1.75] md:text-[18px]">
@@ -2603,7 +2792,7 @@ function Services() {
               onClick={() => setActive(i)}
               className={cn(
                 "tab-btn min-h-[64px] rounded-[5px] px-4 font-semibold text-[clamp(20px,2.2vw,28px)] leading-[1.4] md:h-[80px]",
-                active === i ? "bg-gold text-white" : "border-2 border-gold text-gold",
+                active === i ? "bg-gold text-navy" : "border-2 border-gold text-gold",
               )}
             >
               {block.tab}
@@ -2872,7 +3061,9 @@ function Clients() {
       {/* the rows above only scroll by; the names themselves are read here, once */}
       <ul className="sr-only">
         {[...LOGOS_ROW_1, ...LOGOS_ROW_2].map((l) => (
-          <li key={l.alt}>{l.alt}</li>
+          <li key={l.alt} lang={/^[A-Za-z0-9 .&'-]+$/.test(l.alt) ? "en" : undefined}>
+            {l.alt}
+          </li>
         ))}
       </ul>
     </section>
@@ -2915,14 +3106,14 @@ function About() {
           <div className="zoom-soft absolute bottom-0 right-0 aspect-[660/522] w-full overflow-hidden rounded-b-[5px]">
             <div className="absolute -bottom-[3px] left-[46.21%] top-[12.835%] w-[53.79%] -scale-x-100 overflow-hidden">
               <img
-                src="public/assets/avidan.png?v=1792412087"
+                src="public/assets/avidan.png?v=1792937913"
                 alt='רו"ח אבידן טרבלסי'
                 className="absolute left-[-14.52%] top-[-0.06%] h-[100.12%] w-[131.68%] max-w-none"
               />
             </div>
             <div className="absolute -bottom-[3px] left-0 top-0 w-[66.515%] overflow-hidden">
               <img
-                src="public/assets/eitan.png?v=1792412087"
+                src="public/assets/eitan.png?v=1792937913"
                 alt='רו"ח איתן שפיר'
                 className="absolute left-[-15.08%] top-0 h-full w-[121.89%] max-w-none"
               />
@@ -2935,7 +3126,7 @@ function About() {
       <div className="es-divider mt-[162px] flex items-center" data-anim aria-hidden>
         <span className="es-line es-line--from-right h-[2px] flex-1 bg-gold" />
         <img
-          src="public/assets/es-mark.svg?v=1792412087"
+          src="public/assets/es-mark.svg?v=1792937913"
           alt=""
           className="es-mark mx-[clamp(24px,6.7vw,89px)] h-auto w-[clamp(64px,7.54vw,100px)] xl:ml-[78px] xl:mr-[89px]"
         />
@@ -3081,22 +3272,26 @@ function Index() {
   usePageMeta(
     "איתן שפיר ושות׳ | רואי חשבון, מיסוי ובקרות שכר",
     "משרד רואי חשבון המעניק ליווי בתחומי ראיית החשבון, המיסוי, הייעוץ העסקי ובקרות השכר, לעסקים, לארגונים ולגופים ציבוריים.",
+    "/",
   );
   useRevealObserver();
 
   return (
-    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
-      {/* fixed header lives at the page root so no section can paint over it */}
+    <div dir="rtl" lang="he" className="page-root w-full overflow-x-clip bg-navy font-talent text-white">
+      {/* header and footer sit outside <main>, so they are landmarks of their own
+          and the skip link lands on the content itself */}
       <Header />
-      <Hero />
-      <Services />
-      <Difference />
-      <Clients />
-      <About />
-      <Articles />
-      <Contact />
+      <main id="main-content" className="min-h-[100dvh]">
+        <Hero />
+        <Services />
+        <Difference />
+        <Clients />
+        <About />
+        <Articles />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 
@@ -3143,7 +3338,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח איתן שפיר",
     role: "מייסד המשרד ומנהלו",
-    img: "public/assets/eitan.png?v=1792412087",
+    img: "public/assets/eitan.png?v=1792937913",
     paragraphs: [
       "רו\"ח איתן שפיר, מייסד המשרד ומנהלו, מביא עמו ניסיון מקצועי של למעלה מארבעים שנה בתחומי ראיית החשבון, המיסוי והייעוץ העסקי. בעבר כיהן בתפקיד בכיר במשרד האוצר, וניסיונו משלב היכרות מעמיקה עם המגזר הציבורי והעסקי כאחד.",
       "בהובלתו מעניק המשרד ללקוחותיו ליווי אישי, יסודי ומקיף, תוך ראייה רחבה של מכלול הסוגיות הנוגעות ליחידים, לחברות ולארגונים.",
@@ -3157,7 +3352,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח אבידן טרבלסי",
     role: "מנהל תחום ביקורות השכר והבקרות",
-    img: "public/assets/avidan.png?v=1792412087",
+    img: "public/assets/avidan.png?v=1792937913",
     flip: true,
     paragraphs: [
       "אבידן טרבלסי, רואה חשבון, מבקר פנימי ובודק שכר מוסמך, בעל ניסיון של למעלה מעשרים שנה בליווי גופים ציבוריים, חברות וארגונים עתירי כוח אדם.",
@@ -3223,7 +3418,7 @@ function AboutHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">אודות איתן שפיר ושות׳ רואי חשבון</h1>
       <img
-        src="public/assets/about-hero.jpg?v=1792412087"
+        src="public/assets/about-hero.jpg?v=1792937913"
         alt="קבלת הפנים במשרד איתן שפיר ושות׳"
         className="absolute inset-0 -z-10 size-full object-cover object-[62%_42%]"
       />
@@ -3377,14 +3572,14 @@ type TeamMember = { name: string; role: string; img?: string };
 
 /* the office team (the partners have their own sections above) */
 const TEAM: TeamMember[] = [
-  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1792412087" },
-  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1792412087" },
-  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1792412087" },
-  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1792412087" },
-  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1792412087" },
-  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1792412087" },
-  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1792412087" },
-  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1792412087" },
+  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1792937913" },
+  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1792937913" },
+  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1792937913" },
+  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1792937913" },
+  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1792937913" },
+  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1792937913" },
+  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1792937913" },
+  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1792937913" },
 ];
 
 /** neutral head-and-shoulders placeholder, resting on the same navy desk as the photos */
@@ -3456,22 +3651,24 @@ function AboutPage() {
   usePageMeta(
     "אודות המשרד | איתן שפיר ושות׳",
     "על משרד איתן שפיר ושות׳, השותפים, תחומי הליבה והצוות המקצועי שמלווה עסקים, ארגונים וגופים ציבוריים.",
+    "/about",
   );
   useRevealObserver();
 
   return (
-    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
-      {/* fixed header lives at the page root so no section can paint over it */}
+    <div dir="rtl" lang="he" className="page-root w-full overflow-x-clip bg-navy font-talent text-white">
       <Header />
-      <AboutHero />
-      <OfficeSection />
-      {PARTNERS.map((p, i) => (
-        <PartnerSection key={p.name} partner={p} index={i} />
-      ))}
-      <TeamSection />
-      <Contact />
+      <main id="main-content" className="min-h-[100dvh]">
+        <AboutHero />
+        <OfficeSection />
+        {PARTNERS.map((p, i) => (
+          <PartnerSection key={p.name} partner={p} index={i} />
+        ))}
+        <TeamSection />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 
@@ -3508,7 +3705,7 @@ function ServicesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">תחומי התמחות</h1>
       <img
-        src="public/assets/services-hero.jpg?v=1792412087"
+        src="public/assets/services-hero.jpg?v=1792937913"
         alt="שולחן עבודה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_62%]"
       />
@@ -3528,7 +3725,7 @@ const num = (i: number) => String(i + 1).padStart(2, "0");
 /** each department folder has its own colour: navy with gold, and gold with navy */
 const FOLDER_THEMES = [
   { body: "bg-navy", tab: "text-navy", title: "text-gold", text: "text-ice", sub: "text-gold", line: "border-white/20", num: "text-gold", tilt: "folder-tilt-right" },
-  { body: "bg-gold", tab: "text-gold", title: "text-navy", text: "text-navy", sub: "text-navy", line: "border-navy/25", num: "text-navy/70", tilt: "folder-tilt-left" },
+  { body: "bg-gold", tab: "text-gold", title: "text-navy", text: "text-navy", sub: "text-navy", line: "border-navy/25", num: "text-navy", tilt: "folder-tilt-left" },
 ];
 
 function FolderTabShape() {
@@ -3614,27 +3811,18 @@ function ServiceModal({
   const detail = detailFor(label);
   const title = detail?.title ?? label.replace("\n", " ");
   const closeRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
   const navBtn = "service-nav grid size-10 place-items-center rounded-full border border-gold/60 text-gold disabled:opacity-30";
 
+  useDialogFocus(panelRef, onClose);
   useEffect(() => {
     closeRef.current?.focus();
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prev;
-      window.removeEventListener("keydown", onKey);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="service-modal-title" className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8" dir="rtl">
       <div className="modal-backdrop absolute inset-0 bg-navy/75 backdrop-blur-[6px]" onClick={onClose} />
-      <article className="modal-panel relative w-full max-w-[860px] rounded-[10px] bg-cream p-2 text-navy shadow-[0_30px_80px_rgba(0,0,0,0.45)] md:p-2.5">
+      <article ref={panelRef} className="modal-panel relative w-full max-w-[860px] rounded-[10px] bg-cream p-2 text-navy shadow-[0_30px_80px_rgba(0,0,0,0.45)] md:p-2.5">
         <div className="modal-scroll max-h-[calc(88dvh/var(--z,1)-20px)] overflow-y-auto rounded-[8px] border-2 border-gold px-6 pb-9 pt-5 md:px-12 md:pb-11 md:pt-6">
           {/* top bar */}
           <div className="flex items-center justify-between gap-4">
@@ -3767,17 +3955,20 @@ function ServicesPage() {
   usePageMeta(
     "תחומי התמחות | איתן שפיר ושות׳",
     "תחומי ההתמחות של המשרד: ראיית חשבון, מיסוי וליווי עסקי לצד ביקורות שכר, דיני עבודה ובקרות.",
+    "/services",
   );
   useRevealObserver();
 
   return (
-    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <div dir="rtl" lang="he" className="page-root w-full overflow-x-clip bg-navy font-talent text-white">
       <Header />
-      <ServicesHero />
-      <ServicesBody />
-      <Contact />
+      <main id="main-content" className="min-h-[100dvh]">
+        <ServicesHero />
+        <ServicesBody />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 
@@ -3800,7 +3991,7 @@ function ArticlesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">מאמרים</h1>
       <img
-        src="public/assets/articles-hero.jpg?v=1792412087"
+        src="public/assets/articles-hero.jpg?v=1792937913"
         alt="ספרייה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]"
       />
@@ -3883,7 +4074,7 @@ function ArticlesBody() {
               onClick={() => setFilter(t)}
               className={cn(
                 "tab-btn h-11 rounded-[5px] px-5 font-semibold text-[16px] md:text-[17px]",
-                filter === t ? "bg-gold text-white" : "border-2 border-gold text-gold",
+                filter === t ? "bg-gold text-navy" : "border-2 border-gold text-gold",
               )}
             >
               {t}
@@ -3920,17 +4111,20 @@ function ArticlesPage() {
   usePageMeta(
     "מאמרים | איתן שפיר ושות׳",
     "תובנות ועדכונים מקצועיים בתחומי המיסוי, השכר וראיית החשבון, מאת משרד איתן שפיר ושות׳.",
+    "/articles",
   );
   useRevealObserver();
 
   return (
-    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <div dir="rtl" lang="he" className="page-root w-full overflow-x-clip bg-navy font-talent text-white">
       <Header />
-      <ArticlesHero />
-      <ArticlesBody />
-      <Contact />
+      <main id="main-content" className="min-h-[100dvh]">
+        <ArticlesHero />
+        <ArticlesBody />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 
@@ -3964,7 +4158,7 @@ function ReadingProgress() {
 function ArticleHero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-deep" aria-hidden>
-      <img src="public/assets/articles-hero.jpg?v=1792412087" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
+      <img src="public/assets/articles-hero.jpg?v=1792937913" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
       <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" />
       <div className="h-[clamp(300px,34vw,440px)]" />
     </section>
@@ -4028,8 +4222,32 @@ function Block({ b }: { b: ArticleBlock }) {
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
+/* an address that points at no article: say so instead of quietly showing another one */
+function ArticleMissing() {
+  usePageMeta("המאמר לא נמצא | איתן שפיר ושות׳", "הכתובת שביקשתם אינה מובילה למאמר קיים.");
+  return (
+    <section className="relative flow-root bg-white text-navy">
+      <div className={cn(wrap, "py-[clamp(90px,12vw,160px)] text-center")}>
+        <h1 className="font-semibold text-gold text-[clamp(32px,4.4vw,52px)] leading-[1.1]">המאמר לא נמצא</h1>
+        <p className="mx-auto mt-5 max-w-[520px] text-[18px] leading-[1.8] text-navy/80">
+          ייתכן שהכתובת השתנתה או שהמאמר הוסר. אפשר לעבור לרשימת המאמרים ולמצוא אותו שם.
+        </p>
+        <p className="mt-8">
+          <a href={ROUTES.articles} className="link-sweep font-semibold text-gold">
+            לכל המאמרים
+          </a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function ArticleBody() {
   const a = currentArticle();
+  return a ? <ArticleContent a={a} /> : <ArticleMissing />;
+}
+
+function ArticleContent({ a }: { a: Article }) {
   const blocks = a.body ?? genericBody(a.excerpt);
   // more reading: same topic first, then the most recent
   const more = [
@@ -4037,9 +4255,22 @@ function ArticleBody() {
     ...ARTICLES.filter((x) => x.slug !== a.slug && x.tag !== a.tag),
   ].slice(0, 3);
 
-  useEffect(() => {
-    document.title = `${a.title} | איתן שפיר ושות׳`;
-  }, [a.title]);
+  usePageMeta(`${a.title} | איתן שפיר ושות׳`, a.excerpt, `/article.html?slug=${a.slug}`);
+
+  /* the article itself, for search engines: author, date and the image shown above */
+  useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: a.title,
+    description: a.excerpt,
+    image: SITE_URL ? SITE_URL + a.img : a.img,
+    datePublished: isoDate(a.date),
+    inLanguage: "he-IL",
+    articleSection: a.tag,
+    author: a.author ? { "@type": "Person", name: a.author } : { "@type": "Organization", name: "איתן שפיר ושות׳ רואי חשבון" },
+    publisher: { "@type": "Organization", name: "איתן שפיר ושות׳ רואי חשבון" },
+    mainEntityOfPage: SITE_URL ? `${SITE_URL}/articles/${a.slug}` : undefined,
+  });
 
   return (
     <section className="relative flow-root bg-white text-navy">
@@ -4078,7 +4309,13 @@ function ArticleBody() {
         {/* the article image, on the site's cream paper with a gold frame */}
         <figure className="mx-auto mt-[clamp(40px,5vw,64px)] max-w-[1000px] rounded-[10px] bg-cream p-2.5 shadow-[0_24px_60px_-30px_rgba(5,14,64,0.45)] md:p-3" data-reveal>
           <div className="relative aspect-[16/8] overflow-hidden rounded-[8px] border-2 border-gold">
-            <img src={a.img} alt="" className="absolute inset-0 size-full object-cover" />
+            <img
+              src={a.img}
+              alt={`תמונה נלווית למאמר ${a.title}`}
+              width={1000}
+              height={500}
+              className="absolute inset-0 size-full object-cover"
+            />
           </div>
         </figure>
 
@@ -4113,14 +4350,16 @@ function ArticlePage() {
   useRevealObserver();
 
   return (
-    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <div dir="rtl" lang="he" className="page-root w-full overflow-x-clip bg-navy font-talent text-white">
       <ReadingProgress />
       <Header />
-      <ArticleHero />
-      <ArticleBody />
-      <Contact />
+      <main id="main-content" className="min-h-[100dvh]">
+        <ArticleHero />
+        <ArticleBody />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 
@@ -4158,8 +4397,9 @@ function LegalLayout({ title, intro, sections }: { title: string; intro: string;
   useRevealObserver();
 
   return (
-    <main id="main-content" dir="rtl" lang="he" className="min-h-[100dvh] w-full overflow-x-clip bg-navy font-talent text-white">
+    <div dir="rtl" lang="he" className="page-root w-full overflow-x-clip bg-navy font-talent text-white">
       <Header />
+      <main id="main-content" className="min-h-[100dvh]">
 
       {/* a quiet navy band instead of a photo */}
       <section className="bg-navy pb-[clamp(90px,10vw,140px)] pt-[clamp(150px,15vw,200px)]">
@@ -4221,8 +4461,9 @@ function LegalLayout({ title, intro, sections }: { title: string; intro: string;
       </section>
 
       <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 

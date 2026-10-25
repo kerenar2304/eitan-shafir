@@ -77,6 +77,8 @@
   .tool:hover{border-color:var(--gold)}
   .tool.del{color:var(--red)}
   .tool.del:hover{border-color:var(--red)}
+  .tool[disabled]{opacity:.35; cursor:default; color:var(--grey)}
+  .tool[disabled]:hover{border-color:var(--line)}
   .add{width:100%; min-height:52px; margin-top:4px; border:1px dashed var(--gold); border-radius:12px;
     background:#fff; color:var(--gold-ink); font-size:17px}
   .add:hover{background:#FFFCF5}
@@ -217,7 +219,9 @@ function touch() {
 /* ---------------- entry ---------------- */
 $("gateForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  if ($("pass").value.trim() === PASSWORD) { sessionStorage.setItem("es-panel", "1"); enter(); }
+  const typed = $("pass").value.trim();
+  if (!typed) { $("gateErr").textContent = "נא להזין סיסמה"; return; }
+  if (typed === PASSWORD) { sessionStorage.setItem("es-panel", "1"); enter(); }
   else $("gateErr").textContent = "סיסמה שגויה";
 });
 if (sessionStorage.getItem("es-panel") === "1") enter();
@@ -232,12 +236,27 @@ async function load() {
   setState("טוען…");
   const res = await fetch("panel-data.json", { cache: "no-store" });
   data = await res.json();
+
   const saved = localStorage.getItem("es-panel-draft");
   if (saved) {
     try {
-      const draft = JSON.parse(saved);
-      if (confirm("יש כאן טיוטה מהפעם הקודמת שלא נשמרה. להמשיך ממנה?")) { data = draft; dirty = true; $("save").disabled = false; }
-      else localStorage.removeItem("es-panel-draft");
+      const kept = JSON.parse(saved);
+      /* the draft is never thrown away here: saying no just opens the published version */
+      if (confirm("יש כאן טיוטה מהפעם הקודמת שלא נשמרה. להמשיך ממנה?\n\nאם לא, היא נשארת שמורה ואפשר לחזור אליה בפעם הבאה.")) {
+        const onSite = new Set();
+        (data.content.articles || []).forEach((a) => a.img && onSite.add(a.img));
+        (data.content.about.team || []).forEach((m) => m.img && onSite.add(m.img));
+
+        /* pictures are not kept in the draft, so a path that is not on the site is gone */
+        let lost = 0;
+        (kept.content.articles || []).forEach((a) => { if (a.img && !onSite.has(a.img)) { a.img = ""; lost++; } });
+        (kept.content.about.team || []).forEach((m) => { if (m.img && !onSite.has(m.img)) { m.img = ""; lost++; } });
+
+        data = kept;
+        dirty = true;
+        $("save").disabled = false;
+        if (lost) alert("בטיוטה היו " + lost + " תמונות שלא נשמרו, כי תמונות גדולות מדי לאחסון של הדפדפן. יש לבחור אותן מחדש.");
+      }
     } catch (e) { /* a broken draft is ignored */ }
   }
   data.uploads = data.uploads || {};   /* pictures added in this session */
@@ -246,10 +265,15 @@ async function load() {
 }
 
 /* ---------------- small builders ---------------- */
+let fieldSeq = 0;
+
 function field(labelText, value, onInput, long, quiet) {
   const wrap = el("div", "field");
+  const id = "fld-" + ++fieldSeq;
   const label = el("label", null, labelText);
+  label.htmlFor = id;
   const input = el(long ? "textarea" : "input");
+  input.id = id;
   if (long) input.rows = Math.min(9, Math.ceil(String(value || "").length / 55) + 2);
   input.value = value == null ? "" : value;
   input.addEventListener("input", () => { onInput(input.value); if (!quiet) touch(); });
@@ -270,10 +294,18 @@ function pasteBox(labelText, tipText, value, onInput, quiet) {
   return wrap;
 }
 
-function tool(text, cls, onClick) {
+function tool(text, cls, onClick, label) {
   const b = el("button", "tool " + (cls || ""), text);
   b.type = "button";
   b.onclick = onClick;
+  if (label) b.setAttribute("aria-label", label);
+  return b;
+}
+
+/* an arrow that is switched off at the end of a list, so it never looks clickable for nothing */
+function arrow(text, label, can, onClick) {
+  const b = tool(text, "", onClick, label);
+  if (!can) { b.disabled = true; b.setAttribute("aria-disabled", "true"); }
   return b;
 }
 
@@ -465,7 +497,9 @@ function renderValue(box, key, holder, prop) {
         const f = field(String(i + 1), item, (v) => (value[i] = v), LONG.includes(key));
         f.style.flex = "1 1 220px";
         row.appendChild(f);
-        const del = tool("מחיקה", "del", () => { value.splice(i, 1); touch(); render(); });
+        const del = tool("מחיקה", "del", () => {
+          if (confirm("למחוק את ״" + String(item || "") + "״?")) { value.splice(i, 1); touch(); render(); }
+        }, "מחיקת הפריט");
         del.style.marginBottom = "16px";
         row.appendChild(del);
         card.appendChild(row);
@@ -474,7 +508,10 @@ function renderValue(box, key, holder, prop) {
       const sub = el("div", "card");
       const subHead = el("div", "head");
       subHead.appendChild(el("h3", null, (i + 1) + ". " + (item.name || item.title || item.tab || item.value || item.label || "")));
-      subHead.appendChild(tool("מחיקה", "del", () => { value.splice(i, 1); touch(); render(); }));
+      subHead.appendChild(tool("מחיקה", "del", () => {
+        const name = item.name || item.title || item.tab || item.label || "";
+        if (confirm("למחוק את ״" + name + "״?")) { value.splice(i, 1); touch(); render(); }
+      }, "מחיקת הפריט"));
       sub.appendChild(subHead);
       renderObject(sub, item);
       card.appendChild(sub);
@@ -545,8 +582,8 @@ function scrArticles(box) {
     card.appendChild(meta);
 
     const row = el("div", "row");
-    row.appendChild(tool("↑ למעלה", "", () => { if (i > 0) { const t = arts[i - 1]; arts[i - 1] = arts[i]; arts[i] = t; touch(); render(); } }));
-    row.appendChild(tool("↓ למטה", "", () => { if (i < arts.length - 1) { const t = arts[i + 1]; arts[i + 1] = arts[i]; arts[i] = t; touch(); render(); } }));
+    row.appendChild(arrow("↑ למעלה", "העברת המאמר למעלה", i > 0, () => { const t = arts[i - 1]; arts[i - 1] = arts[i]; arts[i] = t; touch(); render(); }));
+    row.appendChild(arrow("↓ למטה", "העברת המאמר למטה", i < arts.length - 1, () => { const t = arts[i + 1]; arts[i + 1] = arts[i]; arts[i] = t; touch(); render(); }));
     row.appendChild(tool("מחיקה", "del", () => {
       if (confirm("למחוק את המאמר ״" + (a.title || "") + "״?")) {
         delete data.bodies[a.slug];
@@ -680,9 +717,11 @@ function renderBlock(body, b, j) {
   };
   kind.appendChild(sel);
   kind.appendChild(el("span", "sp"));
-  kind.appendChild(tool("↑", "", () => { if (j > 0) { const t = body[j - 1]; body[j - 1] = body[j]; body[j] = t; touch(); render(); } }));
-  kind.appendChild(tool("↓", "", () => { if (j < body.length - 1) { const t = body[j + 1]; body[j + 1] = body[j]; body[j] = t; touch(); render(); } }));
-  kind.appendChild(tool("מחיקה", "del", () => { body.splice(j, 1); touch(); render(); }));
+  kind.appendChild(arrow("↑", "העברת החלק למעלה", j > 0, () => { const t = body[j - 1]; body[j - 1] = body[j]; body[j] = t; touch(); render(); }));
+  kind.appendChild(arrow("↓", "העברת החלק למטה", j < body.length - 1, () => { const t = body[j + 1]; body[j + 1] = body[j]; body[j] = t; touch(); render(); }));
+  kind.appendChild(tool("מחיקה", "del", () => {
+    if (confirm("למחוק את החלק הזה מהמאמר?")) { body.splice(j, 1); touch(); render(); }
+  }, "מחיקת החלק"));
   wrap.appendChild(kind);
 
   if (b.t === "callout") wrap.appendChild(field("כותרת התיבה", b.title, (v) => (b.title = v)));
@@ -695,7 +734,9 @@ function renderBlock(body, b, j) {
       const f = field("פריט " + (k + 1), item, (v) => (b.items[k] = v));
       f.style.flex = "1 1 220px";
       row.appendChild(f);
-      const del = tool("מחיקה", "del", () => { b.items.splice(k, 1); touch(); render(); });
+      const del = tool("מחיקה", "del", () => {
+        if (confirm("למחוק את הפריט ״" + (item || "") + "״?")) { b.items.splice(k, 1); touch(); render(); }
+      }, "מחיקת הפריט");
       del.style.marginBottom = "16px";
       row.appendChild(del);
       wrap.appendChild(row);
@@ -717,8 +758,8 @@ function scrTeam(box) {
     const h = el("div", "head");
     const title = el("h3", null, m.name || "איש צוות חדש");
     h.appendChild(title);
-    h.appendChild(tool("↑", "", () => { if (i > 0) { const t = team[i - 1]; team[i - 1] = team[i]; team[i] = t; touch(); render(); } }));
-    h.appendChild(tool("↓", "", () => { if (i < team.length - 1) { const t = team[i + 1]; team[i + 1] = team[i]; team[i] = t; touch(); render(); } }));
+    h.appendChild(arrow("↑", "העברה למעלה", i > 0, () => { const t = team[i - 1]; team[i - 1] = team[i]; team[i] = t; touch(); render(); }));
+    h.appendChild(arrow("↓", "העברה למטה", i < team.length - 1, () => { const t = team[i + 1]; team[i + 1] = team[i]; team[i] = t; touch(); render(); }));
     h.appendChild(tool("מחיקה", "del", () => {
       if (confirm("למחוק את " + (m.name || "איש הצוות") + "?")) { team.splice(i, 1); touch(); render(); }
     }));
@@ -815,6 +856,8 @@ $("save").onclick = () => {
   dirty = false;
   $("save").disabled = true;
   setState("הקובץ ירד למחשב");
+  /* the work is in the downloaded file now, so the browser copy is not needed */
+  try { localStorage.removeItem("es-panel-draft"); } catch (e) { /* storage blocked */ }
 
   const note = el("div", "note");
   const pics = Object.keys(data.uploads).length;
@@ -825,7 +868,9 @@ $("save").onclick = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-$("viewSite").onclick = () => window.open("index.html", "_blank", "noopener");
+/* the local preview builds preview.html; the published site builds index.html */
+$("viewSite").onclick = () =>
+  window.open(location.hostname === "localhost" || location.hostname === "127.0.0.1" ? "preview.html" : "index.html", "_blank", "noopener");
 
 window.addEventListener("beforeunload", (e) => {
   if (!dirty) return;
