@@ -5,215 +5,256 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
 <link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg" />
-<title>ניהול תוכן | איתן שפיר ושות׳</title>
+<title>ניהול התוכן | איתן שפיר ושות׳</title>
 <style>
-  @font-face{font-family:"Talent FS";src:url("public/fonts/Talent_FS-Light.woff2") format("woff2");font-weight:300;font-display:swap}
-  @font-face{font-family:"Talent FS";src:url("public/fonts/Talent_FS-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
-  @font-face{font-family:"Talent FS";src:url("public/fonts/Talent_FS-Demibold.woff2") format("woff2");font-weight:600;font-display:swap}
-  :root{--navy:#050E40;--navy-2:#0A1555;--gold:#B99E64;--gold-ink:#8A6F35;--cream:#FFFCFC;--line:#E6DCC6;--grey:#6b7280}
+  :root{
+    --navy:#050E40; --gold:#B99E64; --gold-ink:#8A6F35;
+    --ink:#1B2033; --grey:#667085; --line:#E4E7EC; --bg:#F6F7F9; --red:#B42318;
+  }
   *{box-sizing:border-box}
   [hidden]{display:none !important}
-  body{margin:0;min-height:100dvh;background:#F3F4F8;color:var(--navy);font-family:"Talent FS",system-ui,sans-serif}
+  body{
+    margin:0; min-height:100dvh; background:var(--bg); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    font-size:17px; line-height:1.6;
+  }
+  button{font:inherit; cursor:pointer}
+  :focus-visible{outline:3px solid var(--gold); outline-offset:2px; border-radius:6px}
 
-  /* ---- gate ---- */
-  .gate{min-height:100dvh;display:grid;place-items:center;background:var(--navy);padding:24px}
-  .gate-box{width:min(380px,100%);background:var(--cream);border-radius:12px;padding:32px 28px;text-align:center;box-shadow:0 24px 60px rgb(0 0 0 /.35)}
-  .gate-box img{width:74px;height:auto;margin-bottom:18px}
-  .gate-box h1{margin:0 0 6px;font-size:24px;font-weight:600}
-  .gate-box p{margin:0 0 22px;font-size:16px;color:var(--grey);line-height:1.6}
-  .gate-box input{width:100%;font:inherit;font-size:18px;text-align:center;letter-spacing:.2em;padding:11px;border:1px solid var(--line);border-radius:6px;background:#fff}
-  .gate-box button{width:100%;margin-top:12px;font:inherit;font-size:17px;padding:11px;border:0;border-radius:6px;background:var(--gold);color:var(--navy);cursor:pointer}
-  .gate-err{margin-top:10px;font-size:15px;color:#b91c1c;min-height:20px}
+  /* ---------- gate ---------- */
+  .gate{min-height:100dvh; display:grid; place-items:center; background:var(--navy); padding:24px}
+  .gate form{width:min(400px,100%); background:#fff; border-radius:16px; padding:36px 30px; text-align:center}
+  .gate img{width:72px; height:auto; margin-bottom:20px}
+  .gate h1{margin:0 0 8px; font-size:25px}
+  .gate p{margin:0 0 24px; color:var(--grey)}
+  .gate input{width:100%; font:inherit; font-size:21px; text-align:center; letter-spacing:.25em;
+    padding:13px; border:1px solid var(--line); border-radius:10px; background:#fff}
+  .gate button{width:100%; margin-top:14px; min-height:52px; border:0; border-radius:10px;
+    background:var(--navy); color:#fff; font-size:18px}
+  .gate .err{margin:12px 0 0; min-height:24px; color:var(--red)}
 
-  /* ---- shell ---- */
-  header.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 20px;background:var(--navy);color:#fff}
-  header.bar img{height:30px;width:auto}
-  header.bar h1{margin:0;font-size:19px;font-weight:600}
-  .bar .spacer{flex:1}
-  .bar button{font:inherit;font-size:16px;padding:9px 18px;border:0;border-radius:6px;cursor:pointer}
-  .btn-save{background:var(--gold);color:var(--navy)}
-  .btn-ghost{background:transparent;color:#fff;border:1px solid rgb(255 255 255 /.4)}
-  .btn-save:hover,.btn-ghost:hover{filter:brightness(1.08)}
-  .status{font-size:15px;color:#E8D4A8;min-height:20px}
+  /* ---------- shell ---------- */
+  .bar{position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:14px;
+    padding:12px 20px; background:var(--navy); color:#fff}
+  .bar img{height:28px}
+  .bar strong{font-size:18px; font-weight:600}
+  .bar .sp{flex:1}
+  .bar .state{font-size:15px; color:#D9C79A; white-space:nowrap}
+  .bar button{min-height:44px; padding:0 18px; border-radius:9px; border:0; font-size:16px}
+  .bar .save{background:var(--gold); color:var(--navy); font-weight:600}
+  .bar .save[disabled]{opacity:.45; cursor:default}
+  .bar .link{background:transparent; color:#fff; border:1px solid rgb(255 255 255/.45)}
 
-  nav.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:14px 20px 0;max-width:1100px;margin:0 auto}
-  nav.tabs button{font:inherit;font-size:15px;padding:8px 15px;border-radius:6px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
-  nav.tabs button[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  main{max-width:780px; margin:0 auto; padding:22px 20px 90px}
+  .back{display:inline-flex; align-items:center; gap:7px; min-height:44px; padding:0 16px;
+    margin-bottom:14px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--ink); font-size:16px}
+  h2.title{margin:0 0 6px; font-size:28px; font-weight:600}
+  p.lede{margin:0 0 22px; color:var(--grey)}
 
-  main{max-width:1100px;margin:0 auto;padding:18px 20px 80px}
-  .hint{font-size:14px;color:var(--grey);line-height:1.65;margin:10px 0 18px}
-  .field{margin-bottom:14px}
-  .field label{display:block;font-size:14px;color:var(--gold-ink);margin-bottom:5px}
-  .field input,.field textarea{width:100%;font:inherit;font-size:16px;line-height:1.6;padding:9px 11px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--navy);resize:vertical}
-  .field input:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
-  .row{display:flex;gap:10px;flex-wrap:wrap}
-  .row .field{flex:1 1 180px}
-  .card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:16px;margin-bottom:14px}
-  .card header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-  .card h3{margin:0;font-size:17px;font-weight:600;flex:1}
-  .mini{font:inherit;font-size:13px;padding:6px 11px;border-radius:6px;border:1px solid var(--line);background:#fff;color:var(--gold-ink);cursor:pointer}
-  .mini:hover{border-color:var(--gold)}
-  .mini.del:hover{border-color:#b91c1c;color:#b91c1c}
-  .add{font:inherit;font-size:16px;padding:10px 18px;border-radius:6px;border:1px dashed var(--gold);background:#fff;color:var(--gold-ink);cursor:pointer;width:100%}
-  .add:hover{background:#FFFBF2}
-  details.sub{border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 14px;margin-bottom:10px}
-  details.sub>summary{cursor:pointer;font-size:16px;font-weight:600;padding:2px 0}
-  details.sub[open]>summary{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px}
-  .block{border:1px solid var(--line);border-right:4px solid var(--gold);border-radius:8px;padding:12px;margin-bottom:10px;background:#FDFCF9}
-  .block .kind{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:14px;color:var(--gold-ink)}
-  .block select{font:inherit;font-size:14px;padding:5px 8px;border-radius:6px;border:1px solid var(--line);background:#fff}
-  .save-note{margin-top:22px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:16px;font-size:15px;line-height:1.7;color:var(--navy)}
-  .save-note b{color:var(--gold-ink)}
+  /* ---------- menu rows ---------- */
+  .menu{display:grid; gap:12px}
+  .menu button{display:flex; align-items:center; gap:16px; width:100%; text-align:start;
+    padding:20px 22px; border:1px solid var(--line); border-radius:14px; background:#fff; color:var(--ink)}
+  .menu button:hover{border-color:var(--gold)}
+  .menu .t{flex:1}
+  .menu .t b{display:block; font-size:19px; font-weight:600}
+  .menu .t span{display:block; color:var(--grey); font-size:15px}
+  .menu .go{color:var(--gold-ink); font-size:22px}
+
+  /* ---------- cards and fields ---------- */
+  .card{border:1px solid var(--line); border-radius:14px; background:#fff; padding:18px 20px; margin-bottom:14px}
+  .card .head{display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap}
+  .card .head h3{margin:0; flex:1; font-size:18px; font-weight:600}
+  .field{margin-bottom:16px}
+  .field > label{display:block; font-size:15px; color:var(--grey); margin-bottom:6px}
+  .field input,.field textarea{width:100%; font:inherit; padding:12px 14px; border:1px solid var(--line);
+    border-radius:10px; background:#fff; color:var(--ink); resize:vertical; min-height:48px}
+  .field textarea{line-height:1.7}
+  .row{display:flex; gap:12px; flex-wrap:wrap}
+  .row > .field{flex:1 1 200px}
+  .tool{min-height:40px; padding:0 13px; border:1px solid var(--line); border-radius:9px;
+    background:#fff; color:var(--gold-ink); font-size:15px}
+  .tool:hover{border-color:var(--gold)}
+  .tool.del{color:var(--red)}
+  .tool.del:hover{border-color:var(--red)}
+  .add{width:100%; min-height:52px; margin-top:4px; border:1px dashed var(--gold); border-radius:12px;
+    background:#fff; color:var(--gold-ink); font-size:17px}
+  .add:hover{background:#FFFCF5}
+  .note{border:1px solid var(--line); border-right:4px solid var(--gold); border-radius:12px;
+    background:#fff; padding:16px 18px; margin-bottom:18px; color:var(--ink)}
+  .note b{color:var(--gold-ink)}
+  .empty{text-align:center; color:var(--grey); padding:30px 10px 22px}
+
+  /* ---------- article body blocks ---------- */
+  .block{border:1px solid var(--line); border-radius:12px; background:#FCFBF8; padding:14px 16px; margin-bottom:12px}
+  .block .kind{display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap}
+  .block select{font:inherit; font-size:15px; min-height:40px; padding:0 10px; border-radius:9px;
+    border:1px solid var(--line); background:#fff; color:var(--ink)}
+  .block .sp{flex:1}
+
+  @media (max-width:560px){
+    .bar{flex-wrap:wrap}
+    .bar .state{width:100%; order:9}
+    main{padding:18px 14px 80px}
+    h2.title{font-size:24px}
+  }
 </style>
 </head>
 <body>
 
 <div id="gate" class="gate">
-  <form class="gate-box" id="gateForm">
+  <form id="gateForm">
     <img src="public/assets/es-mark.svg" alt="" />
-    <h1>ניהול תוכן</h1>
-    <p>האתר של איתן שפיר ושות׳. יש להזין את הסיסמה כדי להמשיך.</p>
+    <h1>ניהול התוכן</h1>
+    <p>האתר של איתן שפיר ושות׳</p>
     <input id="pass" type="password" inputmode="numeric" autocomplete="current-password" aria-label="סיסמה" />
     <button type="submit">כניסה</button>
-    <p class="gate-err" id="gateErr" role="status"></p>
+    <p class="err" id="gateErr" role="status"></p>
   </form>
 </div>
 
 <div id="app" hidden>
-  <header class="bar">
+  <div class="bar">
     <img src="public/assets/logo-light.svg" alt="איתן שפיר ושות׳" />
-    <h1>ניהול תוכן</h1>
-    <span class="spacer"></span>
-    <span class="status" id="status" role="status"></span>
-    <button class="btn-ghost" id="preview" type="button">צפייה באתר</button>
-    <button class="btn-save" id="save" type="button">שמירת שינויים</button>
-  </header>
-
-  <nav class="tabs" id="tabs" role="tablist"></nav>
-  <main id="fields"></main>
+    <strong>ניהול התוכן</strong>
+    <span class="sp"></span>
+    <span class="state" id="state" role="status"></span>
+    <button class="link" id="viewSite" type="button">האתר</button>
+    <button class="save" id="save" type="button" disabled>שמירה</button>
+  </div>
+  <main id="screen"></main>
 </div>
 
 <script>
 /* ------------------------------------------------------------------ *
- *  Content panel for the site. It edits a copy of the site's texts,
- *  and hands the result back as a file that gets published to the site.
+ *  Content panel. One screen at a time: a short menu, then one thing
+ *  to edit. It works on a copy of the site texts and hands the result
+ *  back as a file that gets published to the site.
  * ------------------------------------------------------------------ */
 
 const PASSWORD = "123456";
 
+/* plain names for every field, by group */
 const LABELS = {
-  home: { _name: "דף הבית",
+  home: { _name: "דף הבית", _hint: "הכותרות והפסקאות של העמוד הראשון.",
     heroLine1: "כותרת ראשית, שורה 1", heroLine2: "כותרת ראשית, שורה 2",
-    heroSubA: "כותרת משנה, שורה 1", heroSubB: "כותרת משנה, שורה 2", heroButton: "כפתור בהירו",
+    heroSubA: "כותרת משנה, שורה 1", heroSubB: "כותרת משנה, שורה 2", heroButton: "כפתור בפתיחה",
     servicesTitle: "כותרת תחומי התמחות", servicesIntroA: "פתיח התמחות, שורה 1", servicesIntroB: "פתיח התמחות, שורה 2",
     differenceTitle: "כותרת סקשן הגישה", clientsTitle: "כותרת לקוחות",
     clientsIntroA: "פתיח לקוחות, שורה 1", clientsIntroB: "פתיח לקוחות, שורה 2",
     aboutTitle: "כותרת על המשרד", aboutP1: "על המשרד, פסקה 1", aboutP2: "על המשרד, פסקה 2", aboutP3: "על המשרד, פסקה 3",
     aboutButton: "כפתור על המשרד",
     articlesTitleA: "כותרת מאמרים, שורה 1", articlesTitleB: "כותרת מאמרים, שורה 2", articlesButton: "כפתור מאמרים" },
-  about: { _name: "אודות",
-    _hint: "פסקאות הפתיחה, המספרים, ענפי הלקוחות והשותפים. עריכת אנשי הצוות נמצאת בלשונית נפרדת.",
+  about: { _name: "עמוד אודות", _hint: "פסקאות הפתיחה, המספרים, ענפי הלקוחות והשותפים. אנשי הצוות נמצאים במסך נפרד.",
     officeTitle: "כותרת הסקשן", officeP1: "פסקה 1", officeP2: "פסקה 2", officeP3: "פסקה 3",
     stats: "המספרים", to: "מספר", suffix: "סימן אחרי המספר", label: "תיאור",
     sectorsTitle: "כותרת ענפי הלקוחות", sectors: "ענפי לקוחות",
     partners: "שותפים", name: "שם", role: "תפקיד", img: "נתיב תמונה",
     p1: "פסקה 1", p2: "פסקה 2", p3: "פסקה 3", highlights: "שלוש הקוביות", value: "כותרת הקובייה",
     teamTitle: "כותרת הצוות", teamIntro: "פסקת פתיחה לצוות" },
-  servicesPage: { _name: "תחומי התמחות",
-    _hint: "הכותרת והפתיח של העמוד, ושתי המחלקות.",
+  servicesPage: { _name: "עמוד תחומי התמחות", _hint: "הכותרת והפתיח של העמוד, ושתי המחלקות.",
     title: "כותרת העמוד", introA: "פסקה 1", introB: "פסקה 2",
     departments: "מחלקות", tab: "שם הלשונית", mobileTab: "שם הלשונית במובייל", lead: "בראשות" },
   serviceDetails: { _name: "תוכן התחומים",
-    _hint: "מה שנפתח בלחיצה על תחום. שם התחום עצמו נקבע בקוד, כי הוא מקשר בין החוצץ לתוכן.",
     title: "כותרת מלאה (לא חובה)", subtitle: "כותרת משנה", paragraphs: "פסקאות",
     listTitle: "כותרת הרשימה", list: "פריטי הרשימה", note: "הערה בסוף" },
-  contact: { _name: "יצירת קשר", title: "כותרת", intro: "פסקת פתיחה", privacyNote: "הערת פרטיות", privacyLink: "טקסט הקישור", submit: "כפתור שליחה" },
-  articlesPage: { _name: "עמוד מאמרים", title: "כותרת", intro: "פסקת פתיחה", featuredTab: "לשונית המאמר האחרון", featuredButton: "כפתור קריאה" },
+  articlesPage: { _name: "עמוד המאמרים", _hint: "הכותרת של עמוד המאמרים, לא המאמרים עצמם.",
+    title: "כותרת", intro: "פסקת פתיחה", featuredTab: "לשונית המאמר האחרון", featuredButton: "כפתור קריאה" },
+  contact: { _name: "יצירת קשר", _hint: "הטקסטים בטופס שבתחתית כל עמוד.",
+    title: "כותרת", intro: "פסקת פתיחה", privacyNote: "הערת פרטיות", privacyLink: "טקסט הקישור", submit: "כפתור שליחה" },
 };
+
+const TEXT_PAGES = ["home", "about", "servicesPage", "serviceDetails", "articlesPage", "contact"];
 
 const LONG = ["intro","excerpt","aboutP1","aboutP2","aboutP3","officeP1","officeP2","officeP3","p1","p2","p3",
   "teamIntro","introA","introB","servicesIntroA","servicesIntroB","clientsIntroA","clientsIntroB",
-  "privacyNote","heroSubA","heroSubB","subtitle","note","paragraphs"];
+  "privacyNote","heroSubA","heroSubB","subtitle","note","paragraphs","text"];
 const SHORT = ["tag","date","to","suffix","img","slug","role","value"];
 
 const BLOCK_KINDS = [
-  ["p", "פסקה"],
-  ["h2", "כותרת משנה"],
-  ["lead", "פסקת פתיחה"],
-  ["list", "רשימה"],
-  ["quote", "ציטוט מודגש"],
-  ["callout", "תיבת הדגשה"],
-  ["note", "הערה"],
+  ["p", "פסקה"], ["h2", "כותרת משנה"], ["lead", "פסקת פתיחה"],
+  ["list", "רשימה"], ["quote", "ציטוט מודגש"], ["callout", "תיבת הדגשה"], ["note", "הערה"],
 ];
 
-let data = null;        // { content: {...}, bodies: { slug: [blocks] } }
-let active = "home";
+let data = null;          /* { content: {...}, bodies: { slug: [blocks] } } */
 let dirty = false;
+let view = { s: "home" }; /* which screen is open */
+let scope = "home";       /* which LABELS group the field names come from */
 
 const $ = (id) => document.getElementById(id);
-const setStatus = (m) => { $("status").textContent = m; };
-const touch = () => { dirty = true; setStatus("יש שינויים שלא נשמרו"); };
+const el = (tag, cls, text) => {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+};
+const setState = (m) => ($("state").textContent = m);
 
-/* ---------- gate ---------- */
+function touch() {
+  dirty = true;
+  $("save").disabled = false;
+  setState("יש שינויים שלא נשמרו");
+  try { localStorage.setItem("es-panel-draft", JSON.stringify(data)); } catch (e) { /* storage blocked */ }
+}
+
+/* ---------------- entry ---------------- */
 $("gateForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  if ($("pass").value.trim() === PASSWORD) {
-    sessionStorage.setItem("es-panel", "1");
-    open_();
-  } else {
-    $("gateErr").textContent = "סיסמה שגויה";
-  }
+  if ($("pass").value.trim() === PASSWORD) { sessionStorage.setItem("es-panel", "1"); enter(); }
+  else $("gateErr").textContent = "סיסמה שגויה";
 });
-if (sessionStorage.getItem("es-panel") === "1") open_();
+if (sessionStorage.getItem("es-panel") === "1") enter();
 
-function open_() {
+function enter() {
   $("gate").hidden = true;
   $("app").hidden = false;
   load();
 }
 
-/* ---------- data ---------- */
 async function load() {
-  setStatus("טוען…");
-  const saved = localStorage.getItem("es-panel-draft");
+  setState("טוען…");
   const res = await fetch("panel-data.json", { cache: "no-store" });
   data = await res.json();
+  const saved = localStorage.getItem("es-panel-draft");
   if (saved) {
     try {
       const draft = JSON.parse(saved);
-      if (confirm("נמצאה טיוטה שלא נשמרה מהפעם הקודמת. לטעון אותה?")) data = draft;
+      if (confirm("יש כאן טיוטה מהפעם הקודמת שלא נשמרה. להמשיך ממנה?")) { data = draft; dirty = true; $("save").disabled = false; }
       else localStorage.removeItem("es-panel-draft");
-    } catch { /* a broken draft is simply ignored */ }
+    } catch (e) { /* a broken draft is ignored */ }
   }
-  renderTabs();
+  setState(dirty ? "יש שינויים שלא נשמרו" : "");
   render();
-  setStatus("");
 }
 
-function keepDraft() {
-  try { localStorage.setItem("es-panel-draft", JSON.stringify(data)); } catch { /* storage full or blocked */ }
-}
-
-/* ---------- small builders ---------- */
+/* ---------------- small builders ---------------- */
 function field(labelText, value, onInput, long) {
-  const wrap = document.createElement("div");
-  wrap.className = "field";
-  const label = document.createElement("label");
-  label.textContent = labelText;
-  const input = document.createElement(long ? "textarea" : "input");
-  if (long) input.rows = Math.min(8, Math.ceil(String(value || "").length / 60) + 1);
-  input.value = value ?? "";
-  input.addEventListener("input", () => { onInput(input.value); touch(); keepDraft(); });
-  label.appendChild(input);
+  const wrap = el("div", "field");
+  const label = el("label", null, labelText);
+  const input = el(long ? "textarea" : "input");
+  if (long) input.rows = Math.min(9, Math.ceil(String(value || "").length / 55) + 2);
+  input.value = value == null ? "" : value;
+  input.addEventListener("input", () => { onInput(input.value); touch(); });
   wrap.appendChild(label);
+  wrap.appendChild(input);
   return wrap;
 }
 
-function mini(text, cls, onClick) {
-  const b = document.createElement("button");
+function tool(text, cls, onClick) {
+  const b = el("button", "tool " + (cls || ""), text);
   b.type = "button";
-  b.className = "mini " + cls;
-  b.textContent = text;
+  b.onclick = onClick;
+  return b;
+}
+
+function menuRow(title, sub, onClick) {
+  const b = el("button");
+  b.type = "button";
+  const t = el("div", "t");
+  t.appendChild(el("b", null, title));
+  t.appendChild(el("span", null, sub));
+  b.appendChild(t);
+  b.appendChild(el("span", "go", "‹"));
   b.onclick = onClick;
   return b;
 }
@@ -227,9 +268,10 @@ function blankLike(sample) {
   return out;
 }
 
-const labelFor = (key) => (LABELS[active] && LABELS[active][key]) || key;
+const labelFor = (key) => (LABELS[scope] && LABELS[scope][key]) || key;
+const go = (s, arg) => { view = { s: s, arg: arg }; render(); window.scrollTo({ top: 0 }); };
 
-/* ---------- generic value editor ---------- */
+/* ---------------- generic field rendering ---------------- */
 function renderValue(box, key, holder, prop) {
   const value = holder[prop];
 
@@ -240,39 +282,32 @@ function renderValue(box, key, holder, prop) {
   }
 
   if (Array.isArray(value)) {
-    const card = document.createElement("div");
-    card.className = "card";
-    const head = document.createElement("header");
-    const h = document.createElement("h3");
-    h.textContent = labelFor(key);
-    head.appendChild(h);
-    head.appendChild(mini("הוספה +", "", () => {
+    const card = el("div", "card");
+    const head = el("div", "head");
+    head.appendChild(el("h3", null, labelFor(key)));
+    head.appendChild(tool("הוספה +", "", () => {
       value.push(value.length ? blankLike(value[value.length - 1]) : "");
-      touch(); keepDraft(); render();
+      touch(); render();
     }));
     card.appendChild(head);
 
     value.forEach((item, i) => {
       if (item === null || typeof item !== "object") {
-        const row = document.createElement("div");
-        row.className = "row";
+        const row = el("div", "row");
         row.style.alignItems = "flex-end";
         const f = field(String(i + 1), item, (v) => (value[i] = v), LONG.includes(key));
-        f.style.flex = "1 1 200px";
+        f.style.flex = "1 1 220px";
         row.appendChild(f);
-        const del = mini("מחיקה", "del", () => { value.splice(i, 1); touch(); keepDraft(); render(); });
-        del.style.marginBottom = "14px";
+        const del = tool("מחיקה", "del", () => { value.splice(i, 1); touch(); render(); });
+        del.style.marginBottom = "16px";
         row.appendChild(del);
         card.appendChild(row);
         return;
       }
-      const sub = document.createElement("div");
-      sub.className = "card";
-      const subHead = document.createElement("header");
-      const t = document.createElement("h3");
-      t.textContent = (i + 1) + ". " + (item.name || item.title || item.tab || item.value || item.label || "");
-      subHead.appendChild(t);
-      subHead.appendChild(mini("מחיקה", "del", () => { value.splice(i, 1); touch(); keepDraft(); render(); }));
+      const sub = el("div", "card");
+      const subHead = el("div", "head");
+      subHead.appendChild(el("h3", null, (i + 1) + ". " + (item.name || item.title || item.tab || item.value || item.label || "")));
+      subHead.appendChild(tool("מחיקה", "del", () => { value.splice(i, 1); touch(); render(); }));
       sub.appendChild(subHead);
       renderObject(sub, item);
       card.appendChild(sub);
@@ -281,21 +316,19 @@ function renderValue(box, key, holder, prop) {
     return;
   }
 
-  const card = document.createElement("div");
-  card.className = "card";
-  const h = document.createElement("h3");
-  h.textContent = labelFor(key);
-  card.appendChild(h);
+  const card = el("div", "card");
+  card.appendChild(el("h3", null, labelFor(key)));
   renderObject(card, value);
   box.appendChild(card);
 }
 
-function renderObject(box, obj) {
+function renderObject(box, obj, skip) {
   let row = null;
   Object.keys(obj).forEach((k) => {
+    if (skip && skip.indexOf(k) >= 0) return;
     const v = obj[k];
     if (SHORT.includes(k) && (v === null || typeof v !== "object")) {
-      if (!row) { row = document.createElement("div"); row.className = "row"; box.appendChild(row); }
+      if (!row) { row = el("div", "row"); box.appendChild(row); }
       renderValue(row, k, obj, k);
       return;
     }
@@ -304,145 +337,126 @@ function renderObject(box, obj) {
   });
 }
 
-/* ---------- team ---------- */
-function renderTeam(box) {
-  const hint = document.createElement("p");
-  hint.className = "hint";
-  hint.textContent = "סדר אנשי הצוות כאן הוא הסדר שבו הם מופיעים בעמוד אודות. בשדה התמונה רושמים את נתיב הקובץ, למשל /assets/team/katia-higer.webp. להוספת תמונה חדשה יש לשלוח לי את הקובץ.";
-  box.appendChild(hint);
-
-  const team = data.content.about.team;
-  team.forEach((m, i) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    const head = document.createElement("header");
-    const h = document.createElement("h3");
-    h.textContent = (i + 1) + ". " + (m.name || "איש צוות חדש");
-    head.appendChild(h);
-    head.appendChild(mini("↑", "", () => { if (i > 0) { [team[i - 1], team[i]] = [team[i], team[i - 1]]; touch(); keepDraft(); render(); } }));
-    head.appendChild(mini("↓", "", () => { if (i < team.length - 1) { [team[i + 1], team[i]] = [team[i], team[i + 1]]; touch(); keepDraft(); render(); } }));
-    head.appendChild(mini("מחיקה", "del", () => { if (confirm("למחוק את " + (m.name || "איש הצוות") + "?")) { team.splice(i, 1); touch(); keepDraft(); render(); } }));
-    card.appendChild(head);
-
-    const row = document.createElement("div");
-    row.className = "row";
-    row.appendChild(field("שם", m.name, (v) => { m.name = v; h.textContent = (i + 1) + ". " + v; }));
-    row.appendChild(field("תפקיד", m.role, (v) => (m.role = v)));
-    card.appendChild(row);
-    card.appendChild(field("נתיב תמונה (אפשר להשאיר ריק)", m.img, (v) => (m.img = v)));
-    box.appendChild(card);
-  });
-
-  const add = document.createElement("button");
-  add.type = "button";
-  add.className = "add";
-  add.textContent = "הוספת איש צוות +";
-  add.onclick = () => { team.push({ name: "", role: "", img: "" }); touch(); keepDraft(); render(); };
-  box.appendChild(add);
+/* ---------------- screens ---------------- */
+function head(box, title, lede, backTo, backText) {
+  if (backTo) {
+    const b = el("button", "back", "› " + backText);
+    b.type = "button";
+    b.onclick = () => go(backTo.s, backTo.arg);
+    box.appendChild(b);
+  }
+  box.appendChild(el("h2", "title", title));
+  if (lede) box.appendChild(el("p", "lede", lede));
 }
 
-/* ---------- articles ---------- */
-function slugify(title) {
-  const base = String(title || "").trim().replace(/\s+/g, "-").replace(/["'״׳.,:;()]/g, "");
-  return base ? "article-" + Date.now().toString(36) : "article-" + Date.now().toString(36);
+function scrHome(box) {
+  box.appendChild(el("h2", "title", "מה נעדכן היום?"));
+  box.appendChild(el("p", "lede", "בוחרים נושא, מעדכנים, ובסוף לוחצים שמירה למעלה."));
+  const menu = el("div", "menu");
+  menu.appendChild(menuRow("מאמרים", data.content.articles.length + " מאמרים באתר. הוספה, עריכה ומחיקה.", () => go("articles")));
+  menu.appendChild(menuRow("אנשי הצוות", data.content.about.team.length + " אנשים בעמוד אודות. שמות, תפקידים וסדר.", () => go("team")));
+  menu.appendChild(menuRow("טקסטים באתר", "כל הכותרות והפסקאות, לפי עמוד.", () => go("texts")));
+  box.appendChild(menu);
 }
 
-function renderArticles(box) {
-  const hint = document.createElement("p");
-  hint.className = "hint";
-  hint.textContent = "המאמר הראשון ברשימה הוא זה שמוצג כ״מאמר האחרון״ בעמוד המאמרים ובדף הבית. כל מאמר בנוי מפסקאות וכותרות שאפשר להוסיף, למחוק ולהזיז. לתמונה חדשה יש לשלוח לי את הקובץ, ובינתיים אפשר להשאיר את נתיב התמונה של מאמר קיים.";
-  box.appendChild(hint);
+/* ---- articles ---- */
+function scrArticles(box) {
+  head(box, "מאמרים", "המאמר הראשון ברשימה הוא זה שמוצג כמאמר האחרון בדף הבית ובעמוד המאמרים.", { s: "home" }, "חזרה");
 
   const arts = data.content.articles;
-  arts.forEach((a, i) => {
-    const det = document.createElement("details");
-    det.className = "sub";
-    if (i === 0) det.open = true;
-    const sum = document.createElement("summary");
-    sum.textContent = (i + 1) + ". " + (a.title || "מאמר חדש");
-    det.appendChild(sum);
+  if (!arts.length) box.appendChild(el("p", "empty", "אין עדיין מאמרים באתר."));
 
-    const head = document.createElement("div");
-    head.className = "row";
-    head.style.marginBottom = "6px";
-    head.appendChild(mini("↑ קדימה", "", () => { if (i > 0) { [arts[i - 1], arts[i]] = [arts[i], arts[i - 1]]; touch(); keepDraft(); render(); } }));
-    head.appendChild(mini("↓ אחורה", "", () => { if (i < arts.length - 1) { [arts[i + 1], arts[i]] = [arts[i], arts[i + 1]]; touch(); keepDraft(); render(); } }));
-    head.appendChild(mini("מחיקת המאמר", "del", () => {
+  arts.forEach((a, i) => {
+    const card = el("div", "card");
+    const h = el("div", "head");
+    h.appendChild(el("h3", null, a.title || "מאמר ללא כותרת"));
+    h.appendChild(tool("עריכה", "", () => go("article", i)));
+    card.appendChild(h);
+
+    const meta = el("p", null, [a.tag, a.date].filter(Boolean).join(" · "));
+    meta.style.cssText = "margin:0 0 12px;color:var(--grey);font-size:15px";
+    card.appendChild(meta);
+
+    const row = el("div", "row");
+    row.appendChild(tool("↑ למעלה", "", () => { if (i > 0) { const t = arts[i - 1]; arts[i - 1] = arts[i]; arts[i] = t; touch(); render(); } }));
+    row.appendChild(tool("↓ למטה", "", () => { if (i < arts.length - 1) { const t = arts[i + 1]; arts[i + 1] = arts[i]; arts[i] = t; touch(); render(); } }));
+    row.appendChild(tool("מחיקה", "del", () => {
       if (confirm("למחוק את המאמר ״" + (a.title || "") + "״?")) {
         delete data.bodies[a.slug];
         arts.splice(i, 1);
-        touch(); keepDraft(); render();
+        touch(); render();
       }
     }));
-    det.appendChild(head);
-
-    det.appendChild(field("כותרת", a.title, (v) => { a.title = v; sum.textContent = (i + 1) + ". " + v; }));
-    const row = document.createElement("div");
-    row.className = "row";
-    row.appendChild(field("נושא", a.tag, (v) => (a.tag = v)));
-    row.appendChild(field("תאריך", a.date, (v) => (a.date = v)));
-    det.appendChild(row);
-    det.appendChild(field("מאת", a.author, (v) => (a.author = v)));
-    det.appendChild(field("תקציר (מופיע בכרטיס)", a.excerpt, (v) => (a.excerpt = v), true));
-    det.appendChild(field("נתיב תמונה", a.img, (v) => (a.img = v)));
-
-    const bodyTitle = document.createElement("p");
-    bodyTitle.className = "hint";
-    bodyTitle.style.margin = "16px 0 8px";
-    bodyTitle.textContent = "גוף המאמר";
-    det.appendChild(bodyTitle);
-
-    const body = (data.bodies[a.slug] = data.bodies[a.slug] || []);
-    body.forEach((b, j) => det.appendChild(renderBlock(body, b, j)));
-
-    const add = document.createElement("button");
-    add.type = "button";
-    add.className = "add";
-    add.textContent = "הוספת פסקה +";
-    add.onclick = () => { body.push({ t: "p", text: "" }); touch(); keepDraft(); render(); };
-    det.appendChild(add);
-
-    box.appendChild(det);
+    card.appendChild(row);
+    box.appendChild(card);
   });
 
-  const addArt = document.createElement("button");
-  addArt.type = "button";
-  addArt.className = "add";
-  addArt.style.marginTop = "10px";
-  addArt.textContent = "מאמר חדש +";
-  addArt.onclick = () => {
-    const slug = slugify("");
+  const add = el("button", "add", "מאמר חדש +");
+  add.type = "button";
+  add.onclick = () => {
+    const slug = "article-" + Date.now().toString(36);
     const today = new Date().toLocaleDateString("he-IL").replace(/\./g, "/");
-    arts.unshift({ slug, title: "", tag: "", date: today, img: arts[0] ? arts[0].img : "", author: "", excerpt: "" });
+    arts.unshift({ slug: slug, title: "", tag: "", date: today, img: arts[0] ? arts[0].img : "", author: "", excerpt: "" });
     data.bodies[slug] = [{ t: "lead", text: "" }, { t: "p", text: "" }];
-    touch(); keepDraft(); render();
+    touch(); go("article", 0);
   };
-  box.appendChild(addArt);
+  box.appendChild(add);
+}
+
+function scrArticle(box, i) {
+  const a = data.content.articles[i];
+  if (!a) return go("articles");
+  head(box, a.title || "מאמר חדש", null, { s: "articles" }, "חזרה למאמרים");
+
+  const card = el("div", "card");
+  card.appendChild(field("כותרת המאמר", a.title, (v) => (a.title = v)));
+  const row = el("div", "row");
+  row.appendChild(field("נושא", a.tag, (v) => (a.tag = v)));
+  row.appendChild(field("תאריך", a.date, (v) => (a.date = v)));
+  card.appendChild(row);
+  card.appendChild(field("מאת", a.author, (v) => (a.author = v)));
+  card.appendChild(field("תקציר, מופיע בכרטיס ברשימה", a.excerpt, (v) => (a.excerpt = v), true));
+  card.appendChild(field("תמונה (נתיב הקובץ, לתמונה חדשה יש לשלוח לי אותה)", a.img, (v) => (a.img = v)));
+  box.appendChild(card);
+
+  const t = el("h3", null, "גוף המאמר");
+  t.style.cssText = "margin:26px 0 4px;font-size:20px";
+  box.appendChild(t);
+  box.appendChild(el("p", "lede", "כל חלק הוא פסקה, כותרת או רשימה. אפשר להוסיף, להזיז ולמחוק."));
+
+  const body = (data.bodies[a.slug] = data.bodies[a.slug] || []);
+  body.forEach((b, j) => box.appendChild(renderBlock(body, b, j)));
+
+  const add = el("button", "add", "הוספת חלק +");
+  add.type = "button";
+  add.onclick = () => { body.push({ t: "p", text: "" }); touch(); render(); };
+  box.appendChild(add);
 }
 
 function renderBlock(body, b, j) {
-  const wrap = document.createElement("div");
-  wrap.className = "block";
+  const wrap = el("div", "block");
+  const kind = el("div", "kind");
 
-  const kind = document.createElement("div");
-  kind.className = "kind";
-  const sel = document.createElement("select");
-  BLOCK_KINDS.forEach(([v, t]) => {
-    const o = document.createElement("option");
-    o.value = v; o.textContent = t; o.selected = b.t === v;
+  const sel = el("select");
+  sel.setAttribute("aria-label", "סוג החלק");
+  BLOCK_KINDS.forEach((pair) => {
+    const o = el("option", null, pair[1]);
+    o.value = pair[0];
+    o.selected = b.t === pair[0];
     sel.appendChild(o);
   });
   sel.onchange = () => {
     b.t = sel.value;
     if (b.t === "list" && !b.items) { b.items = [""]; delete b.text; }
-    if (b.t !== "list" && !b.text) { b.text = ""; delete b.items; }
+    if (b.t !== "list" && b.text === undefined) { b.text = ""; delete b.items; }
     if (b.t !== "callout") delete b.title;
-    touch(); keepDraft(); render();
+    touch(); render();
   };
   kind.appendChild(sel);
-  kind.appendChild(mini("↑", "", () => { if (j > 0) { [body[j - 1], body[j]] = [body[j], body[j - 1]]; touch(); keepDraft(); render(); } }));
-  kind.appendChild(mini("↓", "", () => { if (j < body.length - 1) { [body[j + 1], body[j]] = [body[j], body[j + 1]]; touch(); keepDraft(); render(); } }));
-  kind.appendChild(mini("מחיקה", "del", () => { body.splice(j, 1); touch(); keepDraft(); render(); }));
+  kind.appendChild(el("span", "sp"));
+  kind.appendChild(tool("↑", "", () => { if (j > 0) { const t = body[j - 1]; body[j - 1] = body[j]; body[j] = t; touch(); render(); } }));
+  kind.appendChild(tool("↓", "", () => { if (j < body.length - 1) { const t = body[j + 1]; body[j + 1] = body[j]; body[j] = t; touch(); render(); } }));
+  kind.appendChild(tool("מחיקה", "del", () => { body.splice(j, 1); touch(); render(); }));
   wrap.appendChild(kind);
 
   if (b.t === "callout") wrap.appendChild(field("כותרת התיבה", b.title, (v) => (b.title = v)));
@@ -450,98 +464,137 @@ function renderBlock(body, b, j) {
   if (b.t === "list") {
     b.items = b.items || [""];
     b.items.forEach((item, k) => {
-      const row = document.createElement("div");
-      row.className = "row";
+      const row = el("div", "row");
       row.style.alignItems = "flex-end";
       const f = field("פריט " + (k + 1), item, (v) => (b.items[k] = v));
-      f.style.flex = "1 1 200px";
+      f.style.flex = "1 1 220px";
       row.appendChild(f);
-      const del = mini("מחיקה", "del", () => { b.items.splice(k, 1); touch(); keepDraft(); render(); });
-      del.style.marginBottom = "14px";
+      const del = tool("מחיקה", "del", () => { b.items.splice(k, 1); touch(); render(); });
+      del.style.marginBottom = "16px";
       row.appendChild(del);
       wrap.appendChild(row);
     });
-    const add = mini("הוספת פריט +", "", () => { b.items.push(""); touch(); keepDraft(); render(); });
-    wrap.appendChild(add);
+    wrap.appendChild(tool("הוספת פריט +", "", () => { b.items.push(""); touch(); render(); }));
   } else {
     wrap.appendChild(field("טקסט", b.text, (v) => (b.text = v), true));
   }
   return wrap;
 }
 
-/* ---------- shell ---------- */
-function render() {
-  const box = $("fields");
-  box.innerHTML = "";
+/* ---- team ---- */
+function scrTeam(box) {
+  head(box, "אנשי הצוות", "הסדר כאן הוא הסדר בעמוד אודות. לתמונה חדשה יש לשלוח לי את הקובץ.", { s: "home" }, "חזרה");
 
-  if (active === "team") { renderTeam(box); return; }
-  if (active === "articles") { renderArticles(box); return; }
+  const team = data.content.about.team;
+  team.forEach((m, i) => {
+    const card = el("div", "card");
+    const h = el("div", "head");
+    const title = el("h3", null, m.name || "איש צוות חדש");
+    h.appendChild(title);
+    h.appendChild(tool("↑", "", () => { if (i > 0) { const t = team[i - 1]; team[i - 1] = team[i]; team[i] = t; touch(); render(); } }));
+    h.appendChild(tool("↓", "", () => { if (i < team.length - 1) { const t = team[i + 1]; team[i + 1] = team[i]; team[i] = t; touch(); render(); } }));
+    h.appendChild(tool("מחיקה", "del", () => {
+      if (confirm("למחוק את " + (m.name || "איש הצוות") + "?")) { team.splice(i, 1); touch(); render(); }
+    }));
+    card.appendChild(h);
 
-  const meta = LABELS[active];
-  if (meta && meta._hint) {
-    const hint = document.createElement("p");
-    hint.className = "hint";
-    hint.textContent = meta._hint;
-    box.appendChild(hint);
-  }
+    const row = el("div", "row");
+    row.appendChild(field("שם", m.name, (v) => { m.name = v; title.textContent = v || "איש צוות חדש"; }));
+    row.appendChild(field("תפקיד", m.role, (v) => (m.role = v)));
+    card.appendChild(row);
+    card.appendChild(field("תמונה (נתיב הקובץ, אפשר להשאיר ריק)", m.img, (v) => (m.img = v)));
+    box.appendChild(card);
+  });
 
-  const group = data.content[active];
-  const values = Object.values(group);
-  if (!Array.isArray(group) && values.length && values.every((v) => v && typeof v === "object" && !Array.isArray(v))) {
-    Object.keys(group).forEach((key) => {
-      const d = document.createElement("details");
-      d.className = "sub";
-      const s = document.createElement("summary");
-      s.textContent = key.replace("\n", " ");
-      d.appendChild(s);
-      renderObject(d, group[key]);
-      box.appendChild(d);
+  const add = el("button", "add", "הוספת איש צוות +");
+  add.type = "button";
+  add.onclick = () => { team.push({ name: "", role: "", img: "" }); touch(); render(); };
+  box.appendChild(add);
+}
+
+/* ---- texts ---- */
+function scrTexts(box) {
+  head(box, "טקסטים באתר", "בוחרים עמוד, ומעדכנים את הטקסטים שבו.", { s: "home" }, "חזרה");
+  const menu = el("div", "menu");
+  TEXT_PAGES.forEach((key) => {
+    if (!data.content[key]) return;
+    const meta = LABELS[key] || {};
+    const sub = key === "serviceDetails"
+      ? Object.keys(data.content[key]).length + " תחומים, מה שנפתח בלחיצה על תחום"
+      : (meta._hint || "");
+    menu.appendChild(menuRow(meta._name || key, sub, () => go("page", key)));
+  });
+  box.appendChild(menu);
+}
+
+function scrPage(box, key) {
+  scope = key;
+  const meta = LABELS[key] || {};
+
+  /* the service folders are a long list, so they get a menu of their own */
+  if (key === "serviceDetails") {
+    head(box, meta._name, "בוחרים תחום כדי לערוך את התוכן שנפתח בלחיצה עליו באתר.", { s: "texts" }, "חזרה לטקסטים");
+    const menu = el("div", "menu");
+    Object.keys(data.content[key]).forEach((name) => {
+      const d = data.content[key][name];
+      const first = (d.paragraphs && d.paragraphs[0]) || "";
+      menu.appendChild(menuRow(name.replace("\n", " "), first.slice(0, 70) + (first.length > 70 ? "…" : ""), () => go("folder", name)));
     });
+    box.appendChild(menu);
     return;
   }
-  renderObject(box, group);
+
+  head(box, meta._name || key, meta._hint, { s: "texts" }, "חזרה לטקסטים");
+  const card = el("div", "card");
+  renderObject(card, data.content[key], key === "about" ? ["team"] : null);
+  box.appendChild(card);
 }
 
-function renderTabs() {
-  const tabs = $("tabs");
-  tabs.innerHTML = "";
-  const order = ["home", "about", "team", "servicesPage", "serviceDetails", "articlesPage", "articles", "contact"];
-  order.forEach((key) => {
-    if (key !== "team" && key !== "articles" && !data.content[key]) return;
-    const b = document.createElement("button");
-    b.type = "button";
-    b.setAttribute("role", "tab");
-    b.setAttribute("aria-selected", String(key === active));
-    b.textContent = key === "team" ? "אנשי הצוות" : key === "articles" ? "מאמרים" : (LABELS[key] && LABELS[key]._name) || key;
-    b.onclick = () => { active = key; renderTabs(); render(); window.scrollTo({ top: 0 }); };
-    tabs.appendChild(b);
-  });
+function scrFolder(box, name) {
+  scope = "serviceDetails";
+  head(box, name.replace("\n", " "), "התוכן שנפתח בלחיצה על התחום הזה באתר.", { s: "page", arg: "serviceDetails" }, "חזרה לתחומים");
+  const card = el("div", "card");
+  renderObject(card, data.content.serviceDetails[name]);
+  box.appendChild(card);
 }
 
-/* ---------- saving ---------- */
+/* ---------------- router ---------------- */
+function render() {
+  const box = $("screen");
+  box.innerHTML = "";
+  scope = "home";
+  if (view.s === "articles") return scrArticles(box);
+  if (view.s === "article") return scrArticle(box, view.arg);
+  if (view.s === "team") return scrTeam(box);
+  if (view.s === "texts") return scrTexts(box);
+  if (view.s === "page") return scrPage(box, view.arg);
+  if (view.s === "folder") return scrFolder(box, view.arg);
+  return scrHome(box);
+}
+
+/* ---------------- saving ---------------- */
 $("save").onclick = () => {
-  const text = JSON.stringify(data, null, 2);
-  const blob = new Blob([text], { type: "application/json;charset=utf-8" });
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+  const a = el("a");
   const stamp = new Date().toISOString().slice(0, 16).replace("T", "-").replace(":", "");
   a.href = url;
-  a.download = `eitan-shafir-content-${stamp}.json`;
+  a.download = "eitan-shafir-content-" + stamp + ".json";
   a.click();
   URL.revokeObjectURL(url);
-  dirty = false;
-  setStatus("הקובץ ירד למחשב");
 
-  const note = document.createElement("div");
-  note.className = "save-note";
-  note.innerHTML =
-    "<b>מה עכשיו?</b><br />הקובץ שירד מכיל את כל התוכן המעודכן. יש לשלוח אותו לקרן, והשינויים יעלו לאתר." +
-    "<br />הטיוטה נשמרת גם בדפדפן הזה, כך שאפשר לסגור ולחזור להמשיך.";
-  $("fields").prepend(note);
+  dirty = false;
+  $("save").disabled = true;
+  setState("הקובץ ירד למחשב");
+
+  const note = el("div", "note");
+  note.innerHTML = "<b>הקובץ ירד למחשב.</b><br />הוא מכיל את כל התוכן המעודכן. שולחים אותו לקרן, והשינויים עולים לאתר." +
+    "<br />מה שערכת נשמר גם בדפדפן הזה, אז אפשר לסגור ולחזור להמשיך.";
+  $("screen").prepend(note);
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-$("preview").onclick = () => window.open("index.html", "_blank", "noopener");
+$("viewSite").onclick = () => window.open("index.html", "_blank", "noopener");
 
 window.addEventListener("beforeunload", (e) => {
   if (!dirty) return;
