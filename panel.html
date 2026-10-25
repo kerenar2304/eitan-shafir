@@ -649,8 +649,12 @@ function scrArticle(box, i) {
   if (!a) return go("articles");
   head(box, a.title || "מאמר חדש", null, { s: "articles" }, "חזרה למאמרים");
 
+  const heading = box.querySelector("h2.title");
   const card = el("div", "card");
-  card.appendChild(field("כותרת המאמר", a.title, (v) => (a.title = v)));
+  card.appendChild(field("כותרת המאמר", a.title, (v) => {
+    a.title = v;
+    if (heading) heading.textContent = v || "מאמר חדש";
+  }));
   const row = el("div", "row");
   row.appendChild(field("מאת", a.author, (v) => (a.author = v)));
   row.appendChild(field("נושא", a.tag, (v) => (a.tag = v)));
@@ -863,7 +867,7 @@ $("save").onclick = () => {
   const pics = Object.keys(data.uploads).length;
   note.innerHTML = "<b>הקובץ ירד למחשב.</b><br />הוא מכיל את כל התוכן המעודכן" +
     (pics ? " ואת " + pics + " התמונות החדשות" : "") + ". שולחים אותו לקרן, והשינויים עולים לאתר." +
-    "<br />הטקסטים נשמרים גם בדפדפן הזה, אז אפשר לסגור ולחזור להמשיך. תמונות חדשות לא נשמרות בדפדפן, ולכן כדאי לשמור את הקובץ באותה ישיבה שבה העלית אותן.";
+    "<br />העבודה נמצאת עכשיו בקובץ שירד, ולא בדפדפן, אז כדאי לא לאבד אותו. כל עוד לא שמרת, מה שערכת נשמר בדפדפן ואפשר לסגור ולחזור. תמונות לא נשמרות בדפדפן בשום שלב.";
   $("screen").prepend(note);
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
