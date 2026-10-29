@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'none'; form-action 'self'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg?v=1793187865" />
-<link rel="icon" type="image/png" sizes="48x48" href="public/assets/favicon-48.png?v=1793187865" />
-<link rel="apple-touch-icon" sizes="180x180" href="public/assets/apple-touch-icon.png?v=1793187865" />
+<link rel="icon" type="image/svg+xml" href="public/assets/es-mark.svg?v=1793274230" />
+<link rel="icon" type="image/png" sizes="48x48" href="public/assets/favicon-48.png?v=1793274230" />
+<link rel="apple-touch-icon" sizes="180x180" href="public/assets/apple-touch-icon.png?v=1793274230" />
 <meta name="theme-color" content="#050E40" />
 <title>תקנון האתר | איתן שפיר ושות׳</title>
 <meta name="description" content="תנאי השימוש באתר איתן שפיר ושות׳ רואי חשבון." />
@@ -1041,7 +1041,7 @@ function IntroLoader() {
   return (
     <div className={cn("intro fixed inset-0 z-[100] grid place-items-center bg-navy-deep", phase === "out" && "is-out")} aria-hidden>
       <div className="flex flex-col items-center">
-        <img src="public/assets/es-mark.svg?v=1793187865" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
+        <img src="public/assets/es-mark.svg?v=1793274230" alt="" className="intro-mark h-auto w-[92px] md:w-[110px]" />
         <span className="intro-line mt-8 block h-px w-[150px] bg-gold md:w-[180px]" />
       </div>
     </div>
@@ -1561,12 +1561,12 @@ function Header() {
           <a href={ROUTES.home} className="brand-logo relative block shrink-0" aria-label="איתן שפיר ושות׳ רואי חשבון">
             {/* two inks, cross-faded: white text on dark backgrounds, navy text on light ones (the mark stays gold) */}
             <img
-              src="public/assets/logo-light.svg?v=1793187865"
+              src="public/assets/logo-light.svg?v=1793274230"
               alt="איתן שפיר ושות׳ רואי חשבון"
               className="logo-ink-light block h-auto w-[clamp(140px,38vw,200px)] lg:absolute lg:right-0 lg:top-0 lg:w-[212px] lg:max-w-none"
             />
             <img
-              src="public/assets/logo-dark.svg?v=1793187865"
+              src="public/assets/logo-dark.svg?v=1793274230"
               alt=""
               aria-hidden
               className="logo-ink-dark absolute right-0 top-0 block h-auto w-[clamp(140px,38vw,200px)] lg:w-[212px] lg:max-w-none"
@@ -1831,7 +1831,7 @@ function Footer() {
           {/* mobile: one centred column with thin gold dividers; desktop: contact on one side, links on the other */}
           <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-stretch md:justify-between md:gap-12 md:text-right" data-reveal>
             <div className="flex flex-col items-center md:items-start xl:-ms-[8px]">
-              <img src="public/assets/logo-dark.svg?v=1793187865" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
+              <img src="public/assets/logo-dark.svg?v=1793274230" alt="איתן שפיר ושות׳ רואי חשבון" className="h-auto w-[210px] md:w-[clamp(200px,20.98vw,278px)]" />
               <ul className="mt-8 space-y-4 text-[18px] leading-[26px] md:mt-[43px] md:space-y-[24px] md:text-[20px] md:leading-[28px]">
                 <li>
                   <a href={`tel:${PHONE.replace(/-/g, "")}`} className="flex items-center justify-center gap-3 md:justify-start md:gap-[18px]">
@@ -1890,7 +1890,7 @@ function Footer() {
         <div className="flex h-[103px] items-center justify-center gap-4 px-4 pt-[9px] md:gap-[44px]">
           <span className="whitespace-nowrap text-[16px] leading-[28px] text-white md:text-[20px]">עיצוב ופיתוח האתר:</span>
           <img
-            src="public/assets/keren-logo.png?v=1793187865"
+            src="public/assets/keren-logo.png?v=1793274230"
             alt="Keren Arlihman Graphic Designer"
             lang="en"
             width={202}
@@ -2406,7 +2406,7 @@ const genericBody = (excerpt: string): ArticleBlock[] => [
 const ARTICLES: Article[] = [
   {
     slug: "payroll-auditor-as-control",
-    img: "public/assets/article-payroll-audit.jpg?v=1793187865",
+    img: "public/assets/article-payroll-audit.jpg?v=1793274230",
     title: "בודק שכר מוסמך כחלק ממערך הבקרה של הארגון",
     tag: "ביקורות שכר",
     date: "19/10/2026",
@@ -2417,7 +2417,7 @@ const ARTICLES: Article[] = [
   },
   {
     slug: "manpower-tenders",
-    img: "public/assets/article-tenders.jpg?v=1793187865",
+    img: "public/assets/article-tenders.jpg?v=1793274230",
     title: "מכרזים עתירי כוח אדם",
     tag: "מכרזים",
     date: "19/10/2026",
@@ -2493,7 +2493,7 @@ const DIFF_BOX = { w: 1175, h: 480, card: 293 };
 const DIFF_CARDS = [
   {
     id: "diff-1",
-    icon: "public/assets/diff-icon-1.webp?v=1793187865",
+    icon: "public/assets/diff-icon-1.webp?v=1793274230",
     title: ["מומחיות רחבה,", "מבט אחד"],
     body: ["ראיית חשבון, רגולציה ובקרות", "שכר מתחברים לתמונה", "מקצועית שלמה."],
     left: -9,
@@ -2502,7 +2502,7 @@ const DIFF_CARDS = [
   },
   {
     id: "diff-2",
-    icon: "public/assets/diff-icon-2.webp?v=1793187865",
+    icon: "public/assets/diff-icon-2.webp?v=1793274230",
     title: ["ניסיון שרואה כמה", "צעדים קדימה"],
     body: ["שנים של ליווי עסקים, ארגונים", "וגופים גדולים ומורכבים."],
     left: 216,
@@ -2511,7 +2511,7 @@ const DIFF_CARDS = [
   },
   {
     id: "diff-3",
-    icon: "public/assets/diff-icon-3.webp?v=1793187865",
+    icon: "public/assets/diff-icon-3.webp?v=1793274230",
     title: ["מכירים את השטח", "משני הצדדים"],
     body: ["היכרות עמוקה עם המגזר", "העסקי והציבורי ועם האתגרים", "של כל אחד מהם."],
     left: 441,
@@ -2520,7 +2520,7 @@ const DIFF_CARDS = [
   },
   {
     id: "diff-4",
-    icon: "public/assets/diff-icon-4.webp?v=1793187865",
+    icon: "public/assets/diff-icon-4.webp?v=1793274230",
     title: ["רואים את התמונה,", "מזהים את הסיכון"],
     body: ["ראייה מערכתית שמאפשרת", "לזהות חשיפות ולקבל החלטות", "מדויקות יותר."],
     left: 666,
@@ -2529,7 +2529,7 @@ const DIFF_CARDS = [
   },
   {
     id: "diff-5",
-    icon: "public/assets/diff-icon-5.webp?v=1793187865",
+    icon: "public/assets/diff-icon-5.webp?v=1793274230",
     title: ["מקצועיות", "שמרגישים גם בדרך"],
     body: ["ליווי אישי, זמינות, יסודיות", "ואמינות לאורך כל הדרך."],
     left: 891,
@@ -2566,19 +2566,19 @@ function DiffCard({ card, className, style }: { card: DiffCardData; className?: 
 type LogoItem = { src: string; alt: string; w: number; h: number; crop?: { h: number; top: number } };
 
 const LOGOS_ROW_1: LogoItem[] = [
-  { src: "public/assets/logo-bituach-leumi-white.png?v=1793187865", alt: "ביטוח לאומי", w: 132, h: 61 },
-  { src: "public/assets/logo-netivei-white.png?v=1793187865", alt: "נתיבי ישראל", w: 190, h: 57 },
-  { src: "public/assets/logo-kakal-white.png?v=1793187865", alt: "קק״ל", w: 74, h: 49 },
-  { src: "public/assets/logo-mekorot-white.png?v=1793187865", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
-  { src: "public/assets/logo-finance-white.png?v=1793187865", alt: "משרד האוצר", w: 70, h: 75 },
+  { src: "public/assets/logo-bituach-leumi-white.png?v=1793274230", alt: "ביטוח לאומי", w: 132, h: 61 },
+  { src: "public/assets/logo-netivei-white.png?v=1793274230", alt: "נתיבי ישראל", w: 190, h: 57 },
+  { src: "public/assets/logo-kakal-white.png?v=1793274230", alt: "קק״ל", w: 74, h: 49 },
+  { src: "public/assets/logo-mekorot-white.png?v=1793274230", alt: "מקורות", w: 116, h: 51, crop: { h: 123.62, top: -23.48 } },
+  { src: "public/assets/logo-finance-white.png?v=1793274230", alt: "משרד האוצר", w: 70, h: 75 },
 ];
 
 const LOGOS_ROW_2: LogoItem[] = [
-  { src: "public/assets/logo-mavaker-white.png?v=1793187865", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
-  { src: "public/assets/logo-cal-white.png?v=1793187865", alt: "Cal", w: 82, h: 41 },
-  { src: "public/assets/logo-markantil-white.png?v=1793187865", alt: "מרכנתיל", w: 114, h: 48 },
-  { src: "public/assets/logo-yohananof-white.png?v=1793187865", alt: "יוחננוף", w: 102, h: 51 },
-  { src: "public/assets/logo-astrazeneca-white.png?v=1793187865", alt: "AstraZeneca", w: 132, h: 33.702 },
+  { src: "public/assets/logo-mavaker-white.png?v=1793274230", alt: "משרד מבקר המדינה", w: 85, h: 75, crop: { h: 113.43, top: -5.22 } },
+  { src: "public/assets/logo-cal-white.png?v=1793274230", alt: "Cal", w: 82, h: 41 },
+  { src: "public/assets/logo-markantil-white.png?v=1793274230", alt: "מרכנתיל", w: 114, h: 48 },
+  { src: "public/assets/logo-yohananof-white.png?v=1793274230", alt: "יוחננוף", w: 102, h: 51 },
+  { src: "public/assets/logo-astrazeneca-white.png?v=1793274230", alt: "AstraZeneca", w: 132, h: 33.702 },
 ];
 
 /* demo articles — replace with real content */
@@ -2645,8 +2645,8 @@ function Hero() {
         <video
           ref={videoRef}
           className="size-full object-cover object-[7%_35%] lg:object-center motion-reduce:hidden"
-          src="public/assets/hero-lighthouse.mp4?v=1793187865"
-          poster="public/assets/hero.jpg?v=1793187865"
+          src="public/assets/hero-lighthouse.mp4?v=1793274230"
+          poster="public/assets/hero.jpg?v=1793274230"
           autoPlay
           muted
           loop
@@ -2656,7 +2656,7 @@ function Hero() {
         />
         {/* the still only appears for reduced motion; lazy keeps it from downloading for everyone else */}
         <img
-          src="public/assets/hero.jpg?v=1793187865"
+          src="public/assets/hero.jpg?v=1793274230"
           alt=""
           loading="lazy"
           width={1325}
@@ -3214,7 +3214,7 @@ function About() {
           <div className="zoom-soft absolute bottom-0 right-0 aspect-[660/522] w-full overflow-hidden rounded-b-[5px]">
             <div className="absolute -bottom-[3px] left-[46.21%] top-[12.835%] w-[53.79%] -scale-x-100 overflow-hidden">
               <img
-                src="public/assets/avidan.webp?v=1793187865"
+                src="public/assets/avidan.webp?v=1793274230"
                 loading="lazy"
                 width={691}
                 height={708}
@@ -3224,7 +3224,7 @@ function About() {
             </div>
             <div className="absolute -bottom-[3px] left-0 top-0 w-[66.515%] overflow-hidden">
               <img
-                src="public/assets/eitan.webp?v=1793187865"
+                src="public/assets/eitan.webp?v=1793274230"
                 loading="lazy"
                 width={757}
                 height={737}
@@ -3240,7 +3240,7 @@ function About() {
       <div className="es-divider mt-[162px] flex items-center" data-anim aria-hidden>
         <span className="es-line es-line--from-right h-[2px] flex-1 bg-gold" />
         <img
-          src="public/assets/es-mark.svg?v=1793187865"
+          src="public/assets/es-mark.svg?v=1793274230"
                 loading="lazy"
                 width={100}
                 height={100}
@@ -3455,7 +3455,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח איתן שפיר",
     role: "מייסד המשרד ומנהלו",
-    img: "public/assets/eitan.webp?v=1793187865",
+    img: "public/assets/eitan.webp?v=1793274230",
     paragraphs: [
       "רו\"ח איתן שפיר, מייסד המשרד ומנהלו, מביא עמו ניסיון מקצועי של למעלה מארבעים שנה בתחומי ראיית החשבון, המיסוי והייעוץ העסקי. בעבר כיהן בתפקיד בכיר במשרד האוצר, וניסיונו משלב היכרות מעמיקה עם המגזר הציבורי והעסקי כאחד.",
       "בהובלתו מעניק המשרד ללקוחותיו ליווי אישי, יסודי ומקיף, תוך ראייה רחבה של מכלול הסוגיות הנוגעות ליחידים, לחברות ולארגונים.",
@@ -3469,7 +3469,7 @@ const PARTNERS: Partner[] = [
   {
     name: "רו\"ח אבידן טרבלסי",
     role: "מנהל תחום ביקורות השכר והבקרות",
-    img: "public/assets/avidan.webp?v=1793187865",
+    img: "public/assets/avidan.webp?v=1793274230",
     flip: true,
     paragraphs: [
       "אבידן טרבלסי, רואה חשבון, מבקר פנימי ובודק שכר מוסמך, בעל ניסיון של למעלה מעשרים שנה בליווי גופים ציבוריים, חברות וארגונים עתירי כוח אדם.",
@@ -3535,7 +3535,7 @@ function AboutHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">אודות איתן שפיר ושות׳ רואי חשבון</h1>
       <img
-        src="public/assets/about-hero.jpg?v=1793187865"
+        src="public/assets/about-hero.jpg?v=1793274230"
         alt="קבלת הפנים במשרד איתן שפיר ושות׳"
         className="absolute inset-0 -z-10 size-full object-cover object-[62%_42%]"
       />
@@ -3689,14 +3689,14 @@ type TeamMember = { name: string; role: string; img?: string };
 
 /* the office team (the partners have their own sections above) */
 const TEAM: TeamMember[] = [
-  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1793187865" },
-  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1793187865" },
-  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1793187865" },
-  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1793187865" },
-  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1793187865" },
-  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1793187865" },
-  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1793187865" },
-  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1793187865" },
+  { name: "אורה יורצ'נקו", role: "מנהלת צוות שירות תיקי לקוחות", img: "public/assets/team/ora-yurchenko.webp?v=1793274230" },
+  { name: "אירנה פיטקובסקי", role: "ניהול תיקי לקוחות", img: "public/assets/team/irena-pitkovsky.webp?v=1793274230" },
+  { name: "אלוני שניידר", role: "ניהול תיקי לקוחות", img: "public/assets/team/aloni-schneider.webp?v=1793274230" },
+  { name: "אירנה ספיבק לברוב", role: "אדמיניסטרציה וניהול תיקי לקוחות", img: "public/assets/team/irena-spivak-lavrov.webp?v=1793274230" },
+  { name: "ולריה ליטבק", role: "רואת חשבון", img: "public/assets/team/valeria-litvak.webp?v=1793274230" },
+  { name: "קטיה חיגר", role: "רואת חשבון", img: "public/assets/team/katia-higer.webp?v=1793274230" },
+  { name: "מיכאל זלוטסקי", role: "שירותי חשבות ועוזר מנכ\"ל", img: "public/assets/team/michael-zlotsky.webp?v=1793274230" },
+  { name: "שלמה שם טוב", role: "מתמחה", img: "public/assets/team/shlomo-shem-tov.webp?v=1793274230" },
 ];
 
 /** neutral head-and-shoulders placeholder, resting on the same navy desk as the photos */
@@ -3822,7 +3822,7 @@ function ServicesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">תחומי התמחות</h1>
       <img
-        src="public/assets/services-hero.jpg?v=1793187865"
+        src="public/assets/services-hero.jpg?v=1793274230"
         alt="שולחן עבודה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_62%]"
       />
@@ -4120,7 +4120,7 @@ function ArticlesHero() {
     <section className="relative isolate overflow-hidden bg-navy-deep">
       <h1 className="sr-only">מאמרים</h1>
       <img
-        src="public/assets/articles-hero.jpg?v=1793187865"
+        src="public/assets/articles-hero.jpg?v=1793274230"
         alt="ספרייה במגדלור, מול הים בשקיעה"
         className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]"
       />
@@ -4287,7 +4287,7 @@ function ReadingProgress() {
 function ArticleHero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-deep" aria-hidden>
-      <img src="public/assets/articles-hero.jpg?v=1793187865" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
+      <img src="public/assets/articles-hero.jpg?v=1793274230" alt="" className="absolute inset-0 -z-10 size-full object-cover object-[50%_45%]" />
       <div className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-navy-deep/80 to-transparent" />
       <div className="h-[clamp(300px,34vw,440px)]" />
     </section>
@@ -4618,8 +4618,9 @@ const ACCESSIBILITY: LegalSection[] = [
   {
     h: "רמת הנגישות באתר",
     blocks: [
-      "האתר נמצא בתהליך הנגשה בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג־2013, ולתקן הישראלי ת״י 5568, המבוסס על הנחיות WCAG 2.0 ברמה AA. [[לאחר השלמת התיקונים והבדיקה: לציין אם האתר הונגש במלואו או חלקית.]]",
-      "תאריך הבדיקה האחרונה: [[תאריך]]. הבדיקה בוצעה על ידי: [[שם הבודק או הכלי]].",
+      "האתר הונגש בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג־2013, ולתקן הישראלי ת״י 5568, המבוסס על הנחיות WCAG 2.0 ברמה AA, למעט הנקודה המפורטת בהמשך.",
+      "תאריך הבדיקה האחרונה: 29 באוקטובר 2026. הבדיקה בוצעה על ידי צוות הפיתוח של האתר, בבדיקה ידנית ובכלי בדיקה אוטומטיים.",
+      "לא ניתנו לאתר פטורים או הקלות מחובות הנגישות.",
       "בין ההתאמות שבוצעו באתר:",
       [
         "אפשרות ניווט באמצעות המקלדת, עם סימון של הרכיב שבפוקוס",
@@ -4631,15 +4632,12 @@ const ACCESSIBILITY: LegalSection[] = [
     ],
   },
   {
-    h: "חלקים שטרם הונגשו במלואם",
+    h: "נקודות לתשומת לב",
     blocks: [
-      "אנו מודעים לכך שהחלקים הבאים עדיין אינם נגישים במלואם, ופועלים לתקנם:",
+      "שתי נקודות שכדאי להכיר:",
       [
-        "פסי הלוגואים הנעים וסרטון הרקע בדף הבית: טרם נוסף כפתור לעצירתם",
-        "כרטיסי ״הגישה המקצועית שלנו״ בדף הבית: חלק מהטקסט מוצג כחלק מהתמונה",
-        "חלק מהכותרות בצבע זהב על רקע בהיר: ניגודיות הצבעים אינה מספקת",
-        "שדות טופס יצירת הקשר: אין להם עדיין תוויות גלויות",
-        "תוכן של צד שלישי, כגון שירותי המפות והניווט שאליהם מקשר האתר, שאינו בשליטתנו",
+        "בכרטיסי ״הגישה המקצועית שלנו״ בדף הבית, הטקסט מוצג בגוון זהב על רקע בהיר, שאינו מגיע ליחס הניגודיות הנדרש. הפעלת ״ניגודיות גבוהה״ בתפריט הנגישות מציגה את הכרטיסים בשחור ולבן מלא.",
+        "תוכן של צד שלישי, כגון שירותי המפות והניווט שאליהם מקשר האתר, אינו בשליטתנו ואיננו אחראים לרמת הנגישות שלו.",
       ],
       "אם נתקלתם בקושי בחלק כלשהו באתר, נשמח שתעדכנו אותנו ונפעל לתקנו בהקדם.",
     ],
@@ -4647,7 +4645,14 @@ const ACCESSIBILITY: LegalSection[] = [
   {
     h: "נגישות המשרד",
     blocks: [
-      `משרדנו ממוקם ב${ADDRESS}. [[יש להשלים את הסדרי הנגישות הפיזיים: מעלית, חניית נכים, שירותים נגישים, דרכי הגעה, ואפשרות לפגישה מחוץ למשרד.]]`,
+      `משרדנו ממוקם ב${ADDRESS}, בקומה השנייה. אלה הסדרי הנגישות במקום:`,
+      [
+        "הכניסה לבניין היא ללא מדרגות",
+        "בבניין מעלית, והיא מתאימה לכניסת כיסא גלגלים",
+        "אין חניית נכים בסמוך למשרד",
+        "אין שירותים נגישים בקומת המשרד",
+      ],
+      "מי שזקוק להתאמה נוספת כדי לקבל שירות מוזמן לפנות אלינו מראש בטלפון או בדוא״ל, ונעשה כמיטב יכולתנו למצוא פתרון.",
     ],
   },
   {
@@ -4661,10 +4666,10 @@ const ACCESSIBILITY: LegalSection[] = [
     blocks: [
       "לכל שאלה, הערה או בקשה בנושא נגישות, ניתן לפנות אלינו:",
       [
-        "איש או אשת קשר לנגישות: [[שם. אם במשרד 25 עובדים ומעלה, יש למנות רכז או רכזת נגישות]]",
-        `טלפון: ${PHONE}`,
+        "איש הקשר לנגישות: מיכאל זלוטסקי",
+        `טלפון: ${PHONE}, שלוחה 109`,
         `דוא״ל: ${EMAIL}`,
-        "שעות מענה וזמן תגובה: [[למשל: א׳ עד ה׳, 9:00 עד 17:00; מענה תוך 5 ימי עבודה]]",
+        "שעות מענה: ימים א׳ עד ה׳, 8:00 עד 15:00. אנו משיבים לפנייה בתוך שלושה ימי עסקים.",
       ],
       "נשמח לקבל פרטים על הבעיה שבה נתקלתם, הדף שבו היא הופיעה, והדפדפן או הטכנולוגיה המסייעת שבהם השתמשתם.",
     ],
@@ -4675,7 +4680,7 @@ function AccessibilityPage() {
   return (
     <LegalLayout
       title="הצהרת נגישות"
-      intro="אנו מאמינים שלכל אדם מגיעה גישה שווה למידע ולשירות. בדף זה מפורטים מצב הנגישות של האתר ושל המשרד, החלקים שעדיין בטיפול, וכיצד ניתן לפנות אלינו בנושא נגישות."
+      intro="אנו מאמינים שלכל אדם מגיעה גישה שווה למידע ולשירות. בדף זה מפורטים מצב הנגישות של האתר ושל המשרד, ודרכי הפנייה אלינו בנושא נגישות."
       sections={ACCESSIBILITY}
     />
   );
@@ -4689,7 +4694,7 @@ const PRIVACY: LegalSection[] = [
   {
     h: "מי אנחנו",
     blocks: [
-      `האתר מופעל על ידי איתן שפיר ושות׳ רואי חשבון, [[ח.פ. או מספר שותפות]], ${ADDRESS} (״המשרד״). המשרד הוא האחראי על המידע הנאסף באמצעות האתר.`,
+      `האתר מופעל על ידי איתן שפיר, רואי חשבון, ח.פ. 513663104, ${ADDRESS} (״המשרד״). המשרד הוא האחראי על המידע הנאסף באמצעות האתר.`,
     ],
   },
   {
@@ -4698,7 +4703,7 @@ const PRIVACY: LegalSection[] = [
       "כאשר אתם ממלאים את טופס יצירת הקשר, אנו מקבלים את הפרטים שמסרתם:",
       ["שם", "מספר טלפון", "כתובת דוא״ל", "תוכן ההודעה"],
       "אינכם חייבים על פי חוק למסור מידע זה. מסירתו נעשית מרצונכם, אולם ללא פרטי התקשרות לא נוכל לחזור אליכם.",
-      "בנוסף, ספק האחסון של האתר שומר באופן אוטומטי נתונים טכניים בסיסיים, כגון כתובת IP, סוג הדפדפן ושעת הגישה. [[להשלים לפי ספק האחסון בפועל.]]",
+      "בנוסף, ספק האחסון של האתר, GitHub Pages, שומר באופן אוטומטי נתונים טכניים בסיסיים כגון כתובת IP, סוג הדפדפן ושעת הגישה. נתונים אלה משמשים להגשת הדפים ולאבטחתם בלבד, ואינם מגיעים אלינו כמידע מזוהה.",
       "אנא אל תכללו בטופס מידע רגיש, כגון מספרי תעודת זהות, פרטים פיננסיים מפורטים או מסמכים. מידע כזה נעביר יחד בערוץ מאובטח לאחר שניצור עמכם קשר.",
       "האתר אינו משתמש כיום בעוגיות מעקב, פרסום או ניתוח סטטיסטי. אם יתווספו כלים כאלה, נעדכן מדיניות זו לפני הפעלתם.",
     ],
@@ -4718,10 +4723,10 @@ const PRIVACY: LegalSection[] = [
       [
         "אחסון האתר: GitHub Pages של חברת GitHub, ארצות הברית. באתר עצמו לא נשמר מידע שנמסר בטופס.",
         "טופס יצירת הקשר: הפרטים שאתם ממלאים נמסרים לתוכנת הדואר שבמכשיר שלכם, ונשלחים ממנה אל תיבת הדואר של המשרד. אין באתר שירות שמקבל את הפרטים או שומר אותם.",
-        "דוא״ל המשרד: Microsoft 365 של מיקרוסופט, [[מדינת אחסון הנתונים לפי הגדרות החשבון]]",
+        "דוא״ל המשרד: Microsoft 365 של מיקרוסופט. נתוני תיבת הדואר מאוחסנים באיחוד האירופי או בישראל, בהתאם להגדרת האזור בחשבון המשרד.",
         "ספריות תצוגה: האתר טוען רכיבי תוכנה מהשירותים unpkg.com ו-cdn.tailwindcss.com, המופעלים מארצות הברית. בעת הטעינה נמסרת להם כתובת ה-IP של הגולש וסוג הדפדפן שלו. הם אינם מקבלים פרטים שנמסרו בטופס.",
       ],
-      "[[אם המידע נשמר או מעובד מחוץ לישראל, לציין זאת כאן במפורש.]]",
+      "חלק מהשירותים שלעיל מופעלים מחוץ לישראל, ולכן מידע עשוי להישמר או להתעבד גם מחוץ לגבולות המדינה.",
       "מעבר לכך, מידע יימסר לגורם אחר רק אם נידרש לכך על פי דין או לפי צו של רשות מוסמכת.",
     ],
   },
@@ -4729,20 +4734,20 @@ const PRIVACY: LegalSection[] = [
     h: "אבטחת המידע ושמירתו",
     blocks: [
       "אנו נוקטים אמצעים סבירים ומקובלים כדי להגן על המידע, ובהם תקשורת מוצפנת (HTTPS) והגבלת הגישה למידע לגורמים המורשים בלבד. עם זאת, אין אפשרות להבטיח חסינות מוחלטת של מערכות מידע.",
-      "פניות שנשלחו דרך האתר נשמרות [[תקופת השמירה, למשל 24 חודשים]], ולאחר מכן נמחקות. אם הפונה הופך ללקוח המשרד, פנייתו עשויה להישמר בתיק הלקוח בהתאם לחובות שמירת המסמכים החלות על המשרד.",
+      "פניות שנשלחו דרך האתר נשמרות שנים עשר חודשים, ולאחר מכן נמחקות. אם הפונה הופך ללקוח המשרד, פנייתו עשויה להישמר בתיק הלקוח בהתאם לחובות שמירת המסמכים החלות על המשרד.",
     ],
   },
   {
     h: "הזכויות שלכם",
     blocks: [
-      "בהתאם לחוק הגנת הפרטיות, התשמ״א־1981, אתם רשאים לעיין במידע שנשמר עליכם, לבקש לתקנו אם אינו נכון, שלם או מדויק, ולבקש את מחיקתו. בקשה כזו ניתן לשלוח אלינו בפרטים שבהמשך, ונשיב עליה תוך [[זמן מענה]].",
+      "בהתאם לחוק הגנת הפרטיות, התשמ״א־1981, אתם רשאים לעיין במידע שנשמר עליכם, לבקש לתקנו אם אינו נכון, שלם או מדויק, ולבקש את מחיקתו. בקשה כזו ניתן לשלוח אלינו בפרטים שבהמשך, ונשיב עליה בתוך שבעה ימי עסקים.",
     ],
   },
   {
     h: "יצירת קשר",
     blocks: [
       "לשאלות בנוגע למדיניות זו או למידע שנשמר עליכם:",
-      [`טלפון: ${PHONE}`, `דוא״ל: ${EMAIL.includes("????") ? "[[כתובת הדוא״ל לפניות בענייני פרטיות]]" : EMAIL}`, `כתובת: ${ADDRESS}`],
+      [`טלפון: ${PHONE}`, `דוא״ל: ${EMAIL}`, `כתובת: ${ADDRESS}`],
       "המשרד רשאי לעדכן מדיניות זו מעת לעת. הנוסח המחייב הוא הנוסח המופיע בדף זה.",
     ],
   },
@@ -4766,7 +4771,7 @@ const TERMS: LegalSection[] = [
   {
     h: "כללי",
     blocks: [
-      `האתר מופעל על ידי איתן שפיר ושות׳ רואי חשבון, [[ח.פ. או מספר שותפות]], ${ADDRESS}, טלפון ${PHONE}. השימוש באתר כפוף לתנאים המפורטים בדף זה. התנאים מנוסחים בלשון רבים, אך מתייחסים לכל המגדרים.`,
+      `האתר מופעל על ידי איתן שפיר, רואי חשבון, ח.פ. 513663104, ${ADDRESS}, טלפון ${PHONE}. השימוש באתר כפוף לתנאים המפורטים בדף זה. התנאים מנוסחים בלשון רבים, אך מתייחסים לכל המגדרים.`,
     ],
   },
   {
@@ -4787,7 +4792,7 @@ const TERMS: LegalSection[] = [
     h: "קניין רוחני",
     blocks: [
       "הזכויות בתכנים, בעיצוב, בלוגו ובטקסטים באתר שמורות למשרד. תמונות, סרטונים וגופנים מסוימים משמשים ברישיון מבעלי הזכויות בהם. אין להעתיק, להפיץ או לעשות בתכנים שימוש מסחרי ללא אישור מראש ובכתב.",
-      "[[רק אם הושג אישור: הלוגואים של לקוחות ושל גופים אחרים המוצגים באתר הם קניינם של בעליהם, ומוצגים באישורם.]]",
+      "הלוגואים של לקוחות ושל גופים אחרים המוצגים באתר הם קניינם של בעליהם, ומוצגים באישורם.",
     ],
   },
   {
